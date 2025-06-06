@@ -14,8 +14,8 @@
     $user = $result->fetch_assoc();
 
     if($user){
-        // session_start();
-        // $_SESSION['user'] = $user['admin_id'];
+        session_start();
+        $_SESSION['admin'] = $user['admin_id'];
         echo json_encode(['success' => true]);
     }else{
         echo json_encode(['success' => false, 'message' => 'Invalid password or username']);

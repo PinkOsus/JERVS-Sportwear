@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JERVS SPORTWEAR Login</title>
-  <link rel="stylesheet" href="../assets/index.css">
+  <link rel="stylesheet" href="../assets/stylesheet/index.css">
 </head>
 <body>
   <div class="login-container">
