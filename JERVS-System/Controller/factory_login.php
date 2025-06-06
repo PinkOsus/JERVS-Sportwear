@@ -14,13 +14,12 @@
     $stmt = $conn->prepare('SELECT * FROM member_tbl WHERE member_user = ?');
     $stmt->bind_param('s', $username);
     $stmt->execute();
-    $stmt->store_result();
+    $result = $stmt->get_result();
 
-    if($stmt->num_rows == 1){
-        $stmt->bind_result($member_id, $hashed_password);
-        $stmt->fetch();
+    if($result->num_rows === 1){
+        $user = $result->fetch_assoc();
 
-        if (password_verify($password, $hashed_password)) {
+        if (password_verify($password, $user['member_pass'])) {
         //if Successful login — record the log
             $ip = $_SERVER['REMOTE_ADDR'];
             $user_agent = $_SERVER['HTTP_USER_AGENT'];
@@ -31,7 +30,8 @@
             $logStmt->close();
 
             // Set session or token
-            $_SESSION['member_id'] = $member_id;
+            $_SESSION['member_id'] = $user['member_id'];
+            $_SESSION['username'] = $user['member_user'];
 
             echo json_encode(['success' => true, 'message' => 'Login successful']);
         } else {
