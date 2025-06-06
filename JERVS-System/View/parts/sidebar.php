@@ -2,8 +2,9 @@
     <h2>Admin Sales</h2>
     <nav>
         <ul>
-            <li><a href="#">Sales</a></li>
+            <li><a href="../pages/dashboard.php">Sales</a></li>
             <li><a href="#">Inventory</a></li>
+            <li><a href="../pages/add-member-panel.php">Members</a></li>
             <li><a href="#">Reports</a></li>
             <li><a href="#">Settings</a></li>
         </ul>

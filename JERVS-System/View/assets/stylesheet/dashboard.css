@@ -129,3 +129,55 @@ th, td {
   border-bottom: 1px solid #ddd;
   text-align: left;
 }
+
+/*Add panel css*/
+.add-user-panel {
+  background-color: white;
+  padding: 30px;
+  max-width: 400px;
+  margin: 30px auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.add-user-panel h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#addUserForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#addUserForm label {
+  margin: 10px 0 5px;
+}
+
+#addUserForm input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#addUserForm button {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #2e2e4d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#addUserForm button:hover {
+  background-color: #444466;
+}
+
+#addUserMessage {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}
+

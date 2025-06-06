@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['admin'])) {
+if (isset($_SESSION['member'])) {
   header("Location: dashboard.php");
   exit();
 }
@@ -40,7 +40,6 @@ if (isset($_SESSION['admin'])) {
           <div id="message"></div>
         </form>
       </div>
-
 
       <div class="login-right">
         <img src="basketball.png" alt="Basketball Player" />
