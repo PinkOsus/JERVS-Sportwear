@@ -13,10 +13,12 @@ document.getElementById("loginForm").addEventListener("submit", function (e){
         
         if(data.success){//if login success go to admin
             messageBox.innerText = "Login Successful";
-            
+            messageBox.style.color = "green";
+
             window.location.href = "dashboard.php";
         }else{
             messageBox.innerText = "Login failed: " + data.message;
+            messageBox.style.color = "red";
         }
     })
     .catch(error => {

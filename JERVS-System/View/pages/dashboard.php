@@ -1,5 +1,7 @@
 <?php
     include('../parts/sidebar.php');
+    include('../../config/database.php');
+    include('../../Controller/sessioncheck.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
