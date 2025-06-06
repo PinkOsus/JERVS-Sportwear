@@ -16,19 +16,21 @@
         <h2>JERVS SPORTWEAR</h2>
         <p class="subtitle">Start Your Own Brand!</p>
 
-        <form class="login-form">
+        <form class="login-form" id="loginForm">
           <label for="username">Username</label>
-          <input type="text" id="username" placeholder="Enter your username">
+          <input type="text" id="username" name="username" placeholder="Enter your username">
 
           <label for="password">Password</label>
           <div class="password-wrapper">
-            <input type="password" id="password" placeholder="********">
+            <input type="password" id="password" name="password" placeholder="********">
             <span class="toggle-password">👁️</span>
           </div>
 
           <button type="submit" class="login-btn">Log In</button>
+          <div id="message"></div>
         </form>
       </div>
+      
 
       <div class="login-right">
         <img src="basketball.png" alt="Basketball Player" />
@@ -38,5 +40,6 @@
       </div>
     </div>
   </div>
+  <script src="../script/index.js"></script>
 </body>
 </html>
