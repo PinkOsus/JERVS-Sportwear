@@ -11,10 +11,10 @@
     <form action="#" method="post">
       <select name="production_stage" required>
         <option value="">-- Choose Stage --</option>
-        <option value="quality_check">Printing</option>
-        <option value="packaging">Heat Press</option>
-        <option value="shipping">Sewing</option>
-        <option value="delivered">Ready</option>
+        <option value="printing">Printing</option>
+        <option value="heatpress">Heat Press</option>
+        <option value="sewing">Sewing</option>
+        <option value="ready">Ready</option>
       </select>
       <button type="submit">Confirm</button>
     </form>

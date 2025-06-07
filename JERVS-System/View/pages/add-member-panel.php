@@ -37,6 +37,44 @@ include('../../Controller/sessioncheck.php');
                     <div id="addUserMessage"></div>
                 </form>
             </div>
+            <div class="show-login-logs">
+                <h2>Member Logs</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Login Time</th>
+                                <th>IP Addresss</th>
+                                <th>User Agent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $stmt = 'SELECT l.login_time, l.ip_address, l.user_agent, m.member_user
+                                         FROM login_logs l
+                                         JOIN member_tbl m ON l.member_id = m.member_id
+                                         ORDER BY l.login_time DESC LIMIT 20';
+                                
+                                $result = $conn->query($stmt);
+
+                                if($result && $result->num_rows>0){
+                                    while($row = $result->fetch_assoc()){
+                                        echo '<tr>';
+                                        echo '<td>' . htmlspecialchars($row['member_user']) .'<td>';
+                                        echo '<td>' . htmlspecialchars($row['login_time']) .'<td>';
+                                        echo '<td>' . htmlspecialchars($row['ip_address']) .'<td>';
+                                        echo '<td>' . htmlspecialchars($row['user_agent']) .'<td>';
+                                        echo '</tr>';
+                                    }
+                                }else{
+                                    echo '<tr><td colspan="4">No login records found.</td></tr>';
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
     </div>
     <script src="../script/add-member.js"></script>
