@@ -52,6 +52,7 @@ if (isset($_SESSION['admin'])) {
                   <span class="text-wrapper">Log in</span>
                 </button>
               </div>
+              <div id="message"></div>
               </form>
             </div>
 
