@@ -61,10 +61,10 @@ include('../../Controller/sessioncheck.php');
                                 if($result && $result->num_rows>0){
                                     while($row = $result->fetch_assoc()){
                                         echo '<tr>';
-                                        echo '<td>' . htmlspecialchars($row['member_user']) .'<td>';
-                                        echo '<td>' . htmlspecialchars($row['login_time']) .'<td>';
-                                        echo '<td>' . htmlspecialchars($row['ip_address']) .'<td>';
-                                        echo '<td>' . htmlspecialchars($row['user_agent']) .'<td>';
+                                        echo '<td>' . htmlspecialchars($row['member_user']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['login_time']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['ip_address']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['user_agent']) .'</td>';
                                         echo '</tr>';
                                     }
                                 }else{
