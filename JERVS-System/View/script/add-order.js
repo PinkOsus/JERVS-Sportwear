@@ -15,7 +15,7 @@ document.getElementById("addOrderForm").addEventListener("submit", function(e){
             feedback.innerText = "Order added Successfully";
             feedback.style.color = "green";
 
-            window.location.reload;
+            window.location.reload();
         }else{
             feedback.innerText = "Order adding failed: " + data.message;
             feedback.style.color = "red";

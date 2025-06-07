@@ -15,6 +15,7 @@ include('../../Controller/sessioncheck.php');
     <div class="container">
         <main class="main-content">
             <button id="openAddOrderBtn">Add Order Member</button>
+            <button onclick="location.reload()">🔄 Refresh Table</button>
             <div class="add-order-panel" id="addOrder">
                 <h2>Add New Order</h2>
                 <form id="addOrderForm">
