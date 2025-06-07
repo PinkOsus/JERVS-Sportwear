@@ -24,27 +24,33 @@
         <nav class="fashion-nav">
             <ul>
                 <li class="active">
-                    <a href="#">
+                    <a href="../pages/dashboard.php">
                         <span class="icon">👗</span>
-                        <span class="link-text">Products</span>
+                        <span class="link-text">Sales</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                         <span class="icon">📦</span>
-                        <span class="link-text">Stock</span>
+                        <span class="link-text">Inventory</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../pages/add-member-panel.php">
                         <span class="icon">👥</span>
-                        <span class="link-text">Clients</span>
+                        <span class="link-text">Members</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/add-order.php">
+                        <span class="icon">📝</span>
+                        <span class="link-text">Orders</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <span class="icon">📈</span>
-                        <span class="link-text">Analytics</span>
+                        <span class="icon">📊</span>
+                        <span class="link-text">Reports</span>
                     </a>
                 </li>
                 <li>
