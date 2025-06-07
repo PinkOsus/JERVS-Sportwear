@@ -2,17 +2,18 @@
 session_start();
 
 if (isset($_SESSION['member'])) {
-  header("Location: dashboard.php");
+  header("Location: factory-system.php");
   exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JERVS SPORTWEAR Login</title>
+  <title>JERVS SPORTWEAR Member Login</title>
   <link rel="stylesheet" href="../assets/stylesheet/index.css">
 </head>
 
@@ -26,7 +27,7 @@ if (isset($_SESSION['member'])) {
         <h2>JERVS SPORTWEAR</h2>
         <p class="subtitle">Start Your Own Brand!</p>
 
-        <form class="login-form" id="loginForm">
+        <form class="login-form" id="loginForm-Member">
           <label for="username">Username</label>
           <input type="text" id="username" name="username" placeholder="Enter your username">
 
@@ -49,7 +50,7 @@ if (isset($_SESSION['member'])) {
       </div>
     </div>
   </div>
-  <script src="../script/index.js"></script>
+  <script src="script/factory-login.js"></script>
 </body>
 
 </html>
