@@ -60,5 +60,5 @@ if (isset($_SESSION['member'])) {
       </div>
     </div>
   </body>
-  <script src="../script/index.js"></script>
+  <script src="../Factory-Modules/factory-login-panel.php"></script>
 </html>

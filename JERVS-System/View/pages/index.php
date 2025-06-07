@@ -16,6 +16,8 @@ if (isset($_SESSION['admin'])) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/stylesheet/index.css" />
     <link rel="stylesheet" href="../assets/stylesheet/globals.css" />
+    <title>JERVS Sportwear - Login</title>
+    <link rel="icon" href="../assets/img/logo-1.png" type="image/x-icon">
   </head>
   <body>
     <div class="box">

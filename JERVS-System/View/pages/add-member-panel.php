@@ -9,37 +9,79 @@ include('../../Controller/sessioncheck.php');
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Members</title>
+    <title>Add Members | JERVS Admin</title>
     <link rel="stylesheet" href="../assets/stylesheet/dashboard.css" />
+    <link rel="stylesheet" href="../assets/stylesheet/add-member.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../assets/img/logo-1.png" type="image/x-icon">
 </head>
 
 <body>
     <div class="container">
         <main class="main-content">
-            <button id="openAddMemberBtn">+ Add Member</button>
-            <div class="add-user-panel" id="addMemberPanel" style="display: none;">
-                <h2>Add New Member</h2>
-                <form id="addUserForm">
-                    <label>Username:</label>
-                    <input type="text" name="username" required />
-
-                    <label>Full name: </label>
-                    <input type="text" name="fullname" required />
-
-                    <label>Email:</label>
-                    <input type="email" name="email" required />
-
-                    <label>Password:</label>
-                    <input type="password" name="password" required />
-
-                    <button type="submit">Add Member</button>
-                    <button type="button" onclick="document.getElementById('addMemberPanel').style.display='none'">✖ Close</button>
-                    <div id="addUserMessage"></div>
-                </form>
+            <div class="fashion-header">
+                <h1><i class="fas fa-user-plus"></i> Member Management</h1>
+                <p>Add and manage your team members</p>
+            </div>
+            
+            <button id="openAddMemberBtn" class="fashion-btn primary">
+                <i class="fas fa-plus"></i> Add New Member
+            </button>
+            
+            <div class="fashion-modal" id="addMemberPanel">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2><i class="fas fa-user-edit"></i> Add New Member</h2>
+                        <button class="close-btn" onclick="closeModal()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <form id="addUserForm" class="fashion-form">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Username</label>
+                            <input type="text" name="username" required placeholder="Enter unique username" />
+                            <div class="input-decoration"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-id-card"></i> Full Name</label>
+                            <input type="text" name="fullname" required placeholder="Member's full name" />
+                            <div class="input-decoration"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" name="email" required placeholder="member@example.com" />
+                            <div class="input-decoration"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-lock"></i> Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" name="password" required placeholder="Create secure password" />
+                                <button type="button" class="toggle-password"><i class="fas fa-eye"></i></button>
+                            </div>
+                            <div class="input-decoration"></div>
+                            <div class="password-strength"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="fashion-btn success">
+                                <i class="fas fa-user-plus"></i> Add Member
+                            </button>
+                            <button type="button" class="fashion-btn danger" onclick="closeModal()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                        
+                        <div id="addUserMessage" class="message-box"></div>
+                    </form>
+                </div>
             </div>
         </main>
     </div>
     <script src="../script/add-member.js"></script>
 </body>
-
 </html>

@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>New Sale</title>
   <link rel="stylesheet" href="../assets/stylesheet/dashboard.css" />
+  <link rel="stylesheet" href="../assets/stylesheet/sales.css" />
 </head>
 <body>
   <div class="container">
