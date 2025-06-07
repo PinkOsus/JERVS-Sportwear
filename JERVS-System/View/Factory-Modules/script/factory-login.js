@@ -15,7 +15,7 @@ document.getElementById("loginForm-Member").addEventListener("submit", function 
             messageBox.innerText = "Login Successful";
             messageBox.style.color = "green";
 
-            window.location.href = "../factory-system.php";
+            window.location.href = "factory-system.php";
         }else{
             messageBox.innerText = "Login failed: " + data.message;
             messageBox.style.color = "red";
