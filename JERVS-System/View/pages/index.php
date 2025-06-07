@@ -31,17 +31,18 @@ if (isset($_SESSION['admin'])) {
                 </div>
               </div>
               
+              <form id="loginForm">
               <div class="email-form">
                 <label class="text-wrapper-3">Username</label>
                 <div class="div-wrapper">
-                  <input type="text" class="text-wrapper-2" placeholder="Enter your username" />
+                  <input type="text" class="text-wrapper-2" name="username" placeholder="Enter your username" />
                 </div>
               </div>
               
               <div class="password-form">
                 <label class="text-wrapper-5">Password</label>
                 <div class="overlap-2">
-                  <input type="password" class="text-wrapper-4" placeholder="**********" />
+                  <input type="password" class="text-wrapper-4" name="password" placeholder="**********" />
                   <img class="eye-off" src="../assets/img/eye-off.svg" alt="Toggle password visibility" />
                 </div>
               </div>
@@ -51,8 +52,9 @@ if (isset($_SESSION['admin'])) {
                   <span class="text-wrapper">Log in</span>
                 </button>
               </div>
+              </form>
             </div>
-            
+
             <img class="right-side" src="../assets/img/right-side.png" alt="Decorative background" />
             <img class="img" src="../assets/img/logo-2.png" />
           </div>
