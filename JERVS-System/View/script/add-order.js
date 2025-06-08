@@ -1,5 +1,9 @@
-document.getElementById("addOrderForm").addEventListener("submit", function(e){
-    e.preventDefault;
+document.addEventListener('DOMContentLoaded', function(){
+    const addOrderForm = document.getElementById('addOrderForm');
+
+    //adding order form
+    addOrderForm.addEventListener('submit', function(e){
+        e.preventDefault;
 
     const formData = new FormData(this);
 
@@ -23,5 +27,6 @@ document.getElementById("addOrderForm").addEventListener("submit", function(e){
     })
     .catch(error => {
         console.log("An error occured in ", error);
+    });
     });
 });
