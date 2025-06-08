@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2025 at 03:22 PM
+-- Generation Time: Jun 08, 2025 at 03:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -61,7 +61,10 @@ CREATE TABLE `login_logs` (
 INSERT INTO `login_logs` (`id`, `member_id`, `login_time`, `ip_address`, `user_agent`) VALUES
 (1, 1, '2025-06-07 15:04:15', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
 (2, 1, '2025-06-07 16:36:00', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(3, 1, '2025-06-07 17:19:42', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0');
+(3, 1, '2025-06-07 17:19:42', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
+(4, 1, '2025-06-08 00:46:50', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
+(5, 2, '2025-06-08 12:13:14', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
+(6, 1, '2025-06-08 20:25:26', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0');
 
 -- --------------------------------------------------------
 
@@ -94,10 +97,19 @@ INSERT INTO `member_tbl` (`member_id`, `member_user`, `member_fullname`, `member
 CREATE TABLE `orders_tbl` (
   `id` int(11) NOT NULL,
   `item_name` varchar(100) DEFAULT NULL,
+  `qty` int(11) NOT NULL,
   `deposit` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL,
   `current_phase` enum('start','printing','heatpress','sewing','ready') DEFAULT NULL,
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders_tbl`
+--
+
+INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `current_phase`, `last_updated`) VALUES
+(12, 'Order-Buatis', 10, 1500, 5000, 'start', '2025-06-08 13:27:49');
 
 --
 -- Indexes for dumped tables
@@ -143,19 +155,19 @@ ALTER TABLE `admin_tbl`
 -- AUTO_INCREMENT for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `member_tbl`
 --
 ALTER TABLE `member_tbl`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders_tbl`
 --
 ALTER TABLE `orders_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

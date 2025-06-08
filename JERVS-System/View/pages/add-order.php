@@ -25,6 +25,12 @@ include('../../Controller/sessioncheck.php');
                     <label>Initial Deposit</label>
                     <input type="number" name="deposit" required/>
                     
+                    <label> Quantity</label>
+                    <input type="number" name="qty" required>
+
+                    <label>Total price</label>
+                    <input type="number" name="tPrice" required>
+
                     <select name="production_stage" required>
                         <option value="">-- Choose Stage --</option>
                         <option value="start">Start</option>
@@ -42,7 +48,10 @@ include('../../Controller/sessioncheck.php');
                         <thead>
                             <tr>
                                 <th>Order name</th>
-                                <th>Deposit</th>
+                                <th>Quantity</th>
+                                <th>Initial Deposit</th>
+                                <th>Total Price</th>
+                                <th>Balance</th>
                                 <th>Status</th>
                                 <th>Last Updated</th>
                             </tr>
@@ -55,13 +64,19 @@ include('../../Controller/sessioncheck.php');
 
                                 if($result && $result->num_rows>0){
                                     while($row = $result->fetch_assoc()){
+                                        $balance = $row['total_price']-$row['deposit'];
+
                                         echo '<tr>';
                                         echo '<td>' . htmlspecialchars($row['item_name']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['qty']) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['deposit']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['total_price']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($balance) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['current_phase']) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['last_updated']) .'</td>';
                                         echo '<td> <a  type="button" href=""> EDIT </a>';
-                                        echo '<a  type="button" href="">DELETE </a> </td>';
+                                        echo '<a  type="button" href="">DELETE </a>';
+                                        echo '<a type="button" href=""> DONE </a></td>';
                                         echo '</tr>';
                                     }
                                 }else{

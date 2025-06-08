@@ -1,5 +1,11 @@
 <?php
-include('../../config/database.php');
+  include('../../config/database.php');
+  session_start();
+
+  if(!isset($_SESSION['member'])){
+    echo '<script> alert("You must be logged in to view this page");window.location="factory-login-panel.php"</script>';
+    exit();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
