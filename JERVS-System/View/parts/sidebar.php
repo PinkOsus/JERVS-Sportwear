@@ -69,7 +69,7 @@
                     <h3>Admin Panel</h3>
                     <p>Account Name</p>
                 </div>
-                <a href="#" class="logout-btn">
+                <a href="../../Controller/logout.php" class="logout-btn">
                     <span class="icon">🚪</span>
                     <span>Sign Out</span>
                 </a>

@@ -1,9 +1,9 @@
-document.getElementById("loginForm").addEventListener("submit", function (e){
+document.getElementById("loginForm-Member").addEventListener("submit", function (e){
     e.preventDefault();
 
     const formData = new FormData(this);
 
-    fetch("../factory_login.php",{
+    fetch("../../Controller/factory_login.php",{
         method: "POST",
         body: formData
     })
@@ -15,7 +15,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e){
             messageBox.innerText = "Login Successful";
             messageBox.style.color = "green";
 
-            window.location.href = "dashboard.php";
+            window.location.href = "factory-system.php";
         }else{
             messageBox.innerText = "Login failed: " + data.message;
             messageBox.style.color = "red";

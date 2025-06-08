@@ -2,10 +2,11 @@
 session_start();
 
 if (isset($_SESSION['member'])) {
-  header("Location: dashboard.php");
+  header("Location: factory-system.php");
   exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -59,6 +60,6 @@ if (isset($_SESSION['member'])) {
         </div>
       </div>
     </div>
-  </body>
   <script src="../Factory-Modules/factory-login-panel.php"></script>
+  </body>
 </html>

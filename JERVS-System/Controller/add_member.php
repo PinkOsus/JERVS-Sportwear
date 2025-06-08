@@ -28,7 +28,7 @@
         $checkStmt->close();
         exit;
     }
-    //final process
+    //final process/saving to database
     $hashpass = password_hash($password, PASSWORD_DEFAULT);
 
     $stmt = $conn->prepare('INSERT INTO member_tbl(member_user, member_fullname, member_email, member_pass) VALUES (?,?,?,?)');
