@@ -39,18 +39,38 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Simulate form submission (replace with actual AJAX call)
-        setTimeout(() => {
-            messageBox.textContent = 'Member added successfully!';
-            messageBox.className = 'message-box success';
-            messageBox.style.display = 'block';
-            
-            // Reset form after 2 seconds
-            setTimeout(() => {
-                form.reset();
-                closeModal();
-            }, 2000);
-        }, 1000);
+        const formData = new FormData(this);
+
+        fetch("../../Controller/add_member.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            const messageBox = document.getElementById("addUserMessage");
+
+            if(data.success){
+                setTimeout(() => {
+                messageBox.textContent = 'Member added successfully!';
+                messageBox.className = 'message-box success';
+                messageBox.style.display = 'block';
+                
+                // Reset form after 2 seconds
+                setTimeout(() => {
+                    form.reset();
+                    closeModal();
+                }, 2000);
+                }, 1000);
+
+                window.location.reload();
+            }else{
+                feedback.innerText = "Member adding failed: " + data.message;
+                feedback.style.color = "red";
+            }
+        })
+        .catch(error => {
+            console.log("An error occured in ", error);
+        });
     });
     
     // Click outside modal to close
