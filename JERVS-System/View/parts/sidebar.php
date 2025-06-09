@@ -80,12 +80,6 @@
     <!-- Overlay for mobile -->
     <div class="sidebar-overlay"></div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <h1>Dashboard</h1>
-        <p>What's next ????</p>
-    </main>
-
     <script src="../script/sidebar-Toggle-func.js"></script>
 </body>
 </html>
