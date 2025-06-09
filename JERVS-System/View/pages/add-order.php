@@ -33,7 +33,7 @@ include('../../Controller/sessioncheck.php');
                     <input type="number" name="tPrice" required>
 
                     <label> Additional Info </label>
-                    <textarea name="addInfo" id="addInfo"></textarea>
+                    <textarea name="addInfo" id="add-Info"></textarea>
 
                     <select name="production_stage" required>
                         <option value="">-- Choose Stage --</option>

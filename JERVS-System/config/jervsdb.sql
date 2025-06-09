@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2025 at 03:33 PM
+-- Generation Time: Jun 09, 2025 at 02:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -100,6 +100,7 @@ CREATE TABLE `orders_tbl` (
   `qty` int(11) NOT NULL,
   `deposit` int(11) NOT NULL,
   `total_price` int(11) NOT NULL,
+  `order_details` text NOT NULL,
   `current_phase` enum('start','printing','heatpress','sewing','ready') DEFAULT NULL,
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -108,8 +109,9 @@ CREATE TABLE `orders_tbl` (
 -- Dumping data for table `orders_tbl`
 --
 
-INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `current_phase`, `last_updated`) VALUES
-(12, 'Order-Buatis', 10, 1500, 5000, 'start', '2025-06-08 13:27:49');
+INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `order_details`, `current_phase`, `last_updated`) VALUES
+(12, 'Order-Buatis', 10, 1500, 5000, '0', 'start', '2025-06-08 13:27:49'),
+(13, 'Order-Buatis', 10, 1500, 5000, '0', 'start', '2025-06-08 14:29:11');
 
 --
 -- Indexes for dumped tables
@@ -167,7 +169,7 @@ ALTER TABLE `member_tbl`
 -- AUTO_INCREMENT for table `orders_tbl`
 --
 ALTER TABLE `orders_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
