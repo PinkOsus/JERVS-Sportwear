@@ -32,6 +32,9 @@ include('../../Controller/sessioncheck.php');
                     <label>Total price</label>
                     <input type="number" name="tPrice" required>
 
+                    <label> Additional Info </label>
+                    <textarea name="addInfo" id="addInfo"></textarea>
+
                     <select name="production_stage" required>
                         <option value="">-- Choose Stage --</option>
                         <option value="start">Start</option>
@@ -77,9 +80,14 @@ include('../../Controller/sessioncheck.php');
                                         echo '<td>' . htmlspecialchars($row['current_phase']) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['last_updated']) .'</td>';
                                         echo '<td>
-                                                <form action="edit.php" method="get" style="display:inline;">
+                                                <form action="edit" method="get" style="display:inline;">
                                                     <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
                                                     <button type="submit">EDIT</button>
+                                                </form>
+
+                                                <form action="view_details.php" method="get" style="display:inline;">
+                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                                    <button type="submit">VIEW DETAILS</button>
                                                 </form>
 
                                                 <form action="delete.php" method="post" style="display:inline;" onsubmit="return confirm(\'Are you sure you want to delete this item?\');">
