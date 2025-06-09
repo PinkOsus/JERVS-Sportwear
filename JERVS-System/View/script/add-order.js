@@ -1,27 +1,33 @@
-document.getElementById("addOrderForm").addEventListener("submit", function(e){
-    e.preventDefault;
+document.addEventListener('DOMContentLoaded', function () {
+    const addOrderForm = document.getElementById('addOrderForm');
+    const delOrder = document.getElementById('deleteOrder');
 
-    const formData = new FormData(this);
+    //adding order form
+    addOrderForm.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-    fetch("../../Controller/add_order.php", {
-        method: "POST",
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        const feedback = document.getElementById("addOrderMessage");
+        const formData = new FormData(this);
 
-        if(data.success){
-            feedback.innerText = "Order added Successfully";
-            feedback.style.color = "green";
+        fetch("../../Controller/add_order.php", {
+            method: "POST",
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                const feedback = document.getElementById("addOrderMessage");
 
-            window.location.reload();
-        }else{
-            feedback.innerText = "Order adding failed: " + data.message;
-            feedback.style.color = "red";
-        }
-    })
-    .catch(error => {
-        console.log("An error occured in ", error);
+                if (data.success) {
+                    feedback.innerText = "Order added Successfully";
+                    feedback.style.color = "green";
+
+                    window.location.reload();
+                } else {
+                    feedback.innerText = "Order adding failed: " + data.message;
+                    feedback.style.color = "red";
+                }
+            })
+            .catch(error => {
+                console.log("An error occured in ", error);
+            });
     });
 });

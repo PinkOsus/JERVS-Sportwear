@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const openBtn = document.getElementById('openAddMemberBtn');
+    const openDelBtn = document.getElementById('openDelMemberBtn');
     const modal = document.getElementById('addMemberPanel');
+    const delModal = document.getElementById('delMemberPanel');
     const form = document.getElementById('addUserForm');
+    const delForm = document.getElementById('delMemForm');
     const messageBox = document.getElementById('addUserMessage');
     const passwordInput = form.querySelector('input[name="password"]');
     const togglePassword = form.querySelector('.toggle-password');
@@ -12,10 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden'; // Prevent scrolling
     });
+
+    // Open Delete Modal
+    openDelBtn.addEventListener('click', function () {
+        delModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    });
     
     // Close modal
     window.closeModal = function() {
         modal.style.display = 'none';
+        delModal.style.display = 'none';
         document.body.style.overflow = 'auto';
         form.reset();
         messageBox.style.display = 'none';
@@ -35,22 +45,78 @@ document.addEventListener('DOMContentLoaded', function() {
         passwordStrength.style.backgroundColor = getStrengthColor(strength);
     });
     
-    // Form submission
+    // Form submission for adding members
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Simulate form submission (replace with actual AJAX call)
-        setTimeout(() => {
-            messageBox.textContent = 'Member added successfully!';
-            messageBox.className = 'message-box success';
-            messageBox.style.display = 'block';
-            
-            // Reset form after 2 seconds
-            setTimeout(() => {
-                form.reset();
-                closeModal();
-            }, 2000);
-        }, 1000);
+        const formData = new FormData(this);
+
+        fetch("../../Controller/add_member.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            const messageBox = document.getElementById("addUserMessage");
+
+            if(data.success){
+                setTimeout(() => {
+                messageBox.textContent = 'Member added successfully!';
+                messageBox.className = 'message-box success';
+                messageBox.style.display = 'block';
+                
+                // Reset form after 2 seconds
+                setTimeout(() => {
+                    form.reset();
+                    closeModal();
+                    window.location.reload();
+                }, 2000);
+                }, 1000);
+            }else{
+                messageBox.innerText = "Member adding failed: " + data.message;
+                messageBox.style.color = "red";
+            }
+        })
+        .catch(error => {
+            console.log("An error occured in ", error);
+        });
+    });
+
+    //form submission for deleting members
+    delForm.addEventListener('submit', function (e){
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch('../../Controller/delete_member.php', {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            const response = document.getElementById('showDelmsg');
+
+            if(data.success){
+                setTimeout(() => {
+                response.textContent = 'Member deleted successfully!';
+                response.className = 'message-box success';
+                response.style.display = 'block';
+                
+                // Reset form after 2 seconds
+                setTimeout(() => {
+                    form.reset();
+                    closeModal();
+                    window.location.reload();
+                }, 2000);
+                }, 1000);
+            }else{
+                response.innerText = "Member deleting failed: " + data.message;
+                response.style.color = "red";
+            }
+        })
+        .catch(error => {
+            console.log("An error occured in ", error);
+        });
     });
     
     // Click outside modal to close

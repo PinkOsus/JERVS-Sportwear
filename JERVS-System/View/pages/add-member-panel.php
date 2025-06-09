@@ -5,7 +5,6 @@ include('../../Controller/sessioncheck.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +15,6 @@ include('../../Controller/sessioncheck.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="../assets/img/logo-1.png" type="image/x-icon">
 </head>
-
 <body>
     <div class="container">
         <main class="main-content">
@@ -28,7 +26,10 @@ include('../../Controller/sessioncheck.php');
             <button id="openAddMemberBtn" class="fashion-btn primary">
                 <i class="fas fa-plus"></i> Add New Member
             </button>
-            
+            <button id="openDelMemberBtn" class="fashion-btn primary">
+                <i class="fas fa-plus"></i> Delete Member
+            </button>
+            <!-- ADD BUTTON -->
             <div class="fashion-modal" id="addMemberPanel">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -80,6 +81,52 @@ include('../../Controller/sessioncheck.php');
                     </form>
                 </div>
             </div>
+            <!-- DELETING MEMBER -->
+            <div class="fashion-modal" id="delMemberPanel">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2><i class="fas fa-user-edit"></i> Delete Member</h2>
+                        <button class="close-btn" onclick="closeModal()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> Username</th>
+                                <th> Name</th>
+                                <th> Option </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $delStmt = 'SELECT * FROM member_tbl';
+
+                                $delResult = $conn->query($delStmt);
+
+                                if ($delResult && $delResult->num_rows > 0){
+                                    while($row = $delResult->fetch_assoc()){
+                                        echo '<tr>';
+                                        echo '<td>' . htmlspecialchars($row['member_user']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['member_fullname']) .'</td>';
+                                        echo '<td>
+                                                <form id="delMemForm">
+                                                <input type="hidden" name="username" value="' . htmlspecialchars($row['member_user']) . '">
+                                                <button type="submit" class-delete-btn>Delete</button>
+                                              </td>';
+                                        echo '</tr>';
+                                    }
+                                }else{
+                                    echo '<tr><td colspan="4">No login records found.</td></tr>';
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                    <div id="showDelmsg"></div><!-- paayos ng div natoh like paalign ng message nya-->
+                </div>
+            </div>
+            <!-- SHOW LOGIN LOGS OF THE MEMBER-->
             <div class="show-login-logs">
                 <h2>Member Logs</h2>
                 <div class="table-responsive">

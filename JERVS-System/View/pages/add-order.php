@@ -16,6 +16,7 @@ include('../../Controller/sessioncheck.php');
         <main class="main-content">
             <button id="openAddOrderBtn">Add Order Member</button>
             <button onclick="location.reload()">🔄 Refresh Table</button>
+            <!-- ADDING ORDER -->
             <div class="add-order-panel" id="addOrder">
                 <h2>Add New Order</h2>
                 <form id="addOrderForm">
@@ -25,6 +26,15 @@ include('../../Controller/sessioncheck.php');
                     <label>Initial Deposit</label>
                     <input type="number" name="deposit" required/>
                     
+                    <label> Quantity</label>
+                    <input type="number" name="qty" required>
+
+                    <label>Total price</label>
+                    <input type="number" name="tPrice" required>
+
+                    <label> Additional Info </label>
+                    <textarea name="addInfo" id="add-Info"></textarea>
+
                     <select name="production_stage" required>
                         <option value="">-- Choose Stage --</option>
                         <option value="start">Start</option>
@@ -35,6 +45,7 @@ include('../../Controller/sessioncheck.php');
                     <div id="addOrderMessage"></div>
                 </form>
             </div>
+            <!-- SHOWING ORDER -->
             <div class="show-order">
                 <h2>Orders</h2>
                 <div class="table-response">
@@ -42,7 +53,10 @@ include('../../Controller/sessioncheck.php');
                         <thead>
                             <tr>
                                 <th>Order name</th>
-                                <th>Deposit</th>
+                                <th>Quantity</th>
+                                <th>Initial Deposit</th>
+                                <th>Total Price</th>
+                                <th>Balance</th>
                                 <th>Status</th>
                                 <th>Last Updated</th>
                             </tr>
@@ -55,13 +69,37 @@ include('../../Controller/sessioncheck.php');
 
                                 if($result && $result->num_rows>0){
                                     while($row = $result->fetch_assoc()){
+                                        $balance = $row['total_price']-$row['deposit'];
+
                                         echo '<tr>';
                                         echo '<td>' . htmlspecialchars($row['item_name']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['qty']) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['deposit']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['total_price']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($balance) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['current_phase']) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['last_updated']) .'</td>';
-                                        echo '<td> <a  type="button" href=""> EDIT </a>';
-                                        echo '<a  type="button" href="">DELETE </a> </td>';
+                                        echo '<td>
+                                                <form action="../../Controller/Order-Management/delete.php" method="get" style="display:inline;">
+                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                                    <button type="submit">EDIT</button>
+                                                </form>
+
+                                                <form action="view_details.php" method="get" style="display:inline;">
+                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                                    <button type="submit">VIEW DETAILS</button>
+                                                </form>
+
+                                                <form action="../../Controller/Order-Management/delete.php" method="post" style="display:inline;" onsubmit="return confirm(\'Are you sure you want to delete this item?\');">
+                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                                    <button type="submit">DELETE</button>
+                                                </form>
+
+                                                <form action="done.php" method="post" style="display:inline;">
+                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                                    <button type="submit">DONE</button>
+                                                </form>
+                                            </td>';
                                         echo '</tr>';
                                     }
                                 }else{
