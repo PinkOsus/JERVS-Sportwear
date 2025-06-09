@@ -9,7 +9,7 @@ include('../../Controller/sessioncheck.php');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Members | JERVS Admin</title>
-    <link rel="stylesheet" href="../assets/stylesheet/dashboard.css" />
+    
     <link rel="stylesheet" href="../assets/stylesheet/add-member.css" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,7 +18,7 @@ include('../../Controller/sessioncheck.php');
 <body>
     <div class="container">
         <main class="main-content">
-            <div class="fashion-header">
+            <div class="fashion-header"><br><br>
                 <h1><i class="fas fa-user-plus"></i> Member Management</h1>
                 <p>Add and manage your team members</p>
             </div>

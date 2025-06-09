@@ -8,12 +8,12 @@ include('../../Controller/sessioncheck.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/stylesheet/dashboard.css" />
+    <title>Add orders | JERVS Admin</title>
+    <link rel="stylesheet" href="../assets/stylesheet/add-order.css" />
 </head>
 <body>
     <div class="container">
-        <main class="main-content">
+        <main class="main-content"><br><br>
             <button id="openAddOrderBtn">Add Order Member</button>
             <button onclick="location.reload()">🔄 Refresh Table</button>
             <!-- ADDING ORDER -->

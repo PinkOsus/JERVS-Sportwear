@@ -1,65 +1,53 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Toggle sidebar on mobile
-    const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.querySelector('.fashion-sidebar');
-    const overlay = document.createElement('div');
-    overlay.className = 'sidebar-overlay';
-    document.body.appendChild(overlay);
-    
-    sidebarToggle.addEventListener('click', function() {
-        sidebar.classList.toggle('active');
-        overlay.classList.toggle('active');
-    });
-    
-    overlay.addEventListener('click', function() {
-        sidebar.classList.remove('active');
-        overlay.classList.remove('active');
-    });
-    
-    // Toggle submenus
-    const navItems = document.querySelectorAll('.with-submenu');
-    
-    navItems.forEach(item => {
-        const link = item.querySelector('.nav-link');
-        const submenuToggle = item.querySelector('.submenu-toggle');
-        
-        // Handle click on the entire nav link
-        link.addEventListener('click', function(e) {
-            // Only prevent default if clicking on the toggle icon
-            if (e.target === submenuToggle || submenuToggle.contains(e.target)) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // Close other open submenus
-                navItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-                
-                // Toggle current item
-                item.classList.toggle('active');
-            }
-        });
-    });
-    
-    // Close submenus when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.fashion-sidebar')) {
-            navItems.forEach(item => {
-                item.classList.remove('active');
-            });
-        }
-    });
-    
-    // Responsive adjustments
-    function handleResize() {
-        if (window.innerWidth > 992) {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-        }
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const overlay = document.querySelector('.sidebar-overlay');
+    const body = document.body;
+
+    // Check if sidebar should be initially visible based on screen size
+    if (window.innerWidth > 768) {
+        body.classList.add('sidebar-visible');
     }
-    
-    window.addEventListener('resize', handleResize);
-    handleResize();
+
+    // Toggle sidebar function
+    function toggleSidebar() {
+        body.classList.toggle('sidebar-visible');
+        body.classList.toggle('sidebar-hidden');
+    }
+
+    // Toggle sidebar when button is clicked
+    sidebarToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleSidebar();
+    });
+
+    // Close sidebar when clicking on overlay
+    overlay.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+            toggleSidebar();
+        }
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768 && 
+            !sidebar.contains(e.target) && 
+            e.target !== sidebarToggle && 
+            !sidebarToggle.contains(e.target)) {
+            body.classList.remove('sidebar-visible');
+            body.classList.add('sidebar-hidden');
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            body.classList.add('sidebar-visible');
+            body.classList.remove('sidebar-hidden');
+        } else {
+            if (!body.classList.contains('sidebar-visible')) {
+                body.classList.add('sidebar-hidden');
+            }
+        }
+    });
 });

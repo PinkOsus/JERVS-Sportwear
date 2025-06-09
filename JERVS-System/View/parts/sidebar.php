@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JERVS Admin Panel</title>
-    <link rel="stylesheet" href="../assets/stylesheet/sidebar.css">
+    <link rel="stylesheet" href="../assets/stylesheet/sidebar-css/sidebar.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Toggle Button (place this in your main header) -->
+    <!-- Toggle Button -->
     <button id="sidebarToggle" class="sidebar-toggle">
-        ☰
+        <span class="hamburger"></span>
     </button>
 
     <!-- Fashion Sidebar -->
@@ -18,7 +18,6 @@
         <div class="brand-header">
             <div class="logo-stitch"></div>
             <h2>JERVS ADMIN</h2>
-            <div class="hanger-icon">🧥</div>
         </div>
         
         <nav class="fashion-nav">
@@ -30,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../pages/add-inventory.php">
                         <span class="icon">📦</span>
                         <span class="link-text">Inventory</span>
                     </a>
@@ -48,13 +47,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../pages/reports.php">
                         <span class="icon">📊</span>
                         <span class="link-text">Reports</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="../pages/settings.php">
                         <span class="icon">⚙️</span>
                         <span class="link-text">Settings</span>
                     </a>
@@ -80,6 +79,6 @@
     <!-- Overlay for mobile -->
     <div class="sidebar-overlay"></div>
 
-    <script src="../script/sidebar-Toggle-func.js"></script>
+    <script src="../script/sidebarjs/sidebar.js"></script>
 </body>
 </html>
