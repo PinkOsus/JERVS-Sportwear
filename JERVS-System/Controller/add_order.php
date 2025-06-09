@@ -1,6 +1,5 @@
 <?php
     header('Content-Type: application/json');
-    error_reporting(0);
     include('../config/database.php');
 
     $item_name = htmlspecialchars(trim($_POST['item'] ?? ''));
