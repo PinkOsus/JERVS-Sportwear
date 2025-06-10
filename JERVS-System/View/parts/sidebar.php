@@ -4,81 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JERVS Admin Panel</title>
-    <link rel="stylesheet" href="../assets/stylesheet/sidebar-css/sidebar.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/stylesheet/sidebar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <!-- Toggle Button -->
-    <button id="sidebarToggle" class="sidebar-toggle">
-        <span class="hamburger"></span>
-    </button>
-
-    <!-- Fashion Sidebar -->
-    <aside class="fashion-sidebar">
-        <div class="brand-header">
-            <div class="logo-stitch"></div>
-            <h2>JERVS ADMIN</h2>
+    <div class="sidebar">
+        <!-- Brand Section -->
+        <div class="brand">
+            <div class="logo">
+                <img src="../assets/img/logo-1.png" alt="JERVS Logo">
+            </div>
+            <h2 class="brand-name">JERVS Sportswear</h2>
         </div>
-        
-        <nav class="fashion-nav">
-            <ul>
-                <li class="active">
-                    <a href="../pages/dashboard.php">
-                        <span class="icon">👗</span>
-                        <span class="link-text">Sales</span>
+
+        <!-- Navigation Menu -->
+        <nav class="nav-menu">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="../pages/dashboard.php" class="nav-link active">
+                        <i class="fas fa-chart-bar nav-icon"></i>
+                        <span class="nav-text">Sales</span>
                     </a>
                 </li>
-                <li>
-                    <a href="../pages/add-inventory.php">
-                        <span class="icon">📦</span>
-                        <span class="link-text">Inventory</span>
+                <li class="nav-item">
+                    <a href="../pages/add-inventory.php" class="nav-link">
+                        <i class="fas fa-box nav-icon"></i>
+                        <span class="nav-text">Inventory</span>
                     </a>
                 </li>
-                <li>
-                    <a href="../pages/add-member-panel.php">
-                        <span class="icon">👥</span>
-                        <span class="link-text">Members</span>
+                <li class="nav-item">
+                    <a href="../pages/add-member-panel.php" class="nav-link">
+                        <i class="fas fa-users nav-icon"></i>
+                        <span class="nav-text">Members</span>
                     </a>
                 </li>
-                <li>
-                    <a href="../pages/add-order.php">
-                        <span class="icon">📝</span>
-                        <span class="link-text">Orders</span>
+                <li class="nav-item">
+                    <a href="../pages/add-order.php" class="nav-link">
+                        <i class="fas fa-shopping-cart nav-icon"></i>
+                        <span class="nav-text">Orders</span>
                     </a>
                 </li>
-                <li>
-                    <a href="../pages/reports.php">
-                        <span class="icon">📊</span>
-                        <span class="link-text">Reports</span>
+                <li class="nav-item">
+                    <a href="../pages/reports.php" class="nav-link">
+                        <i class="fas fa-chart-pie nav-icon"></i>
+                        <span class="nav-text">Reports</span>
                     </a>
                 </li>
-                <li>
-                    <a href="../pages/settings.php">
-                        <span class="icon">⚙️</span>
-                        <span class="link-text">Settings</span>
+                <li class="nav-item">
+                    <a href="../pages/settings.php" class="nav-link">
+                        <i class="fas fa-cog nav-icon"></i>
+                        <span class="nav-text">Settings</span>
                     </a>
                 </li>
             </ul>
         </nav>
-        
+
+        <!-- User Profile Section -->
         <div class="user-profile">
             <div class="profile-content">
-                <div class="avatar" style="background-color: #2d4263;"></div>
-                <div class="profile-info">
-                    <h3>Admin Panel</h3>
-                    <p>Account Name</p>
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
                 </div>
-                <a href="../../Controller/logout.php" class="logout-btn">
-                    <span class="icon">🚪</span>
-                    <span>Sign Out</span>
-                </a>
+                <div class="profile-info">
+                    <h3 class="profile-name">Admin Panel</h3>
+                    <p class="profile-role">Jervy</p>
+                </div>
             </div>
+            <a href="../../Controller/logout.php" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sign Out</span>
+            </a>
         </div>
-    </aside>
-
-    <!-- Overlay for mobile -->
-    <div class="sidebar-overlay"></div>
-
-    <script src="../script/sidebarjs/sidebar.js"></script>
+    </div>
 </body>
 </html>

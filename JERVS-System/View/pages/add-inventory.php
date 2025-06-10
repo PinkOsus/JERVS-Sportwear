@@ -30,21 +30,8 @@ include('../../Controller/sessioncheck.php');
             </tr>
         </thead>
         <tbody>
-            <!-- NEED HELP HERE THERE'S AN ERROR -->
-            <?php $products = getProducts(); ?>
-            <?php while ($row = $products->fetch_assoc()): ?>
-            <tr>
-                <td><?= $row['product_name'] ?></td>
-                <td><?= $row['category'] ?></td>
-                <td><?= $row['stock'] ?></td>
-                <td>₱<?= number_format($row['unit_cost'], 2) ?></td>
-                <td>₱<?= number_format($row['selling_price'], 2) ?></td>
-                <td>
-                    <a href="edit_product.php?id=<?= $row['id'] ?>" class="btn-edit">✏️</a>
-                    <a href="product_list.php?delete=<?= $row['id'] ?>" class="btn-delete" onclick="return confirm('Delete this product?')">🗑️</a>
-                </td>
-            </tr>
-            <?php endwhile; ?>
+            <!-- NEED HELP HERE-->
+            
         </tbody>
     </table>
 </div>
