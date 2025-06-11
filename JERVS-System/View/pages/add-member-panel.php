@@ -27,7 +27,7 @@ include('../../Controller/sessioncheck.php');
                 <i class="fas fa-plus"></i> Add New Member
             </button>
             <button id="openDelMemberBtn" class="fashion-btn primary">
-                <i class="fas fa-plus"></i> Delete Member
+                <i class="fas fa-plus"></i> Show Members
             </button>
             <!-- ADD BUTTON -->
             <div class="fashion-modal" id="addMemberPanel">
@@ -111,9 +111,10 @@ include('../../Controller/sessioncheck.php');
                                         echo '<td>' . htmlspecialchars($row['member_user']) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['member_fullname']) .'</td>';
                                         echo '<td>
-                                                <form id="delMemForm">
+                                                <form class="delMemForm">
                                                 <input type="hidden" name="username" value="' . htmlspecialchars($row['member_user']) . '">
-                                                <button type="submit" class-delete-btn>Delete</button>
+                                                <button type="submit" class="delete-btn">Delete</button>
+                                                </form>
                                               </td>';
                                         echo '</tr>';
                                     }
