@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const openBtn = document.getElementById('openAddOrderBtn');
+    const closeBtn = document.getElementById('closeAddOrderBtn');
+    const panel = document.getElementById('addOrder');
     const addOrderForm = document.getElementById('addOrderForm');
-    const delOrder = document.getElementById('deleteOrder');
 
     //adding order form
     addOrderForm.addEventListener('submit', function (e) {
@@ -29,5 +31,13 @@ document.addEventListener('DOMContentLoaded', function () {
             .catch(error => {
                 console.log("An error occured in ", error);
             });
+    });
+
+    openBtn.addEventListener('click', () => {
+        panel.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        panel.style.display = 'none';
     });
 });

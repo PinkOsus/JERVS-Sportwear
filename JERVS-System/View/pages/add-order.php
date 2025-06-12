@@ -17,7 +17,7 @@ include('../../Controller/sessioncheck.php');
             <button id="openAddOrderBtn">Add Order Member</button>
             <button onclick="location.reload()">🔄 Refresh Table</button>
             <!-- ADDING ORDER -->
-            <div class="add-order-panel" id="addOrder">
+            <div class="add-order-panel" id="addOrder" style="display:none;">
                 <h2>Add New Order</h2>
                 <form id="addOrderForm">
                     <label>Item:</label>
@@ -41,7 +41,7 @@ include('../../Controller/sessioncheck.php');
                     </select>
 
                     <button type="submit">Add Order</button>
-                    <button type="button" onclick="document.getElementById('addMemberPanel').style.display='none'">✖ Close</button>
+                    <button type="button" onclick="document.getElementById('addOrder').style.display='none'">✖ Close</button>
                     <div id="addOrderMessage"></div>
                 </form>
             </div>
@@ -103,7 +103,7 @@ include('../../Controller/sessioncheck.php');
                                         echo '</tr>';
                                     }
                                 }else{
-                                    echo '<tr><td colspan="4">No login records found.</td></tr>';
+                                    echo '<tr><td colspan="8">No login records found.</td></tr>';
                                 }
                             ?>
                         </tbody>
