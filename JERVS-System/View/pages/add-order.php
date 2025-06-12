@@ -85,7 +85,7 @@ include('../../Controller/sessioncheck.php');
                                                     <button type="submit">EDIT</button>
                                                 </form>
 
-                                                <form action="view_details.php" method="get" style="display:inline;">
+                                                <form action="../../Controller/Order-Management/view-details.php" method="get" style="display:inline;">
                                                     <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
                                                     <button type="submit">VIEW DETAILS</button>
                                                 </form>

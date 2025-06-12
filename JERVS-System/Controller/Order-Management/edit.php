@@ -47,6 +47,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editing</title>
+    <link rel="stylesheet" href="../../View/assets/stylesheet/sidebar.css" />
     <link rel="stylesheet" href="../../View/assets/stylesheet/add-order.css" />
 </head>
 <body>
@@ -73,7 +74,7 @@
 
                 <br><br>
                 <button type="submit">Save Changes</button>
-                <a href="../../View/Order/edit.php"><button type="button">Cancel</button></a>
+                <a href="../../View/pages/add-order.php"><button type="button">Cancel</button></a>
             </form>
         </main>
     </div>
