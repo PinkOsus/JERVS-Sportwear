@@ -16,59 +16,40 @@ include('../../Controller/sessioncheck.php');
         <main class="main-content"><br><br>
             <button id="openAddOrderBtn">Add Order Member</button>
             <button onclick="location.reload()">🔄 Refresh Table</button>
-            
             <!-- ADDING ORDER -->
-            <div class="add-order-panel" id="addOrderPanel">
+            <div class="add-order-panel" id="addOrder">
                 <h2>Add New Order</h2>
                 <form id="addOrderForm">
-                    <div>
-                        <label>Item Name:</label>
-                        <input type="text" name="item" required />
-                    </div>
+                    <label>Item:</label>
+                    <input type="text" name="item" required />
+
+                    <label>Initial Deposit</label>
+                    <input type="number" name="deposit" required/>
                     
-                    <div>
-                        <label>Quantity:</label>
-                        <input type="number" name="qty" required min="1">
-                    </div>
-                    
-                    <div>
-                        <label>Initial Deposit:</label>
-                        <input type="number" name="deposit" required step="0.01" min="0">
-                    </div>
-                    
-                    <div>
-                        <label>Total Price:</label>
-                        <input type="number" name="tPrice" required step="0.01" min="0">
-                    </div>
-                    
-                    <div>
-                        <label>Status:</label>
-                        <select name="production_stage" required>
-                            <option value="">-- Choose Stage --</option>
-                            <option value="start">Start</option>
-                            <option value="in_progress">In Progress</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label>Additional Info:</label>
-                        <textarea name="addInfo" id="add-Info"></textarea>
-                    </div>
-                    
-                    <div class="form-actions">
-                        <button type="submit">Add Order</button>
-                        <button type="button" id="closeAddOrderBtn">✖ Close</button>
-                    </div>
+                    <label> Quantity</label>
+                    <input type="number" name="qty" required>
+
+                    <label>Total price</label>
+                    <input type="number" name="tPrice" required>
+
+                    <label> Additional Info </label>
+                    <textarea name="addInfo" id="add-Info"></textarea>
+
+                    <select name="production_stage" required>
+                        <option value="">-- Choose Stage --</option>
+                        <option value="start">Start</option>
+                    </select>
+
+                    <button type="submit">Add Order</button>
+                    <button type="button" onclick="document.getElementById('addMemberPanel').style.display='none'">✖ Close</button>
                     <div id="addOrderMessage"></div>
                 </form>
             </div>
-            
             <!-- SHOWING ORDER -->
             <div class="show-order">
                 <h2>Orders</h2>
                 <div class="table-response">
-                    <table id="ordersTable">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Order name</th>
@@ -78,37 +59,51 @@ include('../../Controller/sessioncheck.php');
                                 <th>Balance</th>
                                 <th>Status</th>
                                 <th>Last Updated</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                                $stmt = 'SELECT * FROM orders_tbl ORDER BY last_updated DESC';
+                                $stmt = 'SELECT * FROM orders_tbl';
+                                
                                 $result = $conn->query($stmt);
 
                                 if($result && $result->num_rows>0){
                                     while($row = $result->fetch_assoc()){
                                         $balance = $row['total_price']-$row['deposit'];
-                                        $lastUpdated = date('M d, Y h:i A', strtotime($row['last_updated']));
 
-                                        echo '<tr data-id="'.$row['id'].'">';
+                                        echo '<tr>';
                                         echo '<td>' . htmlspecialchars($row['item_name']) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['qty']) .'</td>';
-                                        echo '<td>' . number_format($row['deposit'], 2) .'</td>';
-                                        echo '<td>' . number_format($row['total_price'], 2) .'</td>';
-                                        echo '<td>' . number_format($balance, 2) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['deposit']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($row['total_price']) .'</td>';
+                                        echo '<td>' . htmlspecialchars($balance) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['current_phase']) .'</td>';
-                                        echo '<td>' . htmlspecialchars($lastUpdated) .'</td>';
-                                        echo '<td class="action-buttons">
-                                                <button class="edit-btn" data-id="'.$row['id'].'">EDIT</button>
-                                                <button class="view-btn" data-id="'.$row['id'].'">VIEW</button>
-                                                <button class="delete-btn" data-id="'.$row['id'].'">DELETE</button>
-                                                <button class="done-btn" data-id="'.$row['id'].'">DONE</button>
+                                        echo '<td>' . htmlspecialchars($row['last_updated']) .'</td>';
+                                        echo '<td>
+                                                <form action="../../Controller/Order-Management/delete.php" method="get" style="display:inline;">
+                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                                    <button type="submit">EDIT</button>
+                                                </form>
+
+                                                <form action="view_details.php" method="get" style="display:inline;">
+                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                                    <button type="submit">VIEW DETAILS</button>
+                                                </form>
+
+                                                <form action="../../Controller/Order-Management/delete.php" method="post" style="display:inline;" onsubmit="return confirm(\'Are you sure you want to delete this item?\');">
+                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                                    <button type="submit">DELETE</button>
+                                                </form>
+
+                                                <form action="done.php" method="post" style="display:inline;">
+                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
+                                                    <button type="submit">DONE</button>
+                                                </form>
                                             </td>';
                                         echo '</tr>';
                                     }
                                 }else{
-                                    echo '<tr><td colspan="8">No orders found.</td></tr>';
+                                    echo '<tr><td colspan="4">No login records found.</td></tr>';
                                 }
                             ?>
                         </tbody>
