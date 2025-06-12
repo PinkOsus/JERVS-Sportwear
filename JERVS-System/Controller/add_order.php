@@ -1,27 +1,45 @@
 <?php
-    header('Content-Type: application/json');
-    include('../config/database.php');
+include('../../config/database.php');
+header('Content-Type: application/json');
 
-    $item_name = htmlspecialchars(trim($_POST['item'] ?? ''));
-    $deposit = floatval($_POST['deposit']);
-    $total_price = floatval($_POST['tPrice']);
-    $qty = floatval($_POST['qty']);
-    $addInfo = htmlspecialchars(trim($_POST['addInfo'] ?? ''));
-    $progress = htmlspecialchars(trim($_POST['production_stage'] ?? ''));
-    //validate input
-    if(!$item_name || $deposit <= 0 || !$progress){
-        echo json_encode(['success' => false, 'message' => 'Please fill out all of the fields']);
-        exit;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $itemName = $_POST['item'];
+    $quantity = $_POST['qty'];
+    $deposit = $_POST['deposit'];
+    $totalPrice = $_POST['tPrice'];
+    $additionalInfo = $_POST['addInfo'];
+    $productionStage = $_POST['production_stage'];
+    
+    // Calculate balance
+    $balance = $totalPrice - $deposit;
+    
+    // Insert into database
+    $stmt = $conn->prepare("INSERT INTO orders_tbl (item_name, qty, deposit, total_price, balance, current_phase, additional_info) 
+                           VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sidddss", $itemName, $quantity, $deposit, $totalPrice, $balance, $productionStage, $additionalInfo);
+    
+    if ($stmt->execute()) {
+        $orderId = $stmt->insert_id;
+        
+        // Get the newly created order
+        $result = $conn->query("SELECT * FROM orders_tbl WHERE id = $orderId");
+        $order = $result->fetch_assoc();
+        
+        echo json_encode([
+            'success' => true,
+            'order' => $order
+        ]);
+    } else {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Error adding order: ' . $conn->error
+        ]);
     }
-    //saving to database;
-    $stmt = $conn->prepare('INSERT INTO orders_tbl(item_name, deposit, current_phase, total_price, qty, order_details) VALUES (?,?,?,?,?,?)');
-    $stmt->bind_param('ssssss', $item_name, $deposit, $progress, $total_price, $qty, $addInfo);
-
-    if($stmt->execute()){
-        echo json_encode(['success' => true]);
-    }else{
-        echo json_encode(['success' => false, 'message' => 'Database error: ' . $stmt->error]);
-    }
-
+    
     $stmt->close();
-?>
+} else {
+    echo json_encode([
+        'success' => false,
+        'message' => 'Invalid request method'
+    ]);
+}
