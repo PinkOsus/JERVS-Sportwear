@@ -59,6 +59,7 @@ include('../../Controller/sessioncheck.php');
                                 <th>Balance</th>
                                 <th>Status</th>
                                 <th>Last Updated</th>
+                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,46 +67,45 @@ include('../../Controller/sessioncheck.php');
                                 $stmt = 'SELECT * FROM orders_tbl';
                                 
                                 $result = $conn->query($stmt);
-
-                                if($result && $result->num_rows>0){
-                                    while($row = $result->fetch_assoc()){
-                                        $balance = $row['total_price']-$row['deposit'];
-
-                                        echo '<tr>';
-                                        echo '<td>' . htmlspecialchars($row['item_name']) .'</td>';
-                                        echo '<td>' . htmlspecialchars($row['qty']) .'</td>';
-                                        echo '<td>' . htmlspecialchars($row['deposit']) .'</td>';
-                                        echo '<td>' . htmlspecialchars($row['total_price']) .'</td>';
-                                        echo '<td>' . htmlspecialchars($balance) .'</td>';
-                                        echo '<td>' . htmlspecialchars($row['current_phase']) .'</td>';
-                                        echo '<td>' . htmlspecialchars($row['last_updated']) .'</td>';
-                                        echo '<td>
-                                                <form action="../../Controller/Order-Management/edit.php" method="get" style="display:inline;">
-                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
-                                                    <button type="submit">EDIT</button>
-                                                </form>
-
-                                                <form action="../../Controller/Order-Management/view-details.php" method="get" style="display:inline;">
-                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
-                                                    <button type="submit">VIEW DETAILS</button>
-                                                </form>
-
-                                                <form action="../../Controller/Order-Management/delete.php" method="post" style="display:inline;" onsubmit="return confirm(\'Are you sure you want to delete this item?\');">
-                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
-                                                    <button type="submit">DELETE</button>
-                                                </form>
-
-                                                <form action="done.php" method="post" style="display:inline;">
-                                                    <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
-                                                    <button type="submit">DONE</button>
-                                                </form>
-                                            </td>';
-                                        echo '</tr>';
-                                    }
-                                }else{
-                                    echo '<tr><td colspan="8">No login records found.</td></tr>';
-                                }
                             ?>
+                            <?php if($result && $result->num_rows>0):?>
+                                <?php while($row = $result->fetch_assoc()):
+                                    $balance = $row['total_price']-$row['deposit'];
+                                ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($row['item_name']) ?></td>
+                                        <td><?= htmlspecialchars($row['qty']) ?></td>
+                                        <td><?= htmlspecialchars($row['deposit']) ?></td>
+                                        <td><?= htmlspecialchars($row['total_price']) ?></td>
+                                        <td><?= htmlspecialchars($balance)?></td>
+                                        <td><?= htmlspecialchars($row['current_phase']) ?></td>
+                                        <td><?= htmlspecialchars($row['last_updated']) ?></td>
+                                        <td>
+                                            <form action="../../Controller/Order-Management/edit.php" method="get" style="display:inline;">
+                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
+                                                <button type="submit">EDIT</button>
+                                            </form>
+
+                                            <form action="../../Controller/Order-Management/view-details.php" method="get" style="display:inline;">
+                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
+                                                <button type="submit">VIEW DETAILS</button>
+                                            </form>
+
+                                            <form action="../../Controller/Order-Management/delete.php" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
+                                                <button type="submit">DELETE</button>
+                                            </form>
+
+                                            <form action="done.php" method="post" style="display:inline;">
+                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
+                                                <button type="submit">DONE</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endwhile ?>
+                            <?php else:?>
+                                <tr><td colspan="8">No login records found.</td></tr>
+                            <?php endif?>
                         </tbody>
                     </table>
                 </div>
