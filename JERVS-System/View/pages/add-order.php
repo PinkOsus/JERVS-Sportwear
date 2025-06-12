@@ -20,7 +20,7 @@ include('../../Controller/sessioncheck.php');
             <div class="add-order-panel" id="addOrder" style="display:none;">
                 <h2>Add New Order</h2>
                 <form id="addOrderForm">
-                    <label>Item:</label>
+                    <label>Order:</label>
                     <input type="text" name="item" required />
 
                     <label>Initial Deposit</label>
@@ -80,7 +80,7 @@ include('../../Controller/sessioncheck.php');
                                         echo '<td>' . htmlspecialchars($row['current_phase']) .'</td>';
                                         echo '<td>' . htmlspecialchars($row['last_updated']) .'</td>';
                                         echo '<td>
-                                                <form action="../../Controller/Order-Management/delete.php" method="get" style="display:inline;">
+                                                <form action="../../Controller/Order-Management/edit.php" method="get" style="display:inline;">
                                                     <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
                                                     <button type="submit">EDIT</button>
                                                 </form>
