@@ -1,5 +1,3 @@
-<!-- This is a sample only -->
-
 <?php
 include('../parts/sidebar.php');
 include('../../config/database.php');
@@ -12,7 +10,7 @@ include('../../Controller/sessioncheck.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports | JERVS Admin</title>
-    <link rel="stylesheet" href="../assets/stylesheet/reports-style.css">
+    
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

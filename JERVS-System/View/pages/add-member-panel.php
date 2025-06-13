@@ -18,7 +18,7 @@ include('../../Controller/sessioncheck.php');
 <body>
     <div class="container">
         <main class="main-content">
-            <div class="fashion-header"><br><br>
+            <div class="fashion-header">
                 <h1><i class="fas fa-user-plus"></i> Member Management</h1>
                 <p>Add and manage your team members</p>
             </div>

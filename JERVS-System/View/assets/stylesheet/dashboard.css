@@ -40,7 +40,8 @@ body {
 .main-content {
   flex: 1;
   padding: 2rem;
-  margin-left: 280px; /* Adjust based on your sidebar width */
+  margin-left: auto;
+
 }
 
 .breadcrumb {

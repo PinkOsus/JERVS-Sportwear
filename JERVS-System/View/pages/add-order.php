@@ -1,5 +1,4 @@
 <?php
-include('../parts/sidebar.php');
 include('../../config/database.php');
 include('../../Controller/sessioncheck.php');
 ?>
@@ -12,9 +11,10 @@ include('../../Controller/sessioncheck.php');
     <link rel="stylesheet" href="../assets/stylesheet/add-order.css" />
 </head>
 <body>
-    <div class="container">
-        <main class="main-content"><br><br>
-            <button id="openAddOrderBtn">Add Order Member</button>
+    <?php include('../parts/sidebar.php'); ?>
+    <div class="main-wrapper">
+        <main class="main-content">
+        <button id="openAddOrderBtn">Add Order Member</button>
             <button onclick="location.reload()">🔄 Refresh Table</button>
             <!-- ADDING ORDER -->
             <div class="add-order-panel" id="addOrder">
