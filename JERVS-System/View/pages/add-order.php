@@ -98,7 +98,7 @@ include('../../Controller/sessioncheck.php');
                                                 <button type="submit">DELETE</button>
                                             </form>
 
-                                            <form action="done.php" method="post" style="display:inline;">
+                                            <form action="../../Controller/Order-Management/done.php" method="post" style="display:inline;">
                                                 <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
                                                 <button type="submit">DONE</button>
                                             </form>
