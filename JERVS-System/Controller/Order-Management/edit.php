@@ -49,6 +49,7 @@
     <title>Editing</title>
     <link rel="stylesheet" href="../../View/assets/stylesheet/sidebar.css" />
     <link rel="stylesheet" href="../../View/assets/stylesheet/add-order.css" />
+    <link rel="stylesheet" href="../../View/assets/stylesheet/order-management-css/edit.css">
 </head>
 <body>
     <div class="container">
@@ -73,8 +74,10 @@
                 <textarea name="addInfo"><?= htmlspecialchars($order['order_details']) ?></textarea>
 
                 <br><br>
-                <button type="submit">Save Changes</button>
-                <a href="../../View/pages/add-order.php"><button type="button">Cancel</button></a>
+                <div class="form-buttons">
+                    <button type="submit">Save Changes</button>
+                    <a href="../../View/pages/add-order.php"><button type="button">Cancel</button></a>
+                </div>
             </form>
         </main>
     </div>

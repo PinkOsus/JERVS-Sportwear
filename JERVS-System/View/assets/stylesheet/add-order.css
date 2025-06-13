@@ -1,6 +1,6 @@
 /* Base Styles */
 body {
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
@@ -64,16 +64,14 @@ button[onclick="location.reload()"]:hover {
 
 /* Add Order Panel */
 .add-order-panel {
-    display: fixed;
-    top: 0;
+    display: none; /* Start hidden */
+    flex-direction: column; /* Stack children vertically */
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
-    display: flex;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     border: 1px solid #e9ecef;
-    animation: fadeIn 0.3s ease-out;
 }
 
 .add-order-panel h2 {
@@ -141,6 +139,47 @@ button[onclick="location.reload()"]:hover {
 }
 
 #addOrderForm button[type="button"]:hover {
+    background-color: #c0392b;
+}
+
+
+/* Form Buttons Container */
+#addOrderForm .form-buttons {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Form Buttons */
+#addOrderForm .form-buttons button {
+    flex: 1; /* Makes buttons equal width */
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Add Order Button */
+#addOrderForm .form-buttons button[type="submit"] {
+    background-color: #2ecc71;
+    color: white;
+}
+
+#addOrderForm .form-buttons button[type="submit"]:hover {
+    background-color: #27ae60;
+}
+
+/* Close Button */
+#addOrderForm .form-buttons button[type="button"] {
+    background-color: #e74c3c;
+    color: white;
+}
+
+#addOrderForm .form-buttons button[type="button"]:hover {
     background-color: #c0392b;
 }
 
@@ -273,5 +312,15 @@ td form:last-child button:hover {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    #addOrderForm .form-buttons {
+        flex-direction: column;
+    }
+    
+    #addOrderForm .form-buttons button {
+        width: 100%;
     }
 }
