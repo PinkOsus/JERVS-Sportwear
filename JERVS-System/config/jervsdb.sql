@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2025 at 02:40 PM
+-- Generation Time: Jun 13, 2025 at 05:12 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,162 +24,45 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin_tbl`
+-- Table structure for table `sales_tbl`
 --
 
-CREATE TABLE `admin_tbl` (
-  `admin_id` int(10) UNSIGNED NOT NULL,
-  `admin_user` varchar(100) NOT NULL,
-  `admin_pass` varchar(155) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `admin_tbl`
---
-
-INSERT INTO `admin_tbl` (`admin_id`, `admin_user`, `admin_pass`) VALUES
-(1, 'admin', '12345678');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `login_logs`
---
-
-CREATE TABLE `login_logs` (
-  `id` int(11) NOT NULL,
-  `member_id` int(11) NOT NULL,
-  `login_time` datetime NOT NULL DEFAULT current_timestamp(),
-  `ip_address` varchar(45) NOT NULL,
-  `user_agent` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `login_logs`
---
-
-INSERT INTO `login_logs` (`id`, `member_id`, `login_time`, `ip_address`, `user_agent`) VALUES
-(1, 1, '2025-06-07 15:04:15', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(2, 1, '2025-06-07 16:36:00', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(3, 1, '2025-06-07 17:19:42', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(4, 1, '2025-06-08 00:46:50', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(5, 2, '2025-06-08 12:13:14', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(6, 1, '2025-06-08 20:25:26', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `member_tbl`
---
-
-CREATE TABLE `member_tbl` (
-  `member_id` int(11) NOT NULL,
-  `member_user` varchar(100) NOT NULL,
-  `member_fullname` varchar(155) NOT NULL,
-  `member_email` varchar(155) NOT NULL,
-  `member_pass` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `member_tbl`
---
-
-INSERT INTO `member_tbl` (`member_id`, `member_user`, `member_fullname`, `member_email`, `member_pass`) VALUES
-(1, 'user1', 'Kurt Russel J Caraig', 'kurt@gmail.com', '$2y$10$xElgC7TpGBZWAe2Yp5ZkyOViJPeTVzUtVEWM1nlmwZ9q3/dslizve'),
-(2, 'user2', 'asdhaksjshdajkhdaj', 'dhasjkdha@gmail.com', '$2y$10$/N21tQ/.T5VATxqsrKbXNuKmrWacbqPSVV.qOrkia1/pDaPSjc/PK');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `orders_tbl`
---
-
-CREATE TABLE `orders_tbl` (
-  `id` int(11) NOT NULL,
-  `item_name` varchar(100) DEFAULT NULL,
+CREATE TABLE `sales_tbl` (
+  `sales_id` int(11) NOT NULL,
+  `order_name` varchar(255) NOT NULL,
   `qty` int(11) NOT NULL,
-  `deposit` int(11) NOT NULL,
-  `total_price` int(11) NOT NULL,
-  `order_details` text NOT NULL,
-  `current_phase` enum('start','printing','heatpress','sewing','ready') DEFAULT NULL,
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `total_price` decimal(10,0) NOT NULL,
+  `date_completed` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `orders_tbl`
+-- Dumping data for table `sales_tbl`
 --
 
-INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `order_details`, `current_phase`, `last_updated`) VALUES
-(12, 'Order-Buatis', 10, 1500, 5000, '0', 'start', '2025-06-08 13:27:49'),
-(13, 'Order-Buatis', 10, 1500, 5000, '0', 'start', '2025-06-08 14:29:11');
+INSERT INTO `sales_tbl` (`sales_id`, `order_name`, `qty`, `total_price`, `date_completed`) VALUES
+(1, 'Order-Buatis', 10, 5000, '2025-01-03'),
+(2, 'Order- Butais', 15, 5000, '2025-06-13'),
+(3, 'Team - BemBang', 12, 25000, '2025-05-03');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin_tbl`
+-- Indexes for table `sales_tbl`
 --
-ALTER TABLE `admin_tbl`
-  ADD PRIMARY KEY (`admin_id`),
-  ADD UNIQUE KEY `admin_user` (`admin_user`);
-
---
--- Indexes for table `login_logs`
---
-ALTER TABLE `login_logs`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `member_id` (`member_id`);
-
---
--- Indexes for table `member_tbl`
---
-ALTER TABLE `member_tbl`
-  ADD PRIMARY KEY (`member_id`);
-
---
--- Indexes for table `orders_tbl`
---
-ALTER TABLE `orders_tbl`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `sales_tbl`
+  ADD PRIMARY KEY (`sales_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `admin_tbl`
+-- AUTO_INCREMENT for table `sales_tbl`
 --
-ALTER TABLE `admin_tbl`
-  MODIFY `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `login_logs`
---
-ALTER TABLE `login_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `member_tbl`
---
-ALTER TABLE `member_tbl`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `orders_tbl`
---
-ALTER TABLE `orders_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `login_logs`
---
-ALTER TABLE `login_logs`
-  ADD CONSTRAINT `login_logs_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member_tbl` (`member_id`);
+ALTER TABLE `sales_tbl`
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

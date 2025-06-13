@@ -20,9 +20,38 @@
         <div class="sales-grid">
           <!-- Left Column - Sales Table -->
           <div class="sales-form-container">
-            <nav class="breadcrumb">Table &gt; Dashboard</nav>
-            <h1>Table</h1><br><br>
-            <p>On going</p>
+            <nav class="breadcrumb">Sales &gt; Dashboard</nav>
+            <h1>Sales</h1><br><br>
+            <h2> Completed Orders </h2>
+            <table>
+              <thead>
+                <tr>
+                  <th> Order Name </th>
+                  <th> Quantity </th>
+                  <th> Order Price</th>
+                  <th> Completion Date </th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php 
+                  $stmt = "SELECT * FROM sales_tbl";
+                  
+                  $result = $conn->query($stmt);
+                ?>
+                <?php if($result && $result->num_rows>0): ?>
+                  <?php while($row = $result->fetch_assoc()): ?>
+                    <tr>
+                      <td><?= htmlspecialchars($row['order_name']) ?></td>
+                      <td><?= htmlspecialchars($row['qty']) ?></td>
+                      <td><?= htmlspecialchars($row['total_price']) ?></td>
+                      <td><?= htmlspecialchars($row['date_completed']) ?></td>
+                    </tr>
+                  <?php endwhile ?>
+                <?php else: ?>
+                  <tr><td colspan="4">No login records found.</td></tr>
+                <?php endif ?>
+              </tbody>
+            </table>
           </div>
           
           <!-- Right Column - Sales Analytics -->
@@ -36,13 +65,13 @@
             <div class="sales-summary">
               <div class="summary-card">
                 <h3>This Month</h3>
-                <p class="amount">₱25,480</p>
-                <p class="change positive">↑ 12% from last month</p>
+                <p id="thisMonthAmount" class="amount"></p>
+                <p id="thisMonthChange" class="change positive"></p>
               </div>
               <div class="summary-card">
                 <h3>Last Month</h3>
-                <p class="amount">₱22,750</p>
-                <p class="change negative">↓ 5% from previous</p>
+                <p id="lastMonthAmount" class="amount"></p>
+                <p id="lastMonthChange" class="change negative"></p>
               </div>
             </div>
           </div>
