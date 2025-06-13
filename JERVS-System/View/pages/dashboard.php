@@ -56,7 +56,7 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- Dynamically add rows here -->
+              <!-- Dynamically add rows here -->
               </tbody>
             </table>
             <button class="btn checkout-btn">Checkout</button>
