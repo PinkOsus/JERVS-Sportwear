@@ -84,32 +84,6 @@
       </section>
 
       <!-- Preferences Tab -->
-      <section id="preferences" class="settings-section">
-        <div class="section-header">
-          <h2><i class="fas fa-cog"></i> System Preferences</h2>
-          <p>Configure system behavior</p>
-        </div>
-        
-        <div class="form-content">
-          <div class="form-row">
-            <div class="form-group">
-              <label>IDK WHAT ILALAGAY</label>
-              <select>
-                <option value="PHP">IDK WHAT ILALAGAY</option>
-                <option value="USD">IDK WHAT ILALAGAY</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>IDK WHAT ILALAGAY</label>
-              <input type="number" value="12" step="0.1" min="0" max="30">
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label>IDK WHAT ILALAGAY</label>
-            <input type="number" value="10" min="1" placeholder="Default: 10">
-            <p class="form-hint">IDK WHAT ILALAGAY</p>
-          </div>
           
           <div class="form-group">
             <label>Color Theme</label>

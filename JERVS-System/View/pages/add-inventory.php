@@ -28,9 +28,9 @@ include('../../Controller/sessioncheck.php');
                 <button id="openAddProductBtn" class="btn-primary">
                     <i class="fas fa-plus"></i> Add New Product
                 </button>
-                <button class="btn-secondary" id="exportBtn">
+                <!-- <button class="btn-secondary" id="exportBtn">
                     <i class="fas fa-file-export"></i> Export
-                </button>
+                </button> -->
             </div>
         </div>
 
