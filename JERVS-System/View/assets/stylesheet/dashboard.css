@@ -45,8 +45,8 @@ body {
 }
 
 .main-wrapper {
-  margin-left: 80px;
-  width: calc(100% - 80px);
+  margin-left: 40px;
+  width: calc(100% - 40px);
   transition: margin-left 0.3s ease;
 }
 
