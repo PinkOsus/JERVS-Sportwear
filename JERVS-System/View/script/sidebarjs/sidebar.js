@@ -1,59 +1,21 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const sidebar = document.querySelector('.fashion-sidebar');
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const overlay = document.querySelector('.sidebar-overlay');
-    const body = document.body;
-    const mainWrapper = document.querySelector('.main-wrapper');
+// Remove the marginLeft manipulation from your JavaScript
+// The CSS will now handle this entirely
 
-    // Initialize sidebar state based on screen size
-    function initSidebar() {
-        if (window.innerWidth > 992) {
-            body.classList.add('sidebar-visible');
-            body.classList.remove('sidebar-hidden');
-            if (mainWrapper) {
-                mainWrapper.style.marginLeft = '280px';
-            }
-        } else {
-            body.classList.remove('sidebar-visible');
-            body.classList.add('sidebar-hidden');
-            if (mainWrapper) {
-                mainWrapper.style.marginLeft = '0';
-            }
-        }
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const body = document.body;
 
     // Toggle sidebar function
     function toggleSidebar() {
-        body.classList.toggle('sidebar-visible');
-        body.classList.toggle('sidebar-hidden');
-        
-        // Update margin only on mobile
-        if (window.innerWidth <= 992 && mainWrapper) {
-            if (body.classList.contains('sidebar-visible')) {
-                mainWrapper.style.marginLeft = '280px';
-            } else {
-                mainWrapper.style.marginLeft = '0';
-            }
-        }
+        body.classList.toggle('sidebar-active');
     }
-
-    // Initial setup
-    initSidebar();
 
     // Toggle sidebar when button is clicked
     if (sidebarToggle) {
         sidebarToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             toggleSidebar();
-        });
-    }
-
-    // Close sidebar when clicking on overlay
-    if (overlay) {
-        overlay.addEventListener('click', function() {
-            if (window.innerWidth <= 992) {
-                toggleSidebar();
-            }
         });
     }
 
@@ -64,29 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             !sidebar.contains(e.target) && 
             e.target !== sidebarToggle && 
             (!sidebarToggle || !sidebarToggle.contains(e.target))) {
-            body.classList.remove('sidebar-visible');
-            body.classList.add('sidebar-hidden');
-            if (mainWrapper) {
-                mainWrapper.style.marginLeft = '0';
-            }
-        }
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 992) {
-            body.classList.add('sidebar-visible');
-            body.classList.remove('sidebar-hidden');
-            if (mainWrapper) {
-                mainWrapper.style.marginLeft = '280px';
-            }
-        } else {
-            if (!body.classList.contains('sidebar-visible')) {
-                body.classList.add('sidebar-hidden');
-                if (mainWrapper) {
-                    mainWrapper.style.marginLeft = '0';
-                }
-            }
+            body.classList.remove('sidebar-active');
         }
     });
 });
