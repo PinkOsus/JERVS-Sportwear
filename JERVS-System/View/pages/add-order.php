@@ -38,6 +38,7 @@ include('../../Controller/sessioncheck.php');
                     <select name="production_stage" required>
                         <option value="">-- Choose Stage --</option>
                         <option value="start">Start</option>
+                        <option value="ready">Ready</option>
                     </select>
 
                     <div class="form-buttons">
