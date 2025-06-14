@@ -68,7 +68,7 @@ include('../../Controller/sessioncheck.php');
                     </thead>
                     <tbody>
                         <?php  
-                            $stmt = "SELECT * FROM inventory_tbl";
+                            $stmt = "SELECT * FROM inventory_tbl LIMIT 20";
 
                             $result = $conn->query($stmt);
                         ?>
