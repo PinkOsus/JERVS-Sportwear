@@ -1,0 +1,8 @@
+POST http://localhost/JERVS-Sportwear/JERVS-System/Controller/Product-Management/add_prod.php
+
+{
+    "product_name": "Kurt Caraig",
+    "category": "fgfgfgfgff",
+    "stock": "33",
+    "description": "loremasbdhjashdjajdhasjkdhjaskdhjaskdhjkasdhjkashdjkashdjkashdajskdhasjkdhaskjdasjkdhasdhasjkdasdhasjkdajkadhajk"
+}

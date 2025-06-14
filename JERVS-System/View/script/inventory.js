@@ -1,49 +1,46 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    const addProductForm = document.getElementById('addProductForm');
     const openBtn = document.getElementById('openAddProductBtn');
     const panel = document.getElementById('addProductPanel');
-    
+
     // Initialize panel state
     panel.style.display = 'none';
-    
+
     // Toggle product panel
     openBtn.addEventListener('click', () => {
         panel.style.display = panel.style.display === 'none' ? 'flex' : 'none';
     });
-    
+
     // Form submission handling
-    const addProductForm = document.getElementById('addProductForm');
-    if (addProductForm) {
-        addProductForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const formData = new FormData(this);
-            
-            fetch(this.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
+    addProductForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch('../../Controller/Product-Management/add_prod.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
             .then(data => {
-                const messageBox = document.getElementById('addProductMessage');
-                messageBox.style.display = 'block';
-                
+                const feedback = document.getElementById("addProductMessage");
+
                 if (data.success) {
-                    messageBox.textContent = 'Product added successfully';
-                    messageBox.style.color = 'green';
+                    feedback.innerText = "Item added Successfully";
+                    feedback.style.color = "green";
+
                     setTimeout(() => {
-                        location.reload();
-                    }, 1500);
+                        this.reset();
+
+                        window.location.reload();
+                    }, 2000);
                 } else {
-                    messageBox.textContent = 'Error: ' + data.message;
-                    messageBox.style.color = 'red';
+                    feedback.innerText = "Item adding failed: " + data.message;
+                    feedback.style.color = "red";
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                const messageBox = document.getElementById('addProductMessage');
-                messageBox.style.display = 'block';
-                messageBox.textContent = 'An error occurred';
-                messageBox.style.color = 'red';
+                console.log("An error occured in ", error);
             });
-        });
-    }
+    });
 });

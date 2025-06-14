@@ -1,13 +1,7 @@
 <?php 
 include('../../config/database.php');
 include('../../Controller/sessioncheck.php');
-
-// Fetch products from database
-// $query = "SELECT * FROM products ORDER BY product_name ASC";
-// $result = mysqli_query($connection, $query);
-// $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +31,7 @@ include('../../Controller/sessioncheck.php');
         <!-- ADD PRODUCT PANEL -->
         <div class="add-order-panel" id="addProductPanel">
             <h2>Add New Product</h2>
-            <form id="addProductForm" action="../../Controller/Product-Management/add_product.php" method="POST">
+            <form id="addProductForm" method="POST" action="../../Controller/Product-Management/add_prod.php">
                 <label>Product Name:</label>
                 <input type="text" name="product_name" required />
 
@@ -47,17 +41,11 @@ include('../../Controller/sessioncheck.php');
                 <label>Stock Quantity</label>
                 <input type="number" name="stock" required>
 
-                <label>Unit Cost</label>
-                <input type="number" name="unit_cost" step="0.01" required>
-
-                <label>Selling Price</label>
-                <input type="number" name="selling_price" step="0.01" required>
-
                 <label>Product Description</label>
                 <textarea name="description"></textarea>
 
                 <div class="form-buttons">
-                    <button type="submit">Save Product</button>
+                    <button type="submit">Add to inventory</button>
                     <button type="button" onclick="document.getElementById('addProductPanel').style.display='none'">✖ Close</button>
                 </div>
                 <div id="addProductMessage"></div>
@@ -74,38 +62,33 @@ include('../../Controller/sessioncheck.php');
                             <th>Product</th>
                             <th>Category</th>
                             <th>Stock</th>
-                            <th>Unit Cost</th>
-                            <th>Price</th>
+                            <th>Description</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php foreach($products as $product): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($product['product_name']) ?></td>
-                            <td><?= htmlspecialchars($product['category']) ?></td>
-                            <td>
-                                <span class="stock-level <?= $product['stock'] < 10 ? 'low' : ($product['stock'] < 20 ? 'medium' : 'high') ?>">
-                                    <?= $product['stock'] ?>
-                                </span>
-                            </td>
-                            <td>₱<?= number_format($product['unit_cost'], 2) ?></td>
-                            <td>₱<?= number_format($product['selling_price'], 2) ?></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <a href="edit_product.php?id=<?= $product['id'] ?>" class="btn-action edit" title="Edit">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <form action="../../Controller/Product-Management/delete_product.php" method="POST" style="display:inline;">
-                                        <input type="hidden" name="id" value="<?= $product['id'] ?>">
-                                        <button type="submit" class="btn-action delete" title="Delete" onclick="return confirm('Are you sure you want to delete this product?')">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
+                        <?php  
+                            $stmt = "SELECT * FROM inventory_tbl";
+
+                            $result = $conn->query($stmt);
+                        ?>
+                        <?php if($result && $result->num_rows > 0): ?>
+                            <?php while($row = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['item_name']) ?></td>
+                                    <td><?= htmlspecialchars($row['categ']) ?></td>
+                                    <td><?= htmlspecialchars($row['qty']) ?></td>
+                                    <td><?= htmlspecialchars($row['descrip']) ?></td>
+
+                                    <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
+                                                <button type="submit">DELETE</button>
                                     </form>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?> -->
+                                </tr>
+                            <?php endwhile ?>
+                        <?php else: ?>
+                            <tr><td colspan="4">No inventory item records found.</td></tr>
+                        <?php endif ?>
                     </tbody>
                 </table>
             </div>
