@@ -21,9 +21,9 @@
         <i class="fas fa-calendar-alt"></i>
       </div>
       <div>
-        <div class="metric-title">Monthly Sales</div>
-        <div class="metric-value">₱0.00</div>
-        <div class="metric-change">Loading...</div>
+        <div class="metric-title">This Month Sale</div>
+        <div id="thisMonthAmount" class="metric-value">₱0.00</div>
+        <div id="thisMonthChange" class="change negative"></div>
       </div>
     </div>
   </div>
@@ -35,9 +35,9 @@
         <i class="fas fa-percentage"></i>
       </div>
       <div>
-        <div class="metric-title">Monthly Comparison</div>
-        <div class="metric-value">0%</div>
-        <div class="metric-change">vs last month</div>
+        <div class="metric-title">Last Month Sale</div>
+        <div id="lastMonthAmount" class="metric-value">0%</div>
+        <div id="lastMonthChange" class="change positive"></div>
       </div>
     </div>
   </div>
