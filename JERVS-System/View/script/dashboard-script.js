@@ -1,43 +1,53 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // Load monthly sales data for chart
+document.addEventListener('DOMContentLoaded', function () {
+  // Sample data - Replace this shit with the real ones inside your shitty database
   fetch('../../Controller/Dashboard/get_monthly_sales.php')
     .then(res => res.json())
     .then(data => {
-      const ctx = document.getElementById('salesChart').getContext('2d');
-      const chart = new Chart(ctx, {
+      const monthlySalesData = {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Monthly Sales (₱)',
+          data: data,
+          backgroundColor: 'rgba(26, 26, 26, 0.7)',
+          borderColor: 'rgba(26, 26, 26, 1)',
+          borderWidth: 1,
+          borderRadius: 4,
+          hoverBackgroundColor: 'rgba(26, 26, 26, 1)'
+        }]
+      };
+
+      // Chart configuration
+      const config = {
         type: 'bar',
-        data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-          datasets: [{
-            label: 'Monthly Sales (₱)',
-            data: data,
-            backgroundColor: '#284cff',
-            borderColor: '#284cff',
-            borderWidth: 1,
-            borderRadius: 4,
-            hoverBackgroundColor: '#1a3bd6'
-          }]
-        },
+        data: monthlySalesData,
         options: {
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              display: false
+              position: 'top',
+              labels: {
+                font: {
+                  family: "'Inter', sans-serif",
+                  size: 13
+                },
+                color: '#333'
+              }
             },
             tooltip: {
-              backgroundColor: 'rgba(40, 76, 255, 0.9)',
+              backgroundColor: 'rgba(26, 26, 26, 0.9)',
               titleFont: {
-                size: 14,
-                weight: '600'
+                family: "'Inter', sans-serif",
+                size: 14
               },
               bodyFont: {
+                family: "'Inter', sans-serif",
                 size: 13
               },
               padding: 10,
               usePointStyle: true,
               callbacks: {
-                label: function(context) {
+                label: function (context) {
                   return '₱' + context.raw.toLocaleString();
                 }
               }
@@ -47,8 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
             y: {
               beginAtZero: true,
               ticks: {
-                callback: function(value) {
+                callback: function (value) {
                   return '₱' + value.toLocaleString();
+                },
+                font: {
+                  family: "'Inter', sans-serif"
                 }
               },
               grid: {
@@ -58,43 +71,55 @@ document.addEventListener('DOMContentLoaded', function() {
             x: {
               grid: {
                 display: false
+              },
+              ticks: {
+                font: {
+                  family: "'Inter', sans-serif"
+                }
               }
             }
           }
         }
-      });
-    })
-    .catch(error => console.error('Error loading chart data:', error));
+      };
 
-  // Load metrics data
+      // Create the chart
+      const salesChart = new Chart(
+        document.getElementById('salesChart'),
+        config
+      );
+    })
+    .catch(error => console.error('Error fetching monthly sales:', error));
+
+  //For checking if sales go up or down
   fetch('../../Controller/Dashboard/get_month_comparison.php')
     .then(res => res.json())
     .then(data => {
-      const thisMonth = data.this_month || 0;
-      const lastMonth = data.last_month || 0;
-      
-      // Update monthly sales card
-      document.querySelectorAll('.metric-card .metric-value')[1].textContent = 
-        '₱' + thisMonth.toLocaleString(undefined, {minimumFractionDigits: 2});
-      
-      // Update comparison card
-      let changePercent = 0;
-      if (lastMonth > 0) {
-        changePercent = ((thisMonth - lastMonth) / lastMonth) * 100;
+      const thisMonthAmt = data.this_month || 0;
+      const lastMonthAmt = data.last_month || 0;
+
+      //Update amounts
+      document.getElementById('thisMonthAmount').textContent = '₱' + thisMonthAmt.toLocaleString(undefined, { minimumFractionDigits: 2 });
+      document.getElementById('lastMonthAmount').textContent = '₱' + lastMonthAmt.toLocaleString(undefined, { minimumFractionDigits: 2 });
+
+      //Calculate percentage change
+      const changeElement = document.getElementById('thisMonthChange');
+      if (lastMonthAmt === 0 && thisMonthAmt === 0) {
+        changeElement.textContent = 'No change';
+        changeElement.className = 'change';
+      } else if (lastMonthAmt === 0) {
+        changeElement.textContent = '↑ 100% (New)';
+        changeElement.className = 'change positive';
+      } else {
+        const percentChange = ((thisMonthAmt - lastMonthAmt) / lastMonthAmt) * 100;
+        const rounded = percentChange.toFixed(1);
+        if (percentChange >= 0) {
+          changeElement.textContent = `↑ ${rounded}% from last month`;
+          changeElement.className = 'change positive';
+        } else {
+          changeElement.textContent = `↓ ${Math.abs(rounded)}% from last month`;
+          changeElement.className = 'change negative';
+        }
       }
-      
-      const changeElement = document.querySelectorAll('.metric-card .metric-change')[2];
-      changeElement.textContent = Math.abs(changePercent).toFixed(1) + '% ' + 
-        (changePercent >= 0 ? 'increase' : 'decrease');
-      changeElement.className = changePercent >= 0 ? 'metric-change positive' : 'metric-change negative';
-      
-      // You would need to add a similar endpoint for today's sales
-      // For now we'll simulate it
-      const todaySales = thisMonth / 30; // Approximate daily average
-      document.querySelectorAll('.metric-card .metric-value')[0].textContent = 
-        '₱' + todaySales.toLocaleString(undefined, {minimumFractionDigits: 2});
-      document.querySelectorAll('.metric-card .metric-change')[0].textContent = 'Updated just now';
-      document.querySelectorAll('.metric-card .metric-change')[0].className = 'metric-change positive';
     })
-    .catch(error => console.error('Error loading metrics:', error));
+    .catch(error => console.error('Error fetching monthly sales:', error));
 });
