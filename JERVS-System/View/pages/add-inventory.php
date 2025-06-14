@@ -36,7 +36,11 @@ include('../../Controller/sessioncheck.php');
                 <input type="text" name="product_name" required />
 
                 <label>Category:</label>
-                <input type="text" name="category" required />
+                <select name="category" required>
+                        <option value="">-- Choose Category --</option>
+                        <option value="product">Product</option>
+                        <option value="materials">Materials</option>
+                </select>
                 
                 <label>Stock Quantity</label>
                 <input type="number" name="stock" required>
@@ -80,7 +84,7 @@ include('../../Controller/sessioncheck.php');
                                     <td><?= htmlspecialchars($row['qty']) ?></td>
                                     <td><?= htmlspecialchars($row['descrip']) ?></td>
 
-                                    <form action="" method="post" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    <form action="../../Controller/Product-Management/delete_prod.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
                                                 <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
                                                 <button type="submit">DELETE</button>
                                     </form>
