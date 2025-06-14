@@ -10,7 +10,7 @@
     --text-dark: #333333;
     --text-light: #666666;
     --text-lighter: #999999;
-    --sidebar-width: 280px;
+    --sidebar-width:  280px;
     --transition-speed: 0.3s;
 }
 
@@ -209,7 +209,6 @@ body {
 /* ===== Main Content Styles ===== */
 
 .main-wrapper {
-    margin-left: var(--sidebar-width);
     flex: 1;
     min-height: 100vh;
     display: flex;
