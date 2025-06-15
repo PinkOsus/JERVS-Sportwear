@@ -1,7 +1,6 @@
 <?php
     include('../../config/database.php');
     include('../sessioncheck.php');
-    include('../../View/parts/sidebar.php');
 
     if(isset($_GET['id'])){
         $id = $_GET['id'];
@@ -25,30 +24,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viewing</title>
-    <link rel="stylesheet" href="../../View/assets/stylesheet/sidebar.css" />
-    <link rel="stylesheet" href="../../View/assets/stylesheet/add-order.css" />
-    <link rel="stylesheet" href="../../View/assets/stylesheet/order-management-css/view-details.css">
+    <title>Order Details | JERVS Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../View/assets/stylesheet/dashboard.css">
+    <link rel="stylesheet" href="../../View/assets/stylesheet/sidebar.css">
+    <link rel="stylesheet" href="../../View/assets/stylesheet/globals.css">
+    <link rel="stylesheet" href="../../View/assets/stylesheet/order-management-css/order-details.css">
+    <link rel="icon" href="../../View/assets/img/logo-1.png" type="image/x-icon">
 </head>
 <body>
-<div class="container">
-    <main class="main-content">
-        <h1>Order Details</h1>
+<?php include('../../View/parts/sidebar.php'); ?>
 
-        <?php if($order): ?>
-            <div class="order-details">
-                <p><strong>Order ID:</strong> <span><?= htmlspecialchars($order['id']) ?></span></p>
-                <p><strong>Order Name:</strong> <span><?= htmlspecialchars($order['item_name']) ?></span></p>
-                <p><strong>Order Quantity:</strong> <span><?= htmlspecialchars($order['qty']) ?></span></p>
-                <?php $balance = $order['total_price'] - $order['deposit'] ?>
-                <p><strong>Order Balance:</strong> <span><?= htmlspecialchars($balance) ?></span></p>
-                <p><strong>Order Initial Deposit:</strong> <span><?= htmlspecialchars($order['deposit']) ?></span></p>
-                <p><strong>Order Total Price:</strong> <span><?= htmlspecialchars($order['total_price']) ?></span></p>
-                <p><strong>Order Details:</strong> <span><?= htmlspecialchars($order['order_details']) ?></span></p>
+<div class="main-wrapper">
+    <main class="main-content">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div class="header-content">
+                <h1 class="dashboard-title"><i class="fas fa-file-invoice"></i> Order Details</h1>
+                <p class="dashboard-subtitle">View complete order information</p>
             </div>
-            <button type="button" onclick="window.location.href='../../View/pages/add-order.php'">Back</button>
-        <?php endif ?>
+        </div>
+
+        <!-- Order Details Card -->
+        <div class="metric-card">
+            <div class="chart-header">
+                <h2 class="chart-title">Order #<?= htmlspecialchars($order['id']) ?></h2>
+            </div>
+            
+            <?php if($order): ?>
+            <div class="order-details-grid">
+                <div class="detail-group">
+                    <label>Order Name</label>
+                    <div class="detail-value"><?= htmlspecialchars($order['item_name']) ?></div>
+                </div>
+                
+                <div class="detail-group">
+                    <label>Quantity</label>
+                    <div class="detail-value"><?= htmlspecialchars($order['qty']) ?></div>
+                </div>
+                
+                <div class="detail-group">
+                    <label>Initial Deposit</label>
+                    <div class="detail-value">₱<?= number_format(htmlspecialchars($order['deposit']), 2) ?></div>
+                </div>
+                
+                <div class="detail-group">
+                    <label>Total Price</label>
+                    <div class="detail-value">₱<?= number_format(htmlspecialchars($order['total_price']), 2) ?></div>
+                </div>
+                
+                <?php $balance = $order['total_price'] - $order['deposit'] ?>
+                <div class="detail-group">
+                    <label>Balance</label>
+                    <div class="detail-value">₱<?= number_format($balance, 2) ?></div>
+                </div>
+                
+                <div class="detail-group full-width">
+                    <label>Additional Details</label>
+                    <div class="detail-value"><?= htmlspecialchars($order['order_details']) ?: 'No additional details' ?></div>
+                </div>
+            </div>
+            
+            <div class="form-buttons">
+                <a href="../../View/pages/add-order.php" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Orders
+                </a>
+            </div>
+            <?php endif; ?>
+        </div>
     </main>
 </div>
 </body>
+<script src="../../View/script/sidebarjs/sidebar.js"></script>
 </html>

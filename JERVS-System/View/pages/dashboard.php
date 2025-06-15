@@ -10,7 +10,7 @@
   <title>Dashboard Overview</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../assets/stylesheet/dashboard.css">
-  <link rel="stylesheet" href="../assets/stylesheet/dashboard-styles.css">
+  <link rel="icon" href="../assets/img/logo-1.png" type="image/x-icon">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -26,6 +26,5 @@
   </div>
 
   <script src="../script/dashboard-script.js"></script>
-  <script src="../script/sidebarjs/sidebar.js"></script>
 </body>
 </html>
