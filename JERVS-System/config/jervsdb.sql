@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2025 at 05:40 PM
+-- Generation Time: Jun 15, 2025 at 06:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -59,8 +59,8 @@ CREATE TABLE `inventory_tbl` (
 --
 
 INSERT INTO `inventory_tbl` (`id`, `item_name`, `categ`, `qty`, `descrip`) VALUES
-(73, 'asdasdada', 'asdadada', 333, 'sadasdasda'),
-(74, 'Jervs Hoodie', 'product', 10, '');
+(74, 'Jervs Hoodie', 'product', 10, ''),
+(76, 'Jervs Short', 'product', 15, 'Comfortable short');
 
 -- --------------------------------------------------------
 
@@ -81,20 +81,7 @@ CREATE TABLE `login_logs` (
 --
 
 INSERT INTO `login_logs` (`id`, `member_id`, `login_time`, `ip_address`, `user_agent`) VALUES
-(1, 1, '2025-06-07 15:04:15', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(2, 1, '2025-06-07 16:36:00', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(3, 1, '2025-06-07 17:19:42', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(4, 1, '2025-06-08 00:46:50', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(5, NULL, '2025-06-08 12:13:14', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(6, 1, '2025-06-08 20:25:26', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(7, 1, '2025-06-09 23:10:24', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(8, 1, '2025-06-09 23:10:41', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(9, 1, '2025-06-09 23:12:05', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(10, 1, '2025-06-09 23:29:24', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(11, 1, '2025-06-09 23:31:55', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(12, 1, '2025-06-12 15:55:45', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(13, 1, '2025-06-13 14:01:32', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(14, 1, '2025-06-13 14:14:52', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0');
+(15, 14, '2025-06-15 21:14:06', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0');
 
 -- --------------------------------------------------------
 
@@ -115,8 +102,9 @@ CREATE TABLE `member_tbl` (
 --
 
 INSERT INTO `member_tbl` (`member_id`, `member_user`, `member_fullname`, `member_email`, `member_pass`) VALUES
-(1, 'user1', 'Kurt Russel J Caraig', 'kurt@gmail.com', '$2y$10$xElgC7TpGBZWAe2Yp5ZkyOViJPeTVzUtVEWM1nlmwZ9q3/dslizve'),
-(7, 'user2', 'Christian Dave Buatis', 'dave@gmail.com', '$2y$10$4ffgT0XBpW59ahKpCKiHlO0t09eKLWuLeQ4HstmcMg8N/6owI36Pi');
+(8, 'user3', 'George Davies Arellano', 'george@gmail.com', '$2y$10$Z38/IOTcWLvdRMB2uyH4Eu8WYhq0CpcgGR7eYamtBXYpbUgpMjED6'),
+(14, 'member1', 'Jervie Barredo', 'jervs@gmail.com', '$2y$10$1x/kHfcGol1LFgu/cpO11O9jP3kFwRsq.3bMnqTDWvIZ58lRDuIDa'),
+(15, 'member2', 'Kurt Russel J Caraig', 'kurt@gmail.com', '$2y$10$4RZ3dXH4vzaUNQFWWJ4O6.tX7crM4Vk.o8hWzKurbqbT7SJeCEbHi');
 
 -- --------------------------------------------------------
 
@@ -140,9 +128,8 @@ CREATE TABLE `orders_tbl` (
 --
 
 INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `order_details`, `current_phase`, `last_updated`) VALUES
-(19, 'Order - Caraig', 10, 5000, 15000, 'Size\r\nCaraig - Small\r\nArellano - Small\r\nBuatis - XS', 'start', '2025-06-13 06:38:33'),
-(22, 'Order - Team Bardagulan', 25, 5000, 10000, 'Jersey\r\nCaraig - Medium\r\nArellano - Medium\r\nAgco - XL\r\nBuatis - Large', 'start', '2025-06-13 12:51:37'),
-(23, 'Order - Team tinambakan', 12, 1500, 10000, 'asdasdasdasdadsada', 'start', '2025-06-14 07:27:09'),
+(22, 'Order - Team Bardagulan', 25, 5000, 10000, 'Jersey\r\nCaraig - Medium\r\nArellano - Medium\r\nAgco - XL\r\nBuatis - Large', 'start', '2025-06-15 12:37:33'),
+(23, 'Order - Team tinambakan', 12, 1500, 10000, 'asdasdasdasdadsada', 'printing', '2025-06-15 13:16:11'),
 (24, 'Order - Team Dinakdakan', 12, 5000, 15000, 'asjdgashjgdasgdjhasgda', 'start', '2025-06-14 07:54:30');
 
 -- --------------------------------------------------------
@@ -166,7 +153,11 @@ CREATE TABLE `sales_tbl` (
 INSERT INTO `sales_tbl` (`sales_id`, `order_name`, `qty`, `total_price`, `date_completed`) VALUES
 (1, 'Order-Buatis', 10, 5000, '2025-01-03'),
 (2, 'Order- Butais', 15, 5000, '2025-06-13'),
-(3, 'Team - BemBang', 12, 25000, '2025-05-03');
+(3, 'Team - BemBang', 12, 25000, '2025-05-03'),
+(4, 'Jervs Hoodie', 5, 250, '2025-06-14'),
+(5, 'Jervs Hoodie', 2, 1000, '2025-06-15'),
+(6, 'Jervs Hoodie', 1, 250, '2025-06-15'),
+(7, 'Jervs Hoodie', 1, 250, '2025-06-15');
 
 --
 -- Indexes for dumped tables
@@ -190,7 +181,7 @@ ALTER TABLE `inventory_tbl`
 --
 ALTER TABLE `login_logs`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `member_id` (`member_id`);
+  ADD KEY `login_logs_ibfk_1` (`member_id`);
 
 --
 -- Indexes for table `member_tbl`
@@ -224,31 +215,31 @@ ALTER TABLE `admin_tbl`
 -- AUTO_INCREMENT for table `inventory_tbl`
 --
 ALTER TABLE `inventory_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `member_tbl`
 --
 ALTER TABLE `member_tbl`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `orders_tbl`
 --
 ALTER TABLE `orders_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `sales_tbl`
 --
 ALTER TABLE `sales_tbl`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -258,7 +249,7 @@ ALTER TABLE `sales_tbl`
 -- Constraints for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  ADD CONSTRAINT `login_logs_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member_tbl` (`member_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
+  ADD CONSTRAINT `login_logs_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member_tbl` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

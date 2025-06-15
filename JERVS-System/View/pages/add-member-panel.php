@@ -88,29 +88,28 @@ include('../../Controller/sessioncheck.php');
                         <?php
                             $stmt = 'SELECT * FROM member_tbl';
                             $result = $conn->query($stmt);
-
-                            if ($result && $result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<tr>';
-                                    echo '<td>' . htmlspecialchars($row['member_user']) . '</td>';
-                                    echo '<td>' . htmlspecialchars($row['member_fullname']) . '</td>';
-                                    echo '<td>' . htmlspecialchars($row['member_email']) . '</td>';
-                                    echo '<td>
-                                            <div class="action-buttons">
+                        ?>
+                        <?php if ($result && $result->num_rows > 0): ?>
+                            <?php while($row = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['member_user']) ?></td>
+                                    <td><?= htmlspecialchars($row['member_fullname']) ?></td>
+                                    <td><?= htmlspecialchars($row['member_email']) ?></td>
+                                    <td>
+                                        <div class="action-buttons">
                                                 <form class="delete-member-form" action="../../Controller/Member-Management/delete_member.php" method="POST" >
-                                                    <input type="hidden" name="username" value="' . htmlspecialchars($row['member_user']) . '">
-                                                    <button type="submit" class="btn-action delete" onclick="return confirm(\'Are you sure you want to delete this member?\');">
+                                                    <input type="hidden" name="username" value="<?=htmlspecialchars($row['member_user'])?>">
+                                                    <button type="submit" class="btn-action delete" onclick="return confirm('Are you sure you want to delete this member?');">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
-                                            </div>
-                                          </td>';
-                                    echo '</tr>';
-                                }
-                            } else {
-                                echo '<tr><td colspan="4">No members found.</td></tr>';
-                            }
-                        ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endwhile ?>
+                        <?php else: ?>
+                            <tr><td colspan="4">No members found.</td></tr>
+                        <?php endif ?>
                     </tbody>
                 </table>
             </div>
@@ -133,26 +132,25 @@ include('../../Controller/sessioncheck.php');
                     </thead>
                     <tbody>
                         <?php
-                            $stmt = 'SELECT l.login_time, l.ip_address, l.user_agent, m.member_user
+                            $stmt = "SELECT l.login_time, l.ip_address, l.user_agent, m.member_user
                                      FROM login_logs l
                                      JOIN member_tbl m ON l.member_id = m.member_id
-                                     ORDER BY l.login_time DESC LIMIT 20';
+                                     ORDER BY l.login_time DESC LIMIT 20";
                             
                             $result = $conn->query($stmt);
-
-                            if($result && $result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()) {
-                                    echo '<tr>';
-                                    echo '<td>' . htmlspecialchars($row['member_user']) . '</td>';
-                                    echo '<td>' . htmlspecialchars($row['login_time']) . '</td>';
-                                    echo '<td>' . htmlspecialchars($row['ip_address']) . '</td>';
-                                    echo '<td>' . htmlspecialchars($row['user_agent']) . '</td>';
-                                    echo '</tr>';
-                                }
-                            } else {
-                                echo '<tr><td colspan="4">No login records found.</td></tr>';
-                            }
                         ?>
+                        <?php if($result && $result->num_rows > 0): ?>
+                            <?php while($row = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['member_user']) ?></td>
+                                    <td><?= htmlspecialchars($row['login_time']) ?></td>
+                                    <td><?= htmlspecialchars($row['ip_address']) ?></td>
+                                    <td><?= htmlspecialchars($row['user_agent']) ?></td>
+                                </tr>
+                            <?php endwhile ?>
+                        <?php else: ?>
+                            <tr><td colspan="4">No login records found.</td></tr>
+                        <?php endif ?>
                     </tbody>
                 </table>
             </div>

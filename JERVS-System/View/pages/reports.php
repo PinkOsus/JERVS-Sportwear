@@ -46,10 +46,7 @@ include('../../Controller/sessioncheck.php');
                         </div>
                         <div class="metric-title">Total Revenue</div>
                     </div>
-                    <div class="metric-value">₱45,200</div>
-                    <div class="metric-change positive">
-                        <i class="fas fa-arrow-up"></i> 12% from last month
-                    </div>
+                    <div class="metric-value" id="totalRevenue">₱45,200</div>
                 </div>
 
                 <div class="metric-card">
@@ -59,10 +56,7 @@ include('../../Controller/sessioncheck.php');
                         </div>
                         <div class="metric-title">Items Sold</div>
                     </div>
-                    <div class="metric-value">317</div>
-                    <div class="metric-change positive">
-                        <i class="fas fa-arrow-up"></i> 8% from last month
-                    </div>
+                    <div id="ordersCompleted" class="metric-value">317</div>
                 </div>
 
                 <div class="metric-card">
@@ -72,10 +66,7 @@ include('../../Controller/sessioncheck.php');
                         </div>
                         <div class="metric-title">Pending Orders</div>
                     </div>
-                    <div class="metric-value">42</div>
-                    <div class="metric-change neutral">
-                        <i class="fas fa-equals"></i> Same as last month
-                    </div>
+                    <div id="ongoingOrders" class="metric-value">42</div>
                 </div>
             </div>
 

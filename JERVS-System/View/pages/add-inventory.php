@@ -39,7 +39,7 @@ include('../../Controller/sessioncheck.php');
                 <div class="form-group"><br><br>
                     <label>Product Name:</label>
                     <input type="text" name="product_name" class="form-control" required />
-                </div>
+                </div>  
 
                 <div class="form-group">
                     <label>Category:</label>
@@ -93,12 +93,12 @@ include('../../Controller/sessioncheck.php');
                             <?php while($row = $result->fetch_assoc()): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($row['item_name']) ?></td>
-                                    <td><?= htmlspecialchars($row['categ']) ?></td>
+                                    <td><?= ucfirst(htmlspecialchars($row['categ'])) ?></td>
                                     <td><?= htmlspecialchars($row['qty']) ?></td>
                                     <td><?= htmlspecialchars($row['descrip']) ?></td>
                                     <td>
                                         <div class="action-buttons">
-                                            <a href="edit-product.php?id=<?= $row['id'] ?>" class="btn-action edit">
+                                            <a href="../../Controller/Product-Management/edit_prod.php?id=<?= $row['id'] ?>" class="btn-action edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <form action="../../Controller/Product-Management/delete_prod.php" method="POST" onsubmit="return confirm('Are you sure?');">

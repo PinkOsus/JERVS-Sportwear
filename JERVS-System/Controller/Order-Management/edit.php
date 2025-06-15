@@ -34,6 +34,7 @@ if(isset($_GET['id'])){
 
     if(!$order){
         echo '<script> alert("Order not found");</script>';
+        exit;
     }
 }else{
     echo '<script> alert("No order ID provided");</script>';

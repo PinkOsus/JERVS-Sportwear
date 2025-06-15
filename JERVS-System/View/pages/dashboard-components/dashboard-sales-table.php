@@ -9,6 +9,7 @@
         <th>Order Name</th>
         <th>Quantity</th>
         <th>Order Price</th>
+        <th>Unit Cost</th>
         <th>Completion Date</th>
       </tr>
     </thead>
@@ -18,11 +19,14 @@
         $result = $conn->query($stmt);
       ?>
       <?php if($result && $result->num_rows>0): ?>
-        <?php while($row = $result->fetch_assoc()): ?>
+        <?php while($row = $result->fetch_assoc()): 
+          $unitCost = (int)($row['total_price'] / $row['qty']);
+        ?>
           <tr>
             <td><?= htmlspecialchars($row['order_name']) ?></td>
             <td><?= htmlspecialchars($row['qty']) ?></td>
             <td>₱<?= number_format($row['total_price'], 2) ?></td>
+            <td>₱<?= htmlspecialchars($unitCost) ?> </td>
             <td><?= htmlspecialchars($row['date_completed']) ?></td>
           </tr>
         <?php endwhile ?>
