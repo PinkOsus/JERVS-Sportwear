@@ -129,7 +129,7 @@ include('../../Controller/sessioncheck.php');
                                     <td><?= htmlspecialchars($row['last_updated']) ?></td>
                                     <td>
                                         <div class="action-buttons">
-                                            <a href="../../Controller/Order-Management/?id=<?= $row['id'] ?>" class="btn-action edit">
+                                            <a href="../../Controller/Order-Management/edit.php?id=<?= $row['id'] ?>" class="btn-action edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <a href="../../Controller/Order-Management/view-details.php?id=<?= $row['id'] ?>" class="btn-action view">
