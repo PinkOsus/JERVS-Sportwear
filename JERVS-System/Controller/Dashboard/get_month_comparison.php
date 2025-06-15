@@ -7,7 +7,7 @@
     $year = (int)date('Y');
     $lastMonthYear = $thisMonth === 1 ? $year - 1: $year;
 
-    $stmt = "SELECT MONTH(date_completed) AS month, SUM(total_price) AS total
+    $stmt = "SELECT MONTH(date_completed) AS month, SUM(total_price) AS total, COUNT(*) AS transaction_total
              FROM sales_tbl
              WHERE (YEAR(date_completed) = $year AND MONTH(date_completed) = $thisMonth)
              OR
@@ -16,17 +16,25 @@
     
     $result = $conn->query($stmt);
     $data = [
-        'this_month' => 0,
-        'last_month' => 0
+        'this_month' => [
+            'transactions' => 0,
+            'total_sales' => 0
+        ],
+        'last_month' => [
+            'transactions' => 0,
+            'total_sales' => 0
+        ]
     ];
 
     if($result){
         while($row = $result->fetch_assoc()){
             $month = (int)$row['month'];
             if($month == $thisMonth){
-                $data['this_month'] = (float)$row['total'];
+                $data['this_month']['transactions'] = (int)$row['transaction_count'];
+                $data['this_month']['total_sales'] = (float)$row['total'];
             }elseif($month == $lastMonth){
-                $data['last_month'] = (float)$row['total'];
+                $data['last_month']['transactions'] = (int)$row['transaction_count'];
+                $data['last_month']['total_sales'] = (float)$row['total'];
             }
         }
     }

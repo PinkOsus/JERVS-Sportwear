@@ -9,8 +9,8 @@
       <div>
         <!-- Need a code for calculation of Orders Delivered -->
         <div class="metric-title">Orders Completed</div>
-        <div class="metric-value">750 Orders</div>
-        <div class="metric-change">↑ 12% vs. last month</div>
+        <div id="ordersCompleted" class="metric-value">0 Orders</div>
+        <div id="ordersChange" class="metric-change"></div>
       </div>
     </div>
   </div>

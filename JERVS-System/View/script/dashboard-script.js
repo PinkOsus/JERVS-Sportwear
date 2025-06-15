@@ -94,12 +94,19 @@ document.addEventListener('DOMContentLoaded', function () {
   fetch('../../Controller/Dashboard/get_month_comparison.php')
     .then(res => res.json())
     .then(data => {
-      const thisMonthAmt = data.this_month || 0;
-      const lastMonthAmt = data.last_month || 0;
+      const thisMonthAmt = data.this_month.total_sales || 0;
+      const lastMonthAmt = data.last_month.total_sales || 0;
+
+      const thisMonthOrders = data.this.month.transactions || 0;
+      const lastMonthOrders = data.this.month.transactions || 0;
 
       //Update amounts
       document.getElementById('thisMonthAmount').textContent = '₱' + thisMonthAmt.toLocaleString(undefined, { minimumFractionDigits: 2 });
       document.getElementById('lastMonthAmount').textContent = '₱' + lastMonthAmt.toLocaleString(undefined, { minimumFractionDigits: 2 });
+
+      //update order count
+      document.getElementById('ordersCompleted').textContent = `${thisMonthOrders} Orders`;
+      const orderChangeDiv = document.getElementById('ordersChange');
 
       //Calculate percentage change
       const changeElement = document.getElementById('thisMonthChange');
@@ -118,6 +125,25 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
           changeElement.textContent = `↓ ${Math.abs(rounded)}% from last month`;
           changeElement.className = 'change negative';
+        }
+      }
+
+      if(lastMonthOrders === 0 && thisMonthOrders === 0){
+        orderChangeDiv.textContent = 'No change';
+        orderChangeDiv.className = 'metric-change';
+      }else if(lastMonthOrders === 0){
+        orderChangeDiv.textContent = '↑ 100% vs. last month';
+        orderChangeDiv.className = 'metric-change positive';
+      }else{
+        const orderChange = ((thisMonthOrders - lastMonthOrders)/lastMonthOrders) * 100;
+        const orderChangeRounded = orderChange.toFixed(1);
+
+        if(orderChange >= 0){
+          orderChangeDiv.textContent = `↑ ${orderChangeRounded}% vs. last month`;
+          orderChangeDiv.className = 'metric-change positive';
+        }else{
+          orderChangeDiv.textContent = `↓ ${Math.abs(orderChangeRounded)}% vs. last month`;
+          orderChangeDiv.className = 'metric-change positive';
         }
       }
     })
