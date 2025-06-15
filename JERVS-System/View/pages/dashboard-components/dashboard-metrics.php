@@ -1,15 +1,16 @@
 <!-- Metrics Cards -->
 <div class="metrics-grid">
-  <!-- Today's Sales -->
+  <!-- Order Completed -->
   <div class="metric-card">
     <div class="metric-header">
       <div class="metric-icon">
-        <i class="fas fa-shopping-cart"></i>
+      <i class="fa-solid fa-truck-fast"></i>
       </div>
       <div>
-        <div class="metric-title">Today's Sales</div>
-        <div class="metric-value">₱0.00</div>
-        <div class="metric-change">Loading...</div>
+        <!-- Need a code for calculation of Orders Delivered -->
+        <div class="metric-title">Orders Completed</div>
+        <div class="metric-value">750 Orders</div>
+        <div class="metric-change">↑ 12% vs. last month</div>
       </div>
     </div>
   </div>
