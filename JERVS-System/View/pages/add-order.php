@@ -14,18 +14,28 @@ include('../../Controller/sessioncheck.php');
     <?php include('../parts/sidebar.php'); ?>
     <div class="main-wrapper">
         <main class="main-content">
-        <button id="openAddOrderBtn">Add Order Member</button>
+            <button id="openAddOrderBtn">Add Order Member</button>
             <button onclick="location.reload()">🔄 Refresh Table</button>
             <!-- ADDING ORDER -->
             <div class="add-order-panel" id="addOrder">
                 <h2>Add New Order</h2>
                 <form id="addOrderForm">
                     <label>Order:</label>
-                    <input type="text" name="item" required />
+                    <input list="inventory-list" name="item" id="itemInput" required />
+                    <datalist id="inventory-list">
+                        <?php
+                        $inventoryStmt = 'SELECT item_name FROM inventory_tbl';
+                        $result = $conn->query($inventoryStmt);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<option value='" . htmlspecialchars($row['item_name'], ENT_QUOTES) . "'>";
+                        }
+                        ?>
+                    </datalist>
 
                     <label>Initial Deposit</label>
-                    <input type="number" name="deposit" required/>
-                    
+                    <input type="number" name="deposit" required />
+
                     <label> Quantity</label>
                     <input type="number" name="qty" required>
 
@@ -67,48 +77,50 @@ include('../../Controller/sessioncheck.php');
                         </thead>
                         <tbody>
                             <?php
-                                $stmt = 'SELECT * FROM orders_tbl';
-                                
-                                $result = $conn->query($stmt);
+                            $stmt = 'SELECT * FROM orders_tbl';
+
+                            $result = $conn->query($stmt);
                             ?>
-                            <?php if($result && $result->num_rows>0):?>
-                                <?php while($row = $result->fetch_assoc()):
-                                    $balance = $row['total_price']-$row['deposit'];
+                            <?php if ($result && $result->num_rows > 0): ?>
+                                <?php while ($row = $result->fetch_assoc()):
+                                    $balance = $row['total_price'] - $row['deposit'];
                                 ?>
                                     <tr>
                                         <td><?= htmlspecialchars($row['item_name']) ?></td>
                                         <td><?= htmlspecialchars($row['qty']) ?></td>
-                                        <td><?= htmlspecialchars($row['deposit']) ?></td>
-                                        <td><?= htmlspecialchars($row['total_price']) ?></td>
-                                        <td><?= htmlspecialchars($balance)?></td>
-                                        <td><?= htmlspecialchars($row['current_phase']) ?></td>
-                                        <td><?= htmlspecialchars($row['last_updated']) ?></td>
+                                        <td><?= number_format(htmlspecialchars($row['deposit'])) ?></td>
+                                        <td><?= number_format(htmlspecialchars($row['total_price'])) ?></td>
+                                        <td><?= number_format(htmlspecialchars($balance)) ?></td>
+                                        <td><?= ucfirst(htmlspecialchars($row['current_phase'])) ?></td>
+                                        <td><?= date("F j, Y g:i A", strtotime(htmlspecialchars($row['last_updated']))) ?></td>
                                         <td>
                                             <form action="../../Controller/Order-Management/edit.php" method="get" style="display:inline;">
-                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
+                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id']) ?>">
                                                 <button type="submit">EDIT</button>
                                             </form>
 
                                             <form action="../../Controller/Order-Management/view-details.php" method="get" style="display:inline;">
-                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
+                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id']) ?>">
                                                 <button type="submit">VIEW DETAILS</button>
                                             </form>
 
                                             <form action="../../Controller/Order-Management/delete.php" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
+                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id']) ?>">
                                                 <button type="submit">DELETE</button>
                                             </form>
 
                                             <form action="../../Controller/Order-Management/done.php" method="post" style="display:inline;">
-                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
+                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id']) ?>">
                                                 <button type="submit">DONE</button>
                                             </form>
                                         </td>
                                     </tr>
                                 <?php endwhile ?>
-                            <?php else:?>
-                                <tr><td colspan="8">No login records found.</td></tr>
-                            <?php endif?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="8">No login records found.</td>
+                                </tr>
+                            <?php endif ?>
                         </tbody>
                     </table>
                 </div>
