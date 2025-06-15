@@ -1,7 +1,6 @@
 <?php
     header('Content-Type: application/json');
-    error_reporting(0);
-    include('../config/database.php');
+    include('../../config/database.php');
 
     $username = trim($_POST['username'] ?? '');
     $fullname = trim($_POST['fullname'] ?? '');

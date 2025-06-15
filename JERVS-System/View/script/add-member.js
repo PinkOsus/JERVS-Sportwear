@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const openBtn = document.getElementById('openAddMemberBtn');
     const addMemberPanel = document.getElementById('addMemberPanel');
     const addMemberForm = document.getElementById('addUserForm');
+    const delForms = document.querySelectorAll('.delete-member-form');
     const passwordInput = addMemberForm?.querySelector('input[name="password"]');
     const togglePassword = addMemberForm?.querySelector('.toggle-password');
 
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ===== Form Submission =====
-    addMemberForm?.addEventListener('submit', function (e) {
+    addMemberForm.addEventListener('submit', function (e) {
         e.preventDefault();
         const formData = new FormData(this);
 
@@ -33,26 +34,44 @@ document.addEventListener('DOMContentLoaded', function () {
             method: "POST",
             body: formData
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                alert('Member added successfully!');
-                addMemberForm.reset();
-                closeModal();
-                window.location.reload(); // Refresh to show new member
-            } else {
-                alert("Error: " + data.message);
-            }
-        })
-        .catch(error => console.error("Error:", error));
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Member added successfully!');
+                    addMemberForm.reset();
+                    closeModal();
+                    window.location.reload(); // Refresh to show new member
+                } else {
+                    alert("Error: " + data.message);
+                }
+            })
+            .catch(error => console.error("Error:", error));
     });
 
     // ===== Delete Confirmation =====
-    document.querySelectorAll('.btn-action.delete').forEach(button => {
-        button.addEventListener('click', (e) => {
-            if (!confirm('Are you sure you want to delete this member?')) {
-                e.preventDefault(); // Cancel form submission if user denies
-            }
+    //form submission for deleting members
+    delForms.forEach(form => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('../../Controller/Member-Management/delete_member.php', {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Member deleted successfully!');
+                    window.location.reload(); // Refresh to reflect deletion
+                } else {
+                    alert("Error: " + data.message);
+                }
+            })
+            .catch(error => {
+                console.error("An error occurred:", error);
+            });
         });
     });
 });

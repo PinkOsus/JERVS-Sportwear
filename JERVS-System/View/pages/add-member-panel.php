@@ -35,7 +35,7 @@ include('../../Controller/sessioncheck.php');
             <div class="chart-header">
                 <h2 class="chart-title"><i class="fas fa-user-plus"></i> Add New Member</h2>
             </div>
-            <form id="addUserForm" method="POST" action="../../Controller/add_member.php">
+            <form id="addUserForm">
                 <div class="form-group"><br><br>
                     <label>Username:</label>
                     <input type="text" name="username" class="form-control" required placeholder="Enter unique username" />
@@ -97,9 +97,9 @@ include('../../Controller/sessioncheck.php');
                                     echo '<td>' . htmlspecialchars($row['member_email']) . '</td>';
                                     echo '<td>
                                             <div class="action-buttons">
-                                                <form action="../../Controller/delete_member.php" method="POST" onsubmit="return confirm(\'Are you sure you want to delete this member?\');">
+                                                <form class="delete-member-form" action="../../Controller/Member-Management/delete_member.php" method="POST" >
                                                     <input type="hidden" name="username" value="' . htmlspecialchars($row['member_user']) . '">
-                                                    <button type="submit" class="btn-action delete">
+                                                    <button type="submit" class="btn-action delete" onclick="return confirm(\'Are you sure you want to delete this member?\');">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>

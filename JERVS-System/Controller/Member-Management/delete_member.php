@@ -1,6 +1,6 @@
 <?php
     header('Content-Type: application/json');
-    include('../config/database.php');
+    include('../../config/database.php');
 
     if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'])){
         $username = $_POST['username'];
