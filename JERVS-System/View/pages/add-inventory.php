@@ -9,7 +9,6 @@ include('../../Controller/sessioncheck.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List | JERVS Admin</title>
     <link rel="stylesheet" href="../assets/stylesheet/add-order.css">
-    <link rel="stylesheet" href="../assets/stylesheet/inventory-management-css/stock-lvl-colors.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -83,11 +82,19 @@ include('../../Controller/sessioncheck.php');
                                     <td><?= htmlspecialchars($row['categ']) ?></td>
                                     <td><?= htmlspecialchars($row['qty']) ?></td>
                                     <td><?= htmlspecialchars($row['descrip']) ?></td>
-
-                                    <form action="../../Controller/Product-Management/delete_prod.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                                                <input type="hidden" name="id" value="<?= htmlspecialchars($row['id'])?>">
-                                                <button type="submit">DELETE</button>
-                                    </form>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <a href="edit-product.php?id=<?= $row['id'] ?>" class="btn-action edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="../../Controller/Product-Management/delete_prod.php" method="POST" onsubmit="return confirm('Are you sure?');">
+                                                <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                                <button type="submit" class="btn-action delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             <?php endwhile ?>
                         <?php else: ?>
