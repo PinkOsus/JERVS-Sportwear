@@ -94,11 +94,11 @@ document.addEventListener('DOMContentLoaded', function () {
   fetch('../../Controller/Dashboard/get_month_comparison.php')
     .then(res => res.json())
     .then(data => {
-      const thisMonthAmt = data.this_month.total_sales || 0;
-      const lastMonthAmt = data.last_month.total_sales || 0;
+      const thisMonthAmt = data['this_month'].total_sales || 0;
+      const lastMonthAmt = data['last_month'].total_sales || 0;
 
-      const thisMonthOrders = data.this.month.transactions || 0;
-      const lastMonthOrders = data.this.month.transactions || 0;
+      const thisMonthOrders = data['this_month'].transactions || 0;
+      const lastMonthOrders = data['last_month'].transactions || 0;
 
       //Update amounts
       document.getElementById('thisMonthAmount').textContent = '₱' + thisMonthAmt.toLocaleString(undefined, { minimumFractionDigits: 2 });
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
           orderChangeDiv.className = 'metric-change positive';
         }else{
           orderChangeDiv.textContent = `↓ ${Math.abs(orderChangeRounded)}% vs. last month`;
-          orderChangeDiv.className = 'metric-change positive';
+          orderChangeDiv.className = 'metric-change negative';
         }
       }
     })

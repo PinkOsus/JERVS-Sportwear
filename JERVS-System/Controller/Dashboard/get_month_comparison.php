@@ -30,10 +30,10 @@
         while($row = $result->fetch_assoc()){
             $month = (int)$row['month'];
             if($month == $thisMonth){
-                $data['this_month']['transactions'] = (int)$row['transaction_count'];
+                $data['this_month']['transactions'] = (int)$row['transaction_total'];
                 $data['this_month']['total_sales'] = (float)$row['total'];
             }elseif($month == $lastMonth){
-                $data['last_month']['transactions'] = (int)$row['transaction_count'];
+                $data['last_month']['transactions'] = (int)$row['transaction_total'];
                 $data['last_month']['total_sales'] = (float)$row['total'];
             }
         }
