@@ -1,3 +1,109 @@
+/* ===== REPORTS PAGE STYLES ===== */
+/* Metrics Grid Improvements */
+.metrics-grid {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.metric-card {
+  flex: 1;
+  min-width: 200px;
+  background: var(--primary-white);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow-sm);
+  transition: all var(--transition-speed) ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-md);
+}
+
+.metric-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+
+.metric-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.75rem; /* Increased spacing */
+}
+
+.metric-value {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0.5rem 0 0; /* Adjusted spacing */
+  line-height: 1.2;
+}
+
+.metric-value.price {
+  color: var(--primary);
+}
+
+/* Charts Section */
+.charts-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chart-section {
+  flex: 1;
+  min-width: 0;
+  background: var(--primary-white);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow-sm);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.chart-container {
+  height: 300px;
+  width: 100%;
+  position: relative;
+}
+
+/* Form Controls */
+.form-control {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--primary-white);
+  font-size: 0.9rem;
+}
 .charts-row {
   display: flex;
   gap: 1.5rem;
@@ -10,5 +116,25 @@
 @media (max-width: 1200px) {
   .charts-row {
       flex-direction: column;
+  }
+}
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .charts-row {
+    flex-direction: column;
+  }
+  
+  .metric-card {
+    min-width: calc(50% - 0.75rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .metrics-grid {
+    flex-direction: column;
+  }
+  
+  .metric-card {
+    min-width: 100%;
   }
 }

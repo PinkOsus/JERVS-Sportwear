@@ -45,9 +45,9 @@ include('../../Controller/sessioncheck.php');
                         <div class="metric-icon">
                             <i class="fas fa-money-bill-wave"></i>
                         </div>
-                        <div class="metric-title">Total Revenue</div>
+                        <span class="metric-title">Total Revenue</span>
+                        <span class="metric-value" id="totalRevenue">₱45,200</span>
                     </div>
-                    <div class="metric-value" id="totalRevenue">₱45,200</div>
                 </div>
 
                 <div class="metric-card">
@@ -55,9 +55,9 @@ include('../../Controller/sessioncheck.php');
                         <div class="metric-icon">
                             <i class="fas fa-shopping-bag"></i>
                         </div>
-                        <div class="metric-title">Items Sold</div>
+                        <span class="metric-title">Items Sold</span>
+                        <span id="ordersCompleted" class="metric-value">317</span>
                     </div>
-                    <div id="ordersCompleted" class="metric-value">317</div>
                 </div>
 
                 <div class="metric-card">
@@ -65,9 +65,9 @@ include('../../Controller/sessioncheck.php');
                         <div class="metric-icon">
                             <i class="fas fa-clock"></i>
                         </div>
-                        <div class="metric-title">Pending Orders</div>
+                        <span class="metric-title">Pending Orders</span>
+                        <span id="ongoingOrders" class="metric-value">42</span>
                     </div>
-                    <div id="ongoingOrders" class="metric-value">42</div>
                 </div>
             </div>
 

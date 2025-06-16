@@ -99,7 +99,6 @@ body {
   padding: 1.5rem;
   box-shadow: var(--box-shadow-sm);
   transition: transform 0.2s, box-shadow 0.2s;
-  margin: 1.5rem 0;
   border: 1px solid var(--border-color);
 }
 
