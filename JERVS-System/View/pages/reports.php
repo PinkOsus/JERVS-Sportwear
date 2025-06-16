@@ -77,9 +77,9 @@ include('../../Controller/sessioncheck.php');
                 <div class="chart-section">
                     <div class="chart-header">
                         <h2 class="chart-title">Sales Analytics</h2>
-                        <select class="form-control" style="width: auto;">
-                            <option>Last 30 Days</option>
-                            <option>Last 90 Days</option>
+                        <select id="timeRange" class="form-control" style="width: auto;">
+                            <option value="30">Last 30 Days</option>
+                            <option value="90">Last 90 Days</option>
                         </select>
                     </div>
                     <div class="chart-container">
@@ -93,7 +93,6 @@ include('../../Controller/sessioncheck.php');
                         <h2 class="chart-title">Inventory Status</h2>
                         <select class="form-control" style="width: auto;">
                             <option>Current</option>
-                            <option>30 Day Trend</option>
                         </select>
                     </div>
                     <div class="chart-container">
