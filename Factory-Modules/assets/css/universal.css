@@ -1,0 +1,405 @@
+/* ===== ROOT VARIABLES ===== */
+:root {
+    /* Color Palette */
+    --primary-black: #1a1a1a;
+    --secondary-black: #2d2d2d;
+    --tertiary-black: #3d3d3d;
+    --primary-white: #ffffff;
+    --secondary-white: #f8f8f8;
+    --tertiary-white: #eaeaea;
+    --accent-color: #555555;
+    --primary: #284cff;
+    --primary-light: #e8f0fe;
+    
+    /* Status Colors */
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --warning-color: #FF9800;
+    --info-color: #2196F3;
+    
+    /* Text Colors */
+    --text-dark: #212529;
+    --text-light: #495057;
+    --text-lighter: #6c757d;
+    
+    /* UI Elements */
+    --border-color: #e0e0e0;
+    --transition-speed: 0.3s;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --box-shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --box-shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* ===== BASE STYLES ===== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--secondary-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+  
+  /* ===== LAYOUT STRUCTURE ===== */
+  .main-wrapper {
+    width: calc(100% - 280px);
+    margin-left: 280px;
+    transition: all var(--transition-speed) ease;
+  }
+  
+  .main-content {
+    padding: 2rem 3rem;
+    min-height: 100vh;
+    background-color: var(--primary-white);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+  }
+  
+  .dashboard-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+  }
+  
+  /* ===== HEADER STYLES ===== */
+  .dashboard-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .dashboard-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .dashboard-subtitle {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  /* ===== CARD STYLES ===== */
+  .metric-card, 
+  .chart-section, 
+  .sales-section {
+    background: var(--primary-white);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow-sm);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--border-color);
+  }
+  
+  .metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-md);
+  }
+  
+  /* Metrics Grid */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .metric-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .metric-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    color: var(--primary);
+  }
+  
+  .metric-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .metric-value {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0.5rem 0;
+  }
+  
+  .metric-change {
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .metric-change.positive {
+    color: var(--success-color);
+  }
+  
+  .metric-change.negative {
+    color: var(--error-color);
+  }
+  
+  /* ===== CHART SECTION ===== */
+  .chart-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .chart-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+  
+  .chart-container {
+    height: 350px;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* ===== SALES TABLE ===== */
+  .section-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+  
+  .sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  
+  .sales-table th {
+    background-color: var(--secondary-white);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-dark);
+    border-bottom: 2px solid var(--border-color);
+  }
+  
+  .sales-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-dark);
+    vertical-align: middle;
+  }
+  
+  .sales-table tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .sales-table tr:hover td {
+    background-color: var(--secondary-white);
+  }
+  
+  /* Table Responsive Wrapper */
+  .table-responsive {
+    overflow-x: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+  }
+  
+  /* ===== BUTTON STYLES ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s ease-in-out;
+    margin-right: 1rem;
+    margin-bottom: 1.5rem;
+    gap: 0.5rem;
+  }
+  
+  .btn i {
+    font-size: 0.9em;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    color: var(--primary-white);
+    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.2);
+  }
+  
+  .btn-primary:hover {
+    background-color: #1a3bd6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+  }
+  
+  /* ===== Responsive Design ===== */
+  @media (max-width: 1200px) {
+    .metrics-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .main-wrapper {
+        width: 100%;
+        margin-left: 0;
+        transition: transform var(--transition-speed) ease;
+    }
+    
+    .main-content {
+        padding: 1.5rem;
+        min-width: 100vw;
+    }
+    
+    /* Ensure content doesn't get squished */
+    .dashboard-container,
+    .metrics-grid,
+    .chart-container,
+    .table-responsive {
+        min-width: 0; /* Allows flex items to shrink */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Adjust table display for mobile */
+    .sales-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+  }
+  
+  /* ===== FORM STYLES ===== */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-light);
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color var(--transition-speed);
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(40, 76, 255, 0.1);
+  }
+  
+  textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  /* Form buttons container */
+  .form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Action buttons in table */
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .btn-action {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    color: var(--text-light);
+  }
+  
+  .btn-action:hover {
+    transform: scale(1.1);
+  }
+  
+  .btn-action.edit {
+    color: var(--info-color);
+    background-color: rgba(33, 150, 243, 0.1);
+  }
+  
+  .btn-action.edit:hover {
+    background-color: rgba(33, 150, 243, 0.2);
+  }
+  
+  .btn-action.delete {
+    color: var(--error-color);
+    background-color: rgba(244, 67, 54, 0.1);
+  }
+  
+  .btn-action.delete:hover {
+    background-color: rgba(244, 67, 54, 0.2);
+  }
+  
+  /* Responsive adjustments for forms */
+  @media (max-width: 768px) {
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+  }
