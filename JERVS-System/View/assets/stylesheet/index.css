@@ -1,14 +1,27 @@
+/* ===== ROOT VARIABLES ===== */
+:root {
+  --primary: #284cff;
+  --primary-light: #e8f0fe;
+  --secondary-white: #f8f8f8;
+  --text-dark: #212529;
+  --text-light: #495057;
+  --border-color: #e0e0e0;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+}
+
 .box {
   width: 100%;
   height: 100vh;
   min-height: 100vh;
+  background-color: var(--secondary-white);
+  font-family: 'Poppins', sans-serif;
 }
 
 .box .log-in {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: #273f4f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +43,7 @@
   height: auto;
   min-height: 679px;
   border-radius: 10px;
-  background: linear-gradient(to right, #f5f5f5, #e0e0e0);
+  background: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   display: flex;
@@ -50,14 +63,14 @@
 /* Left side content */
 .box .div > .form-container {
   width: 50%;
-  padding: 3rem 2rem 2rem; /* Added more top padding */
+  padding: 3rem 2rem 2rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-/* Headline - Centered */
+/* Headline */
 .box .headline {
   width: 100%;
   margin-bottom: 3rem;
@@ -72,60 +85,53 @@
 }
 
 .box .JERVS-sportwear {
-  font-family: "Poppins-Medium", sans-serif;
-  font-weight: 500;
-  color: #030303;
+  font-weight: 600;
+  color: var(--primary);
   font-size: 2.125rem;
   line-height: 1.2;
-  letter-spacing: 1.02px;
   margin: 0;
 }
 
 .box .text-wrapper-6 {
-  font-family: "Poppins-Regular", sans-serif;
   font-weight: 400;
-  color: #626263;
+  color: var(--text-light);
   font-size: 1rem;
-  letter-spacing: 0.42px;
   line-height: 1.4;
   margin: 0;
 }
 
 /* Form elements */
-.box .form-fields {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  padding-top: 1rem; /* Added space between headline and form */
-}
-
 .box .email-form,
 .box .password-form {
   position: relative;
   width: 100%;
-  height: auto;
   margin-bottom: 1.8rem;
 }
 
 .box .text-wrapper-3,
 .box .text-wrapper-5 {
-  font-family: "Poppins-Medium", sans-serif;
   font-weight: 500;
-  color: #181818;
+  color: var(--text-dark);
   font-size: 0.875rem;
-  letter-spacing: 0.42px;
   margin-bottom: 0.5rem;
   display: block;
 }
 
 .box .div-wrapper,
-.box .overlap-2 {
+.box .password-field {
   width: 100%;
-  height: 43px;
-  background-color: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px 4px #00000052;
+  height: 48px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
   position: relative;
+  transition: border-color 0.3s ease;
+}
+
+.box .div-wrapper:focus-within,
+.box .password-field:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(40, 76, 255, 0.1);
 }
 
 .box .text-wrapper-2,
@@ -134,27 +140,34 @@
   top: 50%;
   transform: translateY(-50%);
   left: 12px;
-  font-family: "Poppins-Light", sans-serif;
-  font-weight: 300;
-  color: #787675;
+  font-weight: 400;
+  color: var(--text-dark);
   font-size: 0.875rem;
-  text-align: left;
-  letter-spacing: 0.42px;
   width: calc(100% - 40px);
   border: none;
   background: transparent;
   outline: none;
 }
 
-/* Eye icon positioning */
-.box .eye-off {
+/* Password toggle */
+.box .password-field {
+  display: flex;
+  align-items: center;
+}
+
+.box .toggle-password {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 50%;
   right: 12px;
-  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-light);
   cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.box .toggle-password:hover {
+  color: var(--primary);
 }
 
 /* Login button */
@@ -165,24 +178,40 @@
 
 .box .overlap-group {
   width: 100%;
-  height: 43px;
-  background-color: #fe7743;
-  border-radius: 12px;
-  box-shadow: 0px 0px 5px 4px #00000052;
+  height: 48px;
+  background-color: var(--primary);
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   border: none;
+  transition: background-color 0.3s ease;
+}
+
+.box .overlap-group:hover {
+  background-color: #1a3bd6;
 }
 
 .box .text-wrapper {
-  font-family: "Poppins-Medium", sans-serif;
   font-weight: 500;
-  color: #ffffff;
+  color: white;
   font-size: 0.875rem;
+}
+
+/* Message box */
+#message {
+  margin-top: 1rem;
   text-align: center;
-  letter-spacing: 0.42px;
+  font-size: 0.875rem;
+}
+
+#message.success {
+  color: var(--success-color);
+}
+
+#message.error {
+  color: var(--error-color);
 }
 
 /* Logos */
@@ -221,10 +250,6 @@
   .box .div {
     flex-direction: column;
   }
-
-  .box .form-fields {
-    max-width: 350px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -262,10 +287,5 @@
 
   .box .text-wrapper-6 {
     font-size: 0.875rem;
-  }
-
-  .box .form-fields {
-    max-width: 100%;
-    padding-top: 0.5rem;
   }
 }

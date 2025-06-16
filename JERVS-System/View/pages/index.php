@@ -14,8 +14,9 @@ if (isset($_SESSION['admin'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/stylesheet/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../assets/stylesheet/globals.css" />
+    <link rel="stylesheet" href="../assets/stylesheet/index.css" />
     <title>JERVS Sportwear - Login</title>
     <link rel="icon" href="../assets/img/logo-1.png" type="image/x-icon">
   </head>
@@ -34,27 +35,29 @@ if (isset($_SESSION['admin'])) {
               </div>
               
               <form id="loginForm">
-              <div class="email-form">
-                <label class="text-wrapper-3">Username</label>
-                <div class="div-wrapper">
-                  <input type="text" class="text-wrapper-2" name="username" placeholder="Enter your username" />
+                <div class="email-form">
+                  <label class="text-wrapper-3">Username</label>
+                  <div class="div-wrapper">
+                    <input type="text" class="text-wrapper-2" name="username" placeholder="Enter your username" />
+                  </div>
                 </div>
-              </div>
-              
-              <div class="password-form">
-                <label class="text-wrapper-5">Password</label>
-                <div class="overlap-2">
-                  <input type="password" class="text-wrapper-4" name="password" placeholder="**********" />
-                  <img class="eye-off" src="../assets/img/eye-off.svg" alt="Toggle password visibility" />
+                
+                <div class="password-form">
+                  <label class="text-wrapper-5">Password</label>
+                  <div class="password-field">
+                    <input type="password" class="text-wrapper-4" name="password" placeholder="**********" />
+                    <button type="button" class="toggle-password">
+                      <i class="fas fa-eye-slash"></i>
+                    </button>
+                  </div>
                 </div>
-              </div>
-              
-              <div class="overlap-group-wrapper">
-                <button class="overlap-group">
-                  <span class="text-wrapper">Log in</span>
-                </button>
-              </div>
-              <div id="message"></div>
+                
+                <div class="overlap-group-wrapper">
+                  <button type="submit" class="overlap-group">
+                    <span class="text-wrapper">Log in</span>
+                  </button>
+                </div>
+                <div id="message"></div>
               </form>
             </div>
 
@@ -64,6 +67,6 @@ if (isset($_SESSION['admin'])) {
         </div>
       </div>
     </div>
+    <script src="../script/index.js"></script>
   </body>
-  <script src="../script/index.js"></script>
 </html>
