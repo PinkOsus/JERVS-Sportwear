@@ -1,0 +1,13 @@
+{
+    "name": "george/jervs-sportwear",
+    "authors": [
+        {
+            "name": "Georgy",
+            "email": "georgedavies.arellano@gmail.com"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^4.3",
+        "mpdf/mpdf": "^8.2"
+    }
+}
