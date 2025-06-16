@@ -3,7 +3,7 @@
   session_start();
 
   if(!isset($_SESSION['member'])){
-    echo '<script> alert("You must be logged in to view this page");window.location="factory-login-panel.php"</script>';
+    echo '<script> alert("You must be logged in to view this page");window.location="login.php"</script>';
     exit();
   }
 ?>
@@ -79,7 +79,7 @@
       $stmt->execute();
       $stmt->close();
 
-      header("Location: factory-system.php");
+      header("Location: order.php");
       exit;
     }
   }

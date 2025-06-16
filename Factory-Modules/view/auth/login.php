@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['member'])) {
-  header("Location: factory-system.php");
+  header("Location: order.php");
   exit();
 }
 ?>
@@ -15,17 +15,17 @@ if (isset($_SESSION['member'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../JERVS-System/View/assets/stylesheet/globals.css" />
-    <link rel="stylesheet" href="../JERVS-System/View/assets/stylesheet/index.css" />
+    <link rel="stylesheet" href="../../assets/css/globals.css" />
+    <link rel="stylesheet" href="../../assets/css/login.css" />
     <title>JERVS Sportwear - Login</title>
-    <link rel="icon" href="../assets/img/logo-1.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/img/logo-1.png" type="image/x-icon">
   </head>
   <body>
     <div class="box">
       <div class="log-in">
         <div class="overlap">
           <div class="div">
-            <img class="logo" src="../assets/img/logo-1.png" />
+            <img class="logo" src="../../assets/img/logo-1.png" />
             <div class="form-container">
               <div class="headline">
                 <div class="overlap-3">
@@ -61,12 +61,12 @@ if (isset($_SESSION['member'])) {
               </form>
             </div>
 
-            <img class="right-side" src="../assets/img/right-side.png" alt="Decorative background" />
-            <img class="img" src="../assets/img/logo-2.png" />
+            <img class="right-side" src="../../assets/img/right-side.png" alt="Decorative background" />
+            <img class="img" src="../../assets/img/logo-2.png" />
           </div>
         </div>
       </div>
     </div>
-    <script src="./script/factory-login.js"></script>
+    <script src="../../assets/js/login.js"></script>
   </body>
 </html>
