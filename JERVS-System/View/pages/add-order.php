@@ -40,7 +40,7 @@ include('../../Controller/sessioncheck.php');
                 <h2 class="chart-title"><i class="fas fa-cart-plus"></i> Add New Order</h2>
             </div>
             <form id="addOrderForm" method="POST" action="../../Controller/Order-Management/add_order.php">
-                <div class="form-group">
+                <div class="form-group"><br><br>
                     <label>Order Name:</label>
                     <input type="text" name="item" class="form-control" required />
                 </div>
