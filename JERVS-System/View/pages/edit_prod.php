@@ -1,6 +1,6 @@
 <?php
     include('../../config/database.php');
-    include('../sessioncheck.php');
+    include('../../Controller/sessioncheck.php');
 
     //for updating
     if($_SERVER['REQUEST_METHOD']=== 'POST'){
@@ -113,7 +113,7 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-save"></i> Save Changes
                     </button>
-                    <a href="../../View/pages/add-order.php" class="btn btn-secondary">
+                    <a href="../../View/pages/add-inventory.php" class="btn btn-secondary">
                         <i class="fas fa-times"></i> Cancel
                     </a>
                 </div>

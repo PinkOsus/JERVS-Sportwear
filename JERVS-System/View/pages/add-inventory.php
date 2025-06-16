@@ -98,7 +98,7 @@ include('../../Controller/sessioncheck.php');
                                     <td><?= htmlspecialchars($row['descrip']) ?></td>
                                     <td>
                                         <div class="action-buttons">
-                                            <a href="../../Controller/Product-Management/edit_prod.php?id=<?= $row['id'] ?>" class="btn-action edit">
+                                            <a href="edit_prod.php?id=<?= $row['id'] ?>" class="btn-action edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <form action="../../Controller/Product-Management/delete_prod.php" method="POST" onsubmit="return confirm('Are you sure?');">

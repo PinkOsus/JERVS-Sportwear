@@ -1,6 +1,6 @@
 <?php
     include('../../config/database.php');
-    include('../sessioncheck.php');
+    include('../../Controller/sessioncheck.php');
 
    //for updating
    if($_SERVER['REQUEST_METHOD']=== 'POST'){
