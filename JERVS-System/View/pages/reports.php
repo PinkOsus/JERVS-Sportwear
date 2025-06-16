@@ -27,9 +27,9 @@ include('../../Controller/sessioncheck.php');
                     <p class="dashboard-subtitle">Analytics and performance metrics</p>
                 </div><br>
                 <div class="header-actions">
-                    <button class="btn btn-primary">
-                        <i class="fas fa-download"></i> Export Report
-                    </button>
+                <button class="btn btn-primary" id="exportReportBtn">
+                    <i class="fas fa-download"></i> Export Report
+                </button>    
                     <select class="form-control" style="width: auto; display: inline-block;">
                         <option>June 2025</option>
                         <option>May 2025</option>
@@ -105,5 +105,6 @@ include('../../Controller/sessioncheck.php');
     </div>
 
     <script src="../script/report-sample.js"></script>
+    <script src="../script/export-report.js"></script>
 </body>
 </html>
