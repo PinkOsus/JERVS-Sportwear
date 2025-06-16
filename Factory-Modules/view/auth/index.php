@@ -1,10 +1,5 @@
 <?php
-session_start();
-
-if (isset($_SESSION['member'])) {
-  header("Location: order.php");
-  exit();
-}
+  include('../../config/database.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,6 +62,6 @@ if (isset($_SESSION['member'])) {
         </div>
       </div>
     </div>
-    <script src="../../assets/js/login.js"></script>
+    <script src="../script/index.js"></script>
   </body>
 </html>

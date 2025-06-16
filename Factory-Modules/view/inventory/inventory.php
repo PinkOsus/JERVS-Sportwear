@@ -85,7 +85,7 @@ include('../../Controller/sessioncheckup.php');
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php  
+                        <?php  
                             $stmt = "SELECT * FROM inventory_tbl LIMIT 20";
                             $result = $conn->query($stmt);
                         ?>
@@ -113,13 +113,13 @@ include('../../Controller/sessioncheckup.php');
                             <?php endwhile ?>
                         <?php else: ?>
                             <tr><td colspan="5">No inventory item records found.</td></tr>
-                        <?php endif ?> -->
+                        <?php endif ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </main>
 </div>
-<script src="../../assets/js/invetory.js"></script>
+<script src="../script/inventory.js"></script>
 </body>
 </html>

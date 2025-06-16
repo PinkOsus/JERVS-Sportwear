@@ -1,12 +1,24 @@
 <?php
 include('../../config/database.php');
 include('../../Controller/sessioncheckup.php');
-  // session_start();
 
-  // if(!isset($_SESSION['member'])){
-  //   echo '<script> alert("You must be logged in to view this page");window.location="login.php"</script>';
-  //   exit();
-  // }
+if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['current_phase'])){
+    $order_id = intval($_POST['order_id']);
+    $new_phase = $_POST['current_phase'];
+
+    $valid_phases = ['start', 'printing', 'heatpress', 'sewing', 'ready'];
+    if(in_array($new_phase, $valid_phases)){
+        $stmt = $conn->prepare('UPDATE orders_tbl SET current_phase = ?, last_updated = NOW() WHERE id = ?');
+        $stmt->bind_param('si', $new_phase, $order_id);
+        $stmt->execute();
+        $stmt->close();
+
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }else {
+        echo "Failed to update order.";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,37 +66,43 @@ include('../../Controller/sessioncheckup.php');
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <?php
-                        $stmt = 'SELECT * FROM orders_tbl';
-                        $result = $conn->query($stmt);
-
-                        if ($result && $result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<tr>';
-                                echo '<form method="POST">';
-                                echo '<td>' . htmlspecialchars($row['item_name']) . '</td>';
-                                echo '<td>₱' . number_format(htmlspecialchars($row['deposit']), 2) . '</td>';
-                                echo '<td>';
-                                echo '<select name="current_phase" class="form-control">';
-                                $options = ['start', 'printing', 'heatpress', 'sewing', 'ready'];
-                                foreach ($options as $opt) {
-                                    $selected = ($row['current_phase'] === $opt) ? 'selected' : '';
-                                    echo "<option value=\"$opt\" $selected>" . ucfirst(str_replace('_', ' ', $opt)) . "</option>";
-                                }
-                                echo '</select>';
-                                echo '</td>';
-                                echo '<td>' . htmlspecialchars($row['last_updated']) . '</td>';
-                                echo '<td>';
-                                echo '<input type="hidden" name="order_id" value="' . intval($row['id']) . '" />';
-                                echo '<button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update</button>';
-                                echo '</td>';
-                                echo '</form>';
-                                echo '</tr>';
-                            }
-                        } else {
-                            echo '<tr><td colspan="5">No orders in production.</td></tr>';
-                        }
-                        ?> -->
+                        <?php
+                            $stmt = 'SELECT * FROM orders_tbl';
+                            $result = $conn->query($stmt);
+                        ?>
+                        <?php if ($result && $result->num_rows > 0): ?>
+                            <?php while ($row = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <form method="POST">
+                                        <td><?= htmlspecialchars($row['item_name']) ?></td>
+                                        <td>₱<?= number_format(htmlspecialchars($row['deposit']), 2) ?></td>
+                                        <td>
+                                            <select name="current_phase" class="form-control">
+                                                <?php
+                                                $options = ['start', 'printing', 'heatpress', 'sewing', 'ready'];
+                                                    
+                                                foreach($options as $opt):
+                                                    $selected = ($row['current_phase'] === $opt) ? 'selected' : '';
+                                                ?>
+                                                    <option value="<?= $opt ?>" <?= $selected ?>>
+                                                        <?= ucfirst(str_replace('_', ' ', $opt)) ?>
+                                                    </option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </td>
+                                        <td><?= htmlspecialchars($row['last_updated']) ?></td>
+                                        <td>
+                                            <input type="hidden" name="order_id" value="<?= intval($row['id']) ?>"/>
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fas fa-save"></i> Update
+                                            </button>
+                                        </td>
+                                    </form>
+                                </tr>
+                            <?php endwhile ?>
+                        <?php else: ?>
+                            <tr><td colspan="5">No orders in production.</td></tr>
+                        <?php endif ?>
                     </tbody>
                 </table>
             </div>
@@ -93,21 +111,3 @@ include('../../Controller/sessioncheckup.php');
 </div>
 </body>
 </html>
-
-<?php
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['current_phase'])){
-    $order_id = intval($_POST['order_id']);
-    $new_phase = $_POST['current_phase'];
-
-    $valid_phases = ['start', 'printing', 'heatpress', 'sewing', 'ready'];
-    if(in_array($new_phase, $valid_phases)){
-        $stmt = $conn->prepare('UPDATE orders_tbl SET current_phase = ?, last_updated = NOW() WHERE id = ?');
-        $stmt->bind_param('si', $new_phase, $order_id);
-        $stmt->execute();
-        $stmt->close();
-
-        header("Location: order.php");
-        exit;
-    }
-}
-?>
