@@ -98,10 +98,10 @@ include('../../Controller/sessioncheckup.php');
                                     <td><?= htmlspecialchars($row['descrip']) ?></td>
                                     <td>
                                         <div class="action-buttons">
-                                            <a href="edit_prod.php?id=<?= $row['id'] ?>" class="btn-action edit">
+                                            <a href="edit.php?id=<?= $row['id'] ?>" class="btn-action edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="../../Controller/Product-Management/delete_prod.php" method="POST" onsubmit="return confirm('Are you sure?');">
+                                            <form action="../../Controller/delete_product.php" method="POST" onsubmit="return confirm('Are you sure?');">
                                                 <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                                 <button type="submit" class="btn-action delete">
                                                     <i class="fas fa-trash"></i>

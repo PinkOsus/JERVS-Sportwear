@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const formData = new FormData(this);
 
-        fetch('../../Controller/Product-Management/add_prod.php', {
+        fetch('../../Controller/add_product.php', {
             method: 'POST',
             body: formData
         })
