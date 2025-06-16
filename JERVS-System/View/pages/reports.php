@@ -13,6 +13,22 @@ include('../../Controller/sessioncheck.php');
     <link rel="stylesheet" href="../assets/stylesheet/dashboard.css">
     <link rel="icon" href="../assets/img/logo-1.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .charts-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .chart-section {
+            flex: 1;
+            min-width: 0;
+        }
+        @media (max-width: 1200px) {
+            .charts-row {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <?php include('../parts/sidebar.php'); ?>
@@ -24,7 +40,7 @@ include('../../Controller/sessioncheck.php');
                 <div class="header-content">
                     <h1 class="dashboard-title"><i class="fas fa-chart-bar"></i> Business Reports</h1>
                     <p class="dashboard-subtitle">Analytics and performance metrics</p>
-                </div><br>
+                </div>
                 <div class="header-actions">
                     <button class="btn btn-primary">
                         <i class="fas fa-download"></i> Export Report
@@ -70,30 +86,34 @@ include('../../Controller/sessioncheck.php');
                 </div>
             </div>
 
-            <!-- Charts Section -->
-            <div class="chart-section">
-                <div class="chart-header">
-                    <h2 class="chart-title">Sales Analytics</h2>
-                    <select class="form-control" style="width: auto;">
-                        <option>Last 30 Days</option>
-                        <option>Last 90 Days</option>
-                    </select>
+            <!-- Charts Row - Side by Side -->
+            <div class="charts-row">
+                <!-- Sales Analytics Chart -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h2 class="chart-title">Sales Analytics</h2>
+                        <select class="form-control" style="width: auto;">
+                            <option>Last 30 Days</option>
+                            <option>Last 90 Days</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="barChart"></canvas>
+                    </div>
                 </div>
-                <div class="chart-container">
-                    <canvas id="barChart"></canvas>
-                </div>
-            </div>
 
-            <div class="chart-section">
-                <div class="chart-header">
-                    <h2 class="chart-title">Inventory Status</h2>
-                    <select class="form-control" style="width: auto;">
-                        <option>Current</option>
-                        <option>30 Day Trend</option>
-                    </select>
-                </div>
-                <div class="chart-container">
-                    <canvas id="pieChart"></canvas>
+                <!-- Inventory Status Chart -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h2 class="chart-title">Inventory Status</h2>
+                        <select class="form-control" style="width: auto;">
+                            <option>Current</option>
+                            <option>30 Day Trend</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="pieChart"></canvas>
+                    </div>
                 </div>
             </div>
         </main>
