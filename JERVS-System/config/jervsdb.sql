@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2025 at 06:17 PM
+-- Generation Time: Jun 16, 2025 at 10:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `admin_tbl` (
 --
 
 INSERT INTO `admin_tbl` (`admin_id`, `admin_user`, `admin_pass`) VALUES
-(1, 'admin', '12345678');
+(1, 'admin', '$2y$10$dqYz2AjjBa.WV9wctsN2DuaXlT9y/FMbnXF/uY6fWmhR1zYDcngzW');
 
 -- --------------------------------------------------------
 
@@ -59,8 +59,11 @@ CREATE TABLE `inventory_tbl` (
 --
 
 INSERT INTO `inventory_tbl` (`id`, `item_name`, `categ`, `qty`, `descrip`) VALUES
-(74, 'Jervs Hoodie', 'product', 10, ''),
-(76, 'Jervs Short', 'product', 15, 'Comfortable short');
+(74, 'Jervs Hoodie', 'product', 14, 'Comfortable Hoodie'),
+(76, 'Jervs Short', 'product', 10, 'Comfortable short'),
+(78, 'Jervs Hoodie - Red', 'product', 25, ''),
+(79, 'Jervs Short - NBT', 'product', 25, ''),
+(80, 'Fabric - Blue', 'materials', 1, '1 yard');
 
 -- --------------------------------------------------------
 
@@ -128,7 +131,7 @@ CREATE TABLE `orders_tbl` (
 --
 
 INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `order_details`, `current_phase`, `last_updated`) VALUES
-(22, 'Order - Team Bardagulan', 25, 5000, 10000, 'Jersey\r\nCaraig - Medium\r\nArellano - Medium\r\nAgco - XL\r\nBuatis - Large', 'start', '2025-06-15 12:37:33'),
+(22, 'Order - Team Bardagulan', 25, 7500, 10000, 'Jersey\r\nCaraig - Medium\r\nArellano - Medium\r\nAgco - XL\r\nBuatis - Large', 'start', '2025-06-16 05:55:51'),
 (23, 'Order - Team tinambakan', 12, 1500, 10000, 'asdasdasdasdadsada', 'printing', '2025-06-15 13:16:11'),
 (24, 'Order - Team Dinakdakan', 12, 5000, 15000, 'asjdgashjgdasgdjhasgda', 'start', '2025-06-14 07:54:30');
 
@@ -157,7 +160,9 @@ INSERT INTO `sales_tbl` (`sales_id`, `order_name`, `qty`, `total_price`, `date_c
 (4, 'Jervs Hoodie', 5, 250, '2025-06-14'),
 (5, 'Jervs Hoodie', 2, 1000, '2025-06-15'),
 (6, 'Jervs Hoodie', 1, 250, '2025-06-15'),
-(7, 'Jervs Hoodie', 1, 250, '2025-06-15');
+(7, 'Jervs Hoodie', 1, 250, '2025-06-15'),
+(8, 'Jervs Hoodie', 1, 500, '2025-06-16'),
+(9, 'Jervs Short', 5, 400, '2025-06-16');
 
 --
 -- Indexes for dumped tables
@@ -215,7 +220,7 @@ ALTER TABLE `admin_tbl`
 -- AUTO_INCREMENT for table `inventory_tbl`
 --
 ALTER TABLE `inventory_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `login_logs`
@@ -233,13 +238,13 @@ ALTER TABLE `member_tbl`
 -- AUTO_INCREMENT for table `orders_tbl`
 --
 ALTER TABLE `orders_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `sales_tbl`
 --
 ALTER TABLE `sales_tbl`
-  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sales_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
