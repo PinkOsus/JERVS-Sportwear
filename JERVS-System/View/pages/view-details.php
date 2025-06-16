@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../View/assets/stylesheet/dashboard.css">
     <link rel="stylesheet" href="../../View/assets/stylesheet/sidebar.css">
-    <link rel="stylesheet" href="../../View/assets/stylesheet/globals.css">
     <link rel="stylesheet" href="../../View/assets/stylesheet/order-management-css/order-details.css">
     <link rel="icon" href="../../View/assets/img/logo-1.png" type="image/x-icon">
 </head>
@@ -37,60 +36,60 @@
 
 <div class="main-wrapper">
     <main class="main-content">
-        <!-- Dashboard Header -->
-        <div class="dashboard-header">
-            <div class="header-content">
-                <h1 class="dashboard-title"><i class="fas fa-file-invoice"></i> Order Details</h1>
-                <p class="dashboard-subtitle">View complete order information</p>
+        <div class="order-details-container">
+            <!-- Dashboard Header -->
+            <div class="order-header">
+                <div>
+                    <h1 class="order-title"><i class="fas fa-file-invoice"></i> Order #<?= htmlspecialchars($order['id']) ?></h1>
+                    <p class="order-subtitle">Detailed information about this order</p>
+                </div>
+                <!-- Pede dito lagyan ng status yung order kung (pending, ready etc.) -->
+                <!-- <span class="order-status status-pending">Pending</span> -->
             </div>
-        </div>
 
-        <!-- Order Details Card -->
-        <div class="metric-card">
-            <div class="chart-header">
-                <h2 class="chart-title">Order #<?= htmlspecialchars($order['id']) ?></h2>
+            <!-- Order Details Card -->
+            <div class="metric-card">
+                <?php if($order): ?>
+                <div class="order-details-grid">
+                    <div class="detail-group">
+                        <label>Order Name</label>
+                        <div class="detail-value"><?= htmlspecialchars($order['item_name']) ?></div>
+                    </div>
+                    
+                    <div class="detail-group">
+                        <label>Quantity</label>
+                        <div class="detail-value"><?= htmlspecialchars($order['qty']) ?></div>
+                    </div>
+                    
+                    <div class="detail-group">
+                        <label>Initial Deposit</label>
+                        <div class="detail-value price">₱<?= number_format(htmlspecialchars($order['deposit']), 2) ?></div>
+                    </div>
+                    
+                    <div class="detail-group">
+                        <label>Total Price</label>
+                        <div class="detail-value price">₱<?= number_format(htmlspecialchars($order['total_price']), 2) ?></div>
+                    </div>
+                    
+                    <?php $balance = $order['total_price'] - $order['deposit'] ?>
+                    <div class="detail-group">
+                        <label>Balance</label>
+                        <div class="detail-value price">₱<?= number_format($balance, 2) ?></div>
+                    </div>
+                    
+                    <div class="detail-group full-width">
+                        <label>Additional Details</label>
+                        <div class="detail-value"><?= htmlspecialchars($order['order_details']) ?: 'No additional details' ?></div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="../../View/pages/add-order.php" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Orders
+                    </a>
+                </div>
+                <?php endif; ?>
             </div>
-            
-            <?php if($order): ?>
-            <div class="order-details-grid">
-                <div class="detail-group">
-                    <label>Order Name</label>
-                    <div class="detail-value"><?= htmlspecialchars($order['item_name']) ?></div>
-                </div>
-                
-                <div class="detail-group">
-                    <label>Quantity</label>
-                    <div class="detail-value"><?= htmlspecialchars($order['qty']) ?></div>
-                </div>
-                
-                <div class="detail-group">
-                    <label>Initial Deposit</label>
-                    <div class="detail-value">₱<?= number_format(htmlspecialchars($order['deposit']), 2) ?></div>
-                </div>
-                
-                <div class="detail-group">
-                    <label>Total Price</label>
-                    <div class="detail-value">₱<?= number_format(htmlspecialchars($order['total_price']), 2) ?></div>
-                </div>
-                
-                <?php $balance = $order['total_price'] - $order['deposit'] ?>
-                <div class="detail-group">
-                    <label>Balance</label>
-                    <div class="detail-value">₱<?= number_format($balance, 2) ?></div>
-                </div>
-                
-                <div class="detail-group full-width">
-                    <label>Additional Details</label>
-                    <div class="detail-value"><?= htmlspecialchars($order['order_details']) ?: 'No additional details' ?></div>
-                </div>
-            </div>
-            
-            <div class="form-buttons">
-                <a href="../../View/pages/add-order.php" class="btn btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Back to Orders
-                </a>
-            </div>
-            <?php endif; ?>
         </div>
     </main>
 </div>
