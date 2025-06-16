@@ -117,3 +117,28 @@
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
+
+.password-field {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-light);
+  padding: 0.5rem;
+}
+
+.toggle-password:hover {
+  color: var(--primary);
+}
+
+
+.password-field .form-control {
+  padding-right: 40px;
+}
