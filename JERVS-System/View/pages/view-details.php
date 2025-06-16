@@ -1,6 +1,6 @@
 <?php
     include('../../config/database.php');
-    include('../sessioncheck.php');
+    include('../../Controller/sessioncheck.php');
 
     if(isset($_GET['id'])){
         $id = $_GET['id'];

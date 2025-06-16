@@ -114,6 +114,9 @@ include('../../Controller/sessioncheck.php');
                         <?php if($result && $result->num_rows > 0): ?>
                             <?php while($row = $result->fetch_assoc()):
                                 $balance = $row['total_price'] - $row['deposit'];
+                                if($balance <= 0){
+                                    $balance = $row['total_price'];
+                                }
                             ?>
                                 <tr>
                                     <td><?= htmlspecialchars($row['item_name']) ?></td>
@@ -129,10 +132,10 @@ include('../../Controller/sessioncheck.php');
                                     <td><?= htmlspecialchars($row['last_updated']) ?></td>
                                     <td>
                                         <div class="action-buttons">
-                                            <a href="../../Controller/Order-Management/edit.php?id=<?= $row['id'] ?>" class="btn-action edit">
+                                            <a href="edit.php?id=<?= $row['id'] ?>" class="btn-action edit">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="../../Controller/Order-Management/view-details.php?id=<?= $row['id'] ?>" class="btn-action view">
+                                            <a href="view-details.php?id=<?= $row['id'] ?>" class="btn-action view">
                                                 <i class="fas fa-eye"></i>
                                             </a>
                                             <form action="../../Controller/Order-Management/delete.php" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline;">
