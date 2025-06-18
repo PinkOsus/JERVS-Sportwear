@@ -16,7 +16,6 @@
         <th>Order Price</th>
         <th>Unit Cost</th>
         <th>Completion Date</th>
-        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -35,15 +34,10 @@
             <td>₱<?= number_format($row['total_price'], 2) ?></td>
             <td>₱<?= htmlspecialchars($unitCost) ?> </td>
             <td><?= htmlspecialchars($row['date_completed']) ?></td>
-            <td>
-                <a href="print.php?sales_id=<?= $row['sales_id'] ?>" class="btn-action print" target="_blank">
-                  <i class="fas fa-print"></i>
-                </a>
-            </td>
           </tr>
         <?php endwhile ?>
       <?php else: ?>
-        <tr><td colspan="6" style="text-align: center;">No sales records found.</td></tr>
+        <tr><td colspan="7" style="text-align: center;">No sales records found.</td></tr>
       <?php endif ?>
     </tbody>
   </table>

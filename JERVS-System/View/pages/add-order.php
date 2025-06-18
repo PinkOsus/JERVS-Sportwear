@@ -42,7 +42,17 @@ include('../../Controller/sessioncheck.php');
             <form id="addOrderForm" method="POST" action="../../Controller/Order-Management/add_order.php">
                 <div class="form-group"><br><br>
                     <label>Order Name:</label>
-                    <input type="text" name="item" class="form-control" required />
+                    <input list="inventory-list" type="text" name="item" id="itemInput" class="form-control" required />
+                    <datalist id="inventory-list">
+                        <?php
+                        $inventoryStmt = 'SELECT item_name FROM inventory_tbl';
+                        $result = $conn->query($inventoryStmt);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<option value='" . htmlspecialchars($row['item_name'], ENT_QUOTES) . "'>";
+                        }
+                        ?>
+                    </datalist>
                 </div>
 
                 <div class="form-row">
