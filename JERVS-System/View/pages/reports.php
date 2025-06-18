@@ -27,14 +27,11 @@ include('../../Controller/sessioncheck.php');
                     <p class="dashboard-subtitle">Analytics and performance metrics</p>
                 </div><br>
                 <div class="header-actions">
-                <button class="btn btn-primary" id="exportReportBtn">
+                <form action="../../Controller/Report/export_report.php" method="POST">
+                    <button class="btn btn-primary" id="exportReportBtn">
                     <i class="fas fa-download"></i> Export Report
-                </button>    
-                    <select class="form-control" style="width: auto; display: inline-block;">
-                        <option>June 2025</option>
-                        <option>May 2025</option>
-                        <option>April 2025</option>
-                    </select>
+                    </button>
+                </form>    
                 </div>
             </div>
 
