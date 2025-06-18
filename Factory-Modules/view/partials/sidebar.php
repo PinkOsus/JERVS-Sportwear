@@ -58,8 +58,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="profile-info">
-                    <h3 class="profile-name">Admin Panel</h3>
-                    <p class="profile-role">Jervy</p>
+                    <h3 class="profile-name">Factory Panel</h3>
+                    <p class="profile-role">Member</p>
                 </div>
             </div>
             <a href="../../Controller/logout.php" class="logout-btn">
