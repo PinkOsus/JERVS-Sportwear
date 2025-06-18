@@ -2,14 +2,24 @@
 include('../../config/database.php');
 include('../../Controller/sessioncheck.php');
 
-if (!isset($_GET['sales_id'])) die("Invalid Request");
+if (!isset($_POST['sales_ids']) || !is_array($_POST['sales_ids'])) {
+    die("No sales selected.");
+}
 
-$id = (int)$_GET['sales_id'];
-$stmt = $conn->prepare("SELECT * FROM sales_tbl WHERE sales_id = ?");
-$stmt->bind_param("i", $id);
+$sales_ids = array_map('intval', $_POST['sales_ids']); // sanitize
+
+// Build dynamic placeholders (?, ?, ?) for prepared statement
+$placeholders = implode(',', array_fill(0, count($sales_ids), '?'));
+
+$stmt = $conn->prepare("SELECT * FROM sales_tbl WHERE sales_id IN ($placeholders)");
+$stmt->bind_param(str_repeat('i', count($sales_ids)), ...$sales_ids);
 $stmt->execute();
-$sale = $stmt->get_result()->fetch_assoc();
-$unitCost = (int)($sale['total_price'] / $sale['qty']);
+$result = $stmt->get_result();
+
+$sales = [];
+while ($row = $result->fetch_assoc()) {
+    $sales[] = $row;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,11 +56,11 @@ $unitCost = (int)($sale['total_price'] / $sale['qty']);
             </div>
             <div class="form-row">
                 <div class="form-label">Date:</div>
-                <div class="form-value"><?= date('m/d/Y', strtotime($sale['date_completed'])) ?></div>
+                <div class="form-value"></div>
             </div>
             <div class="form-row">
                 <div class="form-label">Invoice Number:</div>
-                <div class="form-value"><?= str_pad($sale['sales_id'], 4, '0', STR_PAD_LEFT) ?></div>
+                <div class="form-value"></div>
             </div>
         </div>
 
@@ -58,7 +68,7 @@ $unitCost = (int)($sale['total_price'] / $sale['qty']);
         <div class="form-section">
             <div class="form-row">
                 <div class="form-label">Sold to:</div>
-                <div class="form-value"><?= htmlspecialchars($sale['order_name']) ?></div>
+                <div class="form-value"></div>
             </div>
             <div class="form-row">
                 <div class="form-label">Registered Name:</div>
@@ -85,21 +95,15 @@ $unitCost = (int)($sale['total_price'] / $sale['qty']);
                 </tr>
             </thead>
             <tbody>
+                <?php foreach ($sales as $sale): ?>
+                <?php $unitCost = (int)($sale['total_price'] / $sale['qty']); ?>
                 <tr>
                     <td><?= htmlspecialchars($sale['order_name']) ?></td>
-                    <td><?= htmlspecialchars($sale['qty']) ?></td>
+                    <td><?= $sale['qty'] ?></td>
                     <td>₱<?= number_format($unitCost, 2) ?></td>
                     <td>₱<?= number_format($sale['total_price'], 2) ?></td>
+                <?php endforeach; ?>
                 </tr>
-                <!-- Add empty rows for additional items -->
-                <?php for ($i = 0; $i < 4; $i++): ?>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <?php endfor; ?>
             </tbody>
         </table>
 
@@ -113,7 +117,7 @@ $unitCost = (int)($sale['total_price'] / $sale['qty']);
             </div>
             <div class="form-row">
                 <div class="form-label">Total Sales:</div>
-                <div class="form-value">₱<?= number_format($sale['total_price'], 2) ?></div>
+                <div class="form-value">₱<?= number_format(array_sum(array_column($sales, 'total_price')), 2) ?></div>
             </div>
             <div class="form-row">
                 <div class="form-label">Less: Discount (SC/PWD/NAAC/MOC/SP):</div>
@@ -125,7 +129,7 @@ $unitCost = (int)($sale['total_price'] / $sale['qty']);
             </div>
             <div class="form-row total-row">
                 <div class="form-label">TOTAL AMOUNT DUE:</div>
-                <div class="form-value">₱<?= number_format($sale['total_price'], 2) ?></div>
+                <div class="form-value">₱<?= number_format(array_sum(array_column($sales, 'total_price')), 2) ?></div>
             </div>
         </div>
 

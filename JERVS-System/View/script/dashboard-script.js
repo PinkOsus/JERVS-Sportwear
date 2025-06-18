@@ -148,4 +148,9 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     })
     .catch(error => console.error('Error fetching monthly sales:', error));
+
+    document.getElementById('selectAll').addEventListener('change', function () {
+    const checkboxes = document.querySelectorAll('.rowCheckbox');
+    checkboxes.forEach(cb => cb.checked = this.checked);
+  });
 });

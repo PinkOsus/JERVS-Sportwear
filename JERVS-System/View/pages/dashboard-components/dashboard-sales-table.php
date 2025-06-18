@@ -3,9 +3,14 @@
   <div class="section-header">
     <h2 class="section-title">Recent Sales</h2>
   </div>
+  <form id="printForm" action="print.php" method="POST" target="_blank">
+  <button type="submit" class="btn-action">
+    <i class="fas fa-print"></i> Print Selected
+  </button>
   <table class="sales-table">
     <thead>
       <tr>
+        <th><input type="checkbox" id="selectAll" /></th>
         <th>Order Name</th>
         <th>Quantity</th>
         <th>Order Price</th>
@@ -24,6 +29,7 @@
           $unitCost = (int)($row['total_price'] / $row['qty']);
         ?>
           <tr>
+            <td><input type="checkbox" class="rowCheckbox" name="sales_ids[]" value="<?= $row['sales_id'] ?>"></td>
             <td><?= htmlspecialchars($row['order_name']) ?></td>
             <td><?= htmlspecialchars($row['qty']) ?></td>
             <td>₱<?= number_format($row['total_price'], 2) ?></td>
@@ -41,4 +47,5 @@
       <?php endif ?>
     </tbody>
   </table>
+  </form>
 </div>
