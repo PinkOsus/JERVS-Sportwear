@@ -1,20 +1,15 @@
 <?php
 include('../../config/database.php');
 include('../../Controller/sessioncheck.php');
-// Get the sale record
-// $id = $_GET['id'] ?? 0;
-// $stmt = $conn->prepare("SELECT * FROM sales_tbl WHERE id = ?");
-// $stmt->bind_param("i", $id);
-// $stmt->execute();
-// $result = $stmt->get_result();
-// $sale = $result->fetch_assoc();
 
-// if (!$sale) {
-//     die("Sale record not found");
-// }
+if (!isset($_GET['sales_id'])) die("Invalid Request");
 
-// Calculate values
-// $unitCost = (int)($sale['total_price'] / $sale['qty']);
+$id = (int)$_GET['sales_id'];
+$stmt = $conn->prepare("SELECT * FROM sales_tbl WHERE sales_id = ?");
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$sale = $stmt->get_result()->fetch_assoc();
+$unitCost = (int)($sale['total_price'] / $sale['qty']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,11 +46,11 @@ include('../../Controller/sessioncheck.php');
             </div>
             <div class="form-row">
                 <div class="form-label">Date:</div>
-                <!-- <div class="form-value"><?= date('m/d/Y', strtotime($sale['date_completed'])) ?></div> -->
+                <div class="form-value"><?= date('m/d/Y', strtotime($sale['date_completed'])) ?></div>
             </div>
             <div class="form-row">
                 <div class="form-label">Invoice Number:</div>
-                <!-- <div class="form-value"><?= str_pad($sale['id'], 4, '0', STR_PAD_LEFT) ?></div> -->
+                <div class="form-value"><?= str_pad($sale['sales_id'], 4, '0', STR_PAD_LEFT) ?></div>
             </div>
         </div>
 
@@ -63,7 +58,7 @@ include('../../Controller/sessioncheck.php');
         <div class="form-section">
             <div class="form-row">
                 <div class="form-label">Sold to:</div>
-                <div class="form-value"></div>
+                <div class="form-value"><?= htmlspecialchars($sale['order_name']) ?></div>
             </div>
             <div class="form-row">
                 <div class="form-label">Registered Name:</div>
@@ -91,20 +86,20 @@ include('../../Controller/sessioncheck.php');
             </thead>
             <tbody>
                 <tr>
-                    <!-- <td><?= htmlspecialchars($sale['order_name']) ?></td>
+                    <td><?= htmlspecialchars($sale['order_name']) ?></td>
                     <td><?= htmlspecialchars($sale['qty']) ?></td>
                     <td>₱<?= number_format($unitCost, 2) ?></td>
-                    <td>₱<?= number_format($sale['total_price'], 2) ?></td> -->
+                    <td>₱<?= number_format($sale['total_price'], 2) ?></td>
                 </tr>
                 <!-- Add empty rows for additional items -->
-                <!-- <?php for ($i = 0; $i < 4; $i++): ?>
+                <?php for ($i = 0; $i < 4; $i++): ?>
                 <tr>
                     <td>&nbsp;</td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
-                <?php endfor; ?> -->
+                <?php endfor; ?>
             </tbody>
         </table>
 
@@ -118,7 +113,7 @@ include('../../Controller/sessioncheck.php');
             </div>
             <div class="form-row">
                 <div class="form-label">Total Sales:</div>
-                <!-- <div class="form-value">₱<?= number_format($sale['total_price'], 2) ?></div> -->
+                <div class="form-value">₱<?= number_format($sale['total_price'], 2) ?></div>
             </div>
             <div class="form-row">
                 <div class="form-label">Less: Discount (SC/PWD/NAAC/MOC/SP):</div>
@@ -130,7 +125,7 @@ include('../../Controller/sessioncheck.php');
             </div>
             <div class="form-row total-row">
                 <div class="form-label">TOTAL AMOUNT DUE:</div>
-                <!-- <div class="form-value">₱<?= number_format($sale['total_price'], 2) ?></div> -->
+                <div class="form-value">₱<?= number_format($sale['total_price'], 2) ?></div>
             </div>
         </div>
 
@@ -149,7 +144,7 @@ include('../../Controller/sessioncheck.php');
         <!-- Footer Notes -->
         <div class="footer">
             <div>"THIS DOCUMENT IS NOT VALID FOR CLAIM OF INPUT TAX"</div>
-            <div>BIR Authority to Print No.: 54BAU20250000001593</div>\
+            <div>BIR Authority to Print No.: 54BAU20250000001593</div>
             <div>7 Days Return Policy Only</div>
             <div>Date Issued: 01-30-2025</div>
         </div>

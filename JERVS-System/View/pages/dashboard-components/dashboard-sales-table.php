@@ -30,7 +30,7 @@
             <td>₱<?= htmlspecialchars($unitCost) ?> </td>
             <td><?= htmlspecialchars($row['date_completed']) ?></td>
             <td>
-                <a href="print.php?=<?= $row['sales_id'] ?>" class="btn-action print" target="_blank">
+                <a href="print.php?sales_id=<?= $row['sales_id'] ?>" class="btn-action print" target="_blank">
                   <i class="fas fa-print"></i>
                 </a>
             </td>
