@@ -147,10 +147,7 @@ while ($row = $result->fetch_assoc()) {
 
         <!-- Footer Notes -->
         <div class="footer">
-            <div>"THIS DOCUMENT IS NOT VALID FOR CLAIM OF INPUT TAX"</div>
-            <div>BIR Authority to Print No.: 54BAU20250000001593</div>
             <div>7 Days Return Policy Only</div>
-            <div>Date Issued: 01-30-2025</div>
         </div>
 
         <!-- Signature Field -->
