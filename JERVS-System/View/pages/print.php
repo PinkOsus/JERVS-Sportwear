@@ -41,7 +41,7 @@ while ($row = $result->fetch_assoc()) {
             <div class="business-name">JERVS SPORTSWEAR SHOP</div>
             <div class="business-info">Giongco Prop P. Burgos St., Kanluran, Rosario, Cavite</div>
             <div class="business-info">Proprietor: JOHN JERVIE R. BARREDO – Prop.</div>
-            <div class="business-info">TIN (Non-VAT): 000-000-000-00000</div>
+            <div class="business-info">TIN (Non-VAT): 395-640-724-00000</div>
         </div>
 
         <div class="invoice-title">OFFICIAL RECEIPT</div>
@@ -77,7 +77,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
             <div class="form-row">
                 <div class="form-label">TIN:</div>
-                <div class="form-value"></div>
+                <div class="form-value">395 - 640 - 724 - 00000</div>
             </div>
             <div class="form-row">
                 <div class="form-label">Business Address:</div>
