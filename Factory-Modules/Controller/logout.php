@@ -1,10 +1,9 @@
 <?php
     session_start();
-    session_unset();
-    session_destroy();
+    
+    unset($_SESSION['member_id']);
 
     echo '<script> alert("Logging Out"); </script>';
-
     header('Location: ../view/auth/index.php');
     exit;
 ?>

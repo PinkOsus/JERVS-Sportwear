@@ -1,8 +1,7 @@
 <?php
     session_start();
-    session_unset();
-    session_destroy();
-
+    
+    unset($_SESSION['admin_id']);
     echo '<script> alert("Logging Out"); </script>';
 
     header('Location: ../View/pages/index.php');
