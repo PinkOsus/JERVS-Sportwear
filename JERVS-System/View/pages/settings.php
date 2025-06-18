@@ -90,9 +90,6 @@
           <button class="btn btn-tab active" data-tab="admin-settings">
             <i class="fas fa-user-shield"></i> Admin Settings
           </button>
-          <button class="btn btn-tab" data-tab="receipt">
-            <i class="fas fa-receipt"></i> Receipt Customization
-          </button>
         </div>
 
         <!-- admin sittings tab -->
