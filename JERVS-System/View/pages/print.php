@@ -3,7 +3,8 @@ include('../../config/database.php');
 include('../../Controller/sessioncheck.php');
 
 if (!isset($_POST['sales_ids']) || !is_array($_POST['sales_ids'])) {
-    die("No sales selected.");
+    echo '<script>alert("No sales selected");window.close();</script>';
+    return;
 }
 
 $sales_ids = array_map('intval', $_POST['sales_ids']); // sanitize
@@ -56,7 +57,7 @@ while ($row = $result->fetch_assoc()) {
             </div>
             <div class="form-row">
                 <div class="form-label">Date:</div>
-                <div class="form-value"></div>
+                <div class="form-value"><?= date('Y - m - d') ?></div>
             </div>
             <div class="form-row">
                 <div class="form-label">Invoice Number:</div>
@@ -72,11 +73,11 @@ while ($row = $result->fetch_assoc()) {
             </div>
             <div class="form-row">
                 <div class="form-label">Registered Name:</div>
-                <div class="form-value"></div>
+                <div class="form-value">John Jervie R. Barredo</div>
             </div>
             <div class="form-row">
                 <div class="form-label">TIN:</div>
-                <div class="form-value"></div>
+                <div class="form-value">395 - 640 - 724 - 00000</div>
             </div>
             <div class="form-row">
                 <div class="form-label">Business Address:</div>
@@ -113,7 +114,7 @@ while ($row = $result->fetch_assoc()) {
                 <div class="form-label">
                     <input type="checkbox" class="checkbox"> Received the amount of:
                 </div>
-                <div class="form-value"></div>
+                <div class="form-value"><?= number_format(array_sum(array_column($sales, 'total_price')), 2) ?></div>
             </div>
             <div class="form-row">
                 <div class="form-label">Total Sales:</div>
