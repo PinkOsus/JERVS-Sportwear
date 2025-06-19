@@ -6,6 +6,7 @@
         $item_name = $_POST['product_name']?? null;
         $category = $_POST['category']?? null;
         $qty = $_POST['stock']?? null;
+        $price = $_POST['product_price']?? null;
         $descrip = $_POST['description']?? null;
 
         if (!$item_name || !$category || !$qty) {
@@ -13,8 +14,8 @@
             exit;
         }
 
-        $stmt = $conn->prepare('INSERT INTO inventory_tbl(item_name, categ, qty, descrip) VALUES(?,?,?,?)');
-        $stmt->bind_param('ssis', $item_name, $category, $qty, $descrip);
+        $stmt = $conn->prepare('INSERT INTO inventory_tbl(item_name, categ, qty, descrip, price) VALUES(?,?,?,?,?)');
+        $stmt->bind_param('ssisi', $item_name, $category, $qty, $descrip, $price);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true]);

@@ -56,6 +56,11 @@ include('../../Controller/sessioncheck.php');
                 </div>
 
                 <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" name="product_price" class="form-control" required />
+                </div>
+
+                <div class="form-group">
                     <label>Product Description</label>
                     <textarea name="description" class="form-control"></textarea>
                 </div>
@@ -80,6 +85,7 @@ include('../../Controller/sessioncheck.php');
                             <th>Product</th>
                             <th>Category</th>
                             <th>Stock</th>
+                            <th>Price</th>
                             <th>Description</th>
                             <th>Actions</th>
                         </tr>
@@ -95,6 +101,7 @@ include('../../Controller/sessioncheck.php');
                                     <td><?= htmlspecialchars($row['item_name']) ?></td>
                                     <td><?= ucfirst(htmlspecialchars($row['categ'])) ?></td>
                                     <td><?= htmlspecialchars($row['qty']) ?></td>
+                                    <td><?= htmlspecialchars($row['price']) ?></td>
                                     <td><?= htmlspecialchars($row['descrip']) ?></td>
                                     <td>
                                         <div class="action-buttons">

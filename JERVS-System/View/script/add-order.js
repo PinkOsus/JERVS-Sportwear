@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     const openBtn = document.getElementById('openAddOrderBtn');
-    const closeBtn = document.getElementById('closeAddOrderBtn');
     const panel = document.getElementById('addOrder');
     const addOrderForm = document.getElementById('addOrderForm');
+    const today = new Date().toISOString().split('T')[0];
+
+    //set to today and for future onyl
+    document.getElementById("pickupDate").setAttribute("min", today);
     //adding order form
     addOrderForm.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -38,15 +41,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const prices = {
         material: {
-            sublimation: 20,
-            mesh: 15,
+            sublimation: 200,
+            mesh: 150,
             none: 0
         },
         type: {
-            tshirt: 50,
-            jersey: 70,
-            short: 40,
-            hoodie: 100
+            tshirt: 150,
+            jersey: 200,
+            short: 170,
+            hoodie: 250
         }
     };
 
@@ -69,10 +72,5 @@ document.addEventListener('DOMContentLoaded', function () {
         const total = basePrice * qty;
 
         ghostTotal.value = '₱' + total.toFixed(2);
-
-        // Optionally auto-fill actual price field
-        if (!tPriceInput.value || parseFloat(tPriceInput.value) === 0) {
-            tPriceInput.value = total;
-        }
     }
 });

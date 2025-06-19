@@ -102,6 +102,11 @@ include('../../Controller/sessioncheck.php');
                 </div>
 
                 <div class="form-group">
+                    <label>Enter pick-up date</label>
+                    <input type="date" name="pickup_date" id="pickupDate" class="form-control" required />
+                </div>
+
+                <div class="form-group">
                     <label>Production Stage</label>
                     <select name="production_stage" class="form-control" required>
                         <option value="">-- Choose Stage --</option>
@@ -139,12 +144,13 @@ include('../../Controller/sessioncheck.php');
                             <th>Status</th>
                             <th>Date Started</th>
                             <th>Last Updated</th>
+                            <th>Pick up Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $stmt = 'SELECT * FROM orders_tbl';
+                            $stmt = 'SELECT * FROM orders_tbl ORDER BY date_created';
                             $result = $conn->query($stmt);
                         ?>
                         <?php if($result && $result->num_rows > 0): ?>
@@ -167,6 +173,7 @@ include('../../Controller/sessioncheck.php');
                                     </td>
                                     <td><?= htmlspecialchars($row['date_created']) ?></td>
                                     <td><?= htmlspecialchars($row['last_updated']) ?></td>
+                                    <td><?= htmlspecialchars($row['pickup_date']) ?></td>
                                     <td>
                                         <div class="action-buttons">
                                             <a href="edit.php?id=<?= $row['id'] ?>" class="btn-action edit">
