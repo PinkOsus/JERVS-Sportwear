@@ -11,6 +11,10 @@
     $total_price = $_POST['tPrice'];
     $addInfo = $_POST['addInfo'];
 
+    if($deposit > $total_price){
+        $deposit = $total_price;
+    }
+
     $stmt = $conn->prepare('UPDATE orders_tbl SET item_name = ?, deposit = ?, qty = ?, total_price = ?, order_details = ?, last_updated = NOW() WHERE id=?');
     $stmt->bind_param('siidsi', $item, $deposit, $qty, $total_price, $addInfo, $id);
 

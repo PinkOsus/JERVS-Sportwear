@@ -124,8 +124,8 @@ include('../../Controller/sessioncheck.php');
                         <?php if($result && $result->num_rows > 0): ?>
                             <?php while($row = $result->fetch_assoc()):
                                 $balance = $row['total_price'] - $row['deposit'];
-                                if($balance <= 0){
-                                    $balance = $row['total_price'];
+                                if($balance < 0){
+                                    $balance = 0;
                                 }
                             ?>
                                 <tr>
