@@ -86,11 +86,6 @@
 
       <!-- sittings tabs -->
       <div class="metric-card">
-        <div class="settings-tabs">
-          <button class="btn btn-tab active" data-tab="admin-settings">
-            <i class="fas fa-user-shield"></i> Admin Settings
-          </button>
-        </div>
 
         <!-- admin sittings tab -->
         <section id="admin-settings" class="settings-section active">
