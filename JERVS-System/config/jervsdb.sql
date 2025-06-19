@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2025 at 10:09 AM
+-- Generation Time: Jun 19, 2025 at 05:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `admin_tbl` (
 --
 
 INSERT INTO `admin_tbl` (`admin_id`, `admin_user`, `admin_pass`) VALUES
-(1, 'admin', '$2y$10$dqYz2AjjBa.WV9wctsN2DuaXlT9y/FMbnXF/uY6fWmhR1zYDcngzW');
+(1, 'admin', '$2y$10$A5V8ET4oW5u.jllrZMfbguXXU6OUCYi0rY8PLPLj84f6MDSTkbF0S');
 
 -- --------------------------------------------------------
 
@@ -50,6 +50,7 @@ CREATE TABLE `inventory_tbl` (
   `id` int(11) NOT NULL,
   `item_name` varchar(255) NOT NULL,
   `categ` varchar(255) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
   `qty` int(11) NOT NULL,
   `descrip` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -58,12 +59,15 @@ CREATE TABLE `inventory_tbl` (
 -- Dumping data for table `inventory_tbl`
 --
 
-INSERT INTO `inventory_tbl` (`id`, `item_name`, `categ`, `qty`, `descrip`) VALUES
-(74, 'Jervs Hoodie', 'product', 14, 'Comfortable Hoodie'),
-(76, 'Jervs Short', 'product', 10, 'Comfortable short'),
-(78, 'Jervs Hoodie - Red', 'product', 25, ''),
-(79, 'Jervs Short - NBT', 'product', 25, ''),
-(80, 'Fabric - Blue', 'materials', 1, '1 yard');
+INSERT INTO `inventory_tbl` (`id`, `item_name`, `categ`, `price`, `qty`, `descrip`) VALUES
+(74, 'Jervs Hoodie', 'product', 120, 20, 'Comfortable Hoodie'),
+(76, 'Jervs Short', 'product', 500, 10, 'Comfortable short'),
+(78, 'Jervs Hoodie - Red', 'product', 500, 25, ''),
+(79, 'Jervs Short - NBT', 'product', 250, 25, 'Very Comfortable short good for kids'),
+(80, 'Dry Fit', 'materials', 100, 99, '1 yard'),
+(83, 'Polyster', 'materials', 100, 99, ''),
+(84, 'Cotton', 'materials', 80, 99, ''),
+(85, 'Interlock', 'materials', 50, 99, '');
 
 -- --------------------------------------------------------
 
@@ -84,7 +88,11 @@ CREATE TABLE `login_logs` (
 --
 
 INSERT INTO `login_logs` (`id`, `member_id`, `login_time`, `ip_address`, `user_agent`) VALUES
-(15, 14, '2025-06-15 21:14:06', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0');
+(15, 14, '2025-06-15 21:14:06', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
+(17, 14, '2025-06-18 18:33:55', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
+(18, 14, '2025-06-18 18:35:02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
+(19, 14, '2025-06-18 18:36:48', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
+(20, 14, '2025-06-18 18:37:19', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0');
 
 -- --------------------------------------------------------
 
@@ -121,19 +129,25 @@ CREATE TABLE `orders_tbl` (
   `qty` int(11) NOT NULL,
   `deposit` int(11) NOT NULL,
   `total_price` int(11) NOT NULL,
+  `garment_type` varchar(155) NOT NULL,
+  `printing_method` varchar(155) NOT NULL,
   `order_details` text NOT NULL,
   `current_phase` enum('start','printing','heatpress','sewing','ready') DEFAULT NULL,
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `pickup_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders_tbl`
 --
 
-INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `order_details`, `current_phase`, `last_updated`) VALUES
-(22, 'Order - Team Bardagulan', 25, 7500, 10000, 'Jersey\r\nCaraig - Medium\r\nArellano - Medium\r\nAgco - XL\r\nBuatis - Large', 'start', '2025-06-16 05:55:51'),
-(23, 'Order - Team tinambakan', 12, 1500, 10000, 'asdasdasdasdadsada', 'printing', '2025-06-15 13:16:11'),
-(24, 'Order - Team Dinakdakan', 12, 5000, 15000, 'asjdgashjgdasgdjhasgda', 'start', '2025-06-14 07:54:30');
+INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `garment_type`, `printing_method`, `order_details`, `current_phase`, `date_created`, `last_updated`, `pickup_date`) VALUES
+(22, 'Order - Team Bardagulan', 25, 10000, 10000, 'jersey', 'sublimation', 'Jersey\r\nCaraig - Medium\r\nArellano - Medium\r\nAgco - XL\r\nBuatis - Large', 'heatpress', '2025-06-19 19:44:32', '2025-06-19 14:17:38', '2025-07-01'),
+(23, 'Order - Team tinambakan', 12, 1500, 10000, 'jersey', 'sublimation', 'asdasdasdasdadsada', 'sewing', '2025-06-19 19:44:32', '2025-06-19 14:17:56', '2025-07-02'),
+(24, 'Order - Team Dinakdakan', 12, 5000, 15000, 'jersey', 'mesh', 'asjdgashjgdasgdjhasgda', 'printing', '2025-06-19 19:44:32', '2025-06-19 14:18:08', '2025-07-03'),
+(32, 'Jervs Hoodie', 50, 100, 10000, 'hoodie', 'none', '', 'start', '2025-06-19 19:44:32', '2025-06-19 14:18:31', '2025-07-04'),
+(34, 'Order - Caraig', 15, 5000, 5500, 'tshirt', 'sublimation', '', 'start', '2025-06-19 22:34:35', '2025-06-19 14:34:35', '2025-06-30');
 
 -- --------------------------------------------------------
 
@@ -220,13 +234,13 @@ ALTER TABLE `admin_tbl`
 -- AUTO_INCREMENT for table `inventory_tbl`
 --
 ALTER TABLE `inventory_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `member_tbl`
@@ -238,7 +252,7 @@ ALTER TABLE `member_tbl`
 -- AUTO_INCREMENT for table `orders_tbl`
 --
 ALTER TABLE `orders_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `sales_tbl`

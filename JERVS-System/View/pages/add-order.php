@@ -57,7 +57,7 @@ include('../../Controller/sessioncheck.php');
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Material Type</label>
+                        <label>Printing Method</label>
                         <select id="materialSelect" class="form-control" name="material">
                             <option value="none">None</option>
                             <option value="sublimation">Sublimation</option>
@@ -73,6 +73,29 @@ include('../../Controller/sessioncheck.php');
                             <option value="hoodie">Hoodie</option>
                         </select>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Additional Materials</label><br>
+                    <?php
+                    $materialQuery = "SELECT id, item_name, price FROM inventory_tbl WHERE categ = 'materials'";
+                    $result = $conn->query($materialQuery);
+
+                    if ($result && $result->num_rows > 0):
+                        while ($row = $result->fetch_assoc()):
+                            $id = $row['id'];
+                            $name = htmlspecialchars($row['item_name']);
+                            $price = (float)$row['price'];
+                    ?>
+                        <label>
+                            <input type="checkbox" class="material-checkbox" data-price="<?= $price ?>" value="<?= $id ?>"> <?= $name ?> (₱<?= number_format($price, 2) ?>)
+                        </label><br>
+                    <?php
+                        endwhile;
+                    else:
+                        echo "No materials found.";
+                    endif;
+                    ?>
                 </div>
                 
                 <div class="form-row">

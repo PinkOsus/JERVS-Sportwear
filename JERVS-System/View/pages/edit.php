@@ -94,6 +94,17 @@ if(isset($_GET['id'])){
                     </div>
                 </div>
 
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Printing Method</label>
+                        <input type="text" name="printing_method" class="form-control" value="<?= ucfirst(htmlspecialchars($order['printing_method'])) ?>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Garment Type</label>
+                        <input type="text" name="qty" class="form-control" value="<?= ucfirst(htmlspecialchars($order['garment_type'])) ?>" readonly>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>Total Price</label>
                     <input type="number" name="tPrice" class="form-control" value="<?= htmlspecialchars($order['total_price']) ?>" required>

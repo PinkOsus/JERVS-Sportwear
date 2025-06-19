@@ -62,14 +62,29 @@ document.addEventListener('DOMContentLoaded', function () {
     [materialSelect, typeSelect, qtyInput].forEach(el => {
         el.addEventListener('input', calculateGhostPrice);
     });
+    document.querySelectorAll('.material-checkbox').forEach(cb => {
+    cb.addEventListener('change', calculateGhostPrice);
+    });
 
     function calculateGhostPrice() {
         const material = materialSelect.value;
         const type = typeSelect.value;
         const qty = parseInt(qtyInput.value) || 0;
 
-        const basePrice = (prices.material[material] || 0) + (prices.type[type] || 0);
-        const total = basePrice * qty;
+        // Base price from material and type dropdowns
+        let basePrice = (prices.material[material] || 0) + (prices.type[type] || 0);
+
+        // Add prices of selected material checkboxes
+        const selectedMaterials = document.querySelectorAll('.material-checkbox:checked');
+        let extraMaterialsTotal = 0;
+
+        selectedMaterials.forEach(cb => {
+            const price = parseFloat(cb.dataset.price) || 0;
+            extraMaterialsTotal += price;
+        });
+
+        // Multiply total per piece by quantity
+        const total = (basePrice + extraMaterialsTotal) * qty;
 
         ghostTotal.value = '₱' + total.toFixed(2);
     }

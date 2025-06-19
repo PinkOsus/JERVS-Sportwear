@@ -76,6 +76,21 @@
                         <label>Balance</label>
                         <div class="detail-value price">₱<?= number_format($balance, 2) ?></div>
                     </div>
+
+                    <div class="detail-group">
+                        <label>Garment Type</label>
+                        <div class="detail-value"><?= ucfirst(htmlspecialchars($order['garment_type'])) ?></div>
+                    </div>
+
+                    <div class="detail-group">
+                        <label>Printing Method</label>
+                        <div class="detail-value"><?= ucfirst(htmlspecialchars($order['printing_method'])) ?></div>
+                    </div>
+
+                    <div class="detail-group">
+                        <label>Pick-up Date</label>
+                        <div class="detail-value"><?= ucfirst(htmlspecialchars($order['pickup_date'])) ?></div>
+                    </div>
                     
                     <div class="detail-group full-width">
                         <label>Additional Details</label>

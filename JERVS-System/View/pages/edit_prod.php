@@ -7,11 +7,12 @@
         $id = $_POST['id'];
         $item_name = $_POST['item'];
         $qty = $_POST['qty'];
+        $price = $_POST['price'];
         $category = $_POST['category'];
         $descrip = $_POST['description'];
 
-        $stmt = $conn->prepare("UPDATE inventory_tbl SET item_name = ?, categ = ?, qty = ?, descrip = ? WHERE id = ?");
-        $stmt->bind_param('ssisi', $item_name, $category, $qty, $descrip, $id);
+        $stmt = $conn->prepare("UPDATE inventory_tbl SET item_name = ?, categ = ?, qty = ?, descrip = ?, price = ? WHERE id = ?");
+        $stmt->bind_param('ssisii', $item_name, $category, $qty, $descrip, $price, $id);
 
         if($stmt->execute()){
             header('Location: ../../View/pages/add-inventory.php?success=1');
@@ -102,6 +103,13 @@
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="number" name="price" class="form-control" value="<?= htmlspecialchars($item['price']) ?>" required>
+                    </div>
                 </div>
 
                 <div class="form-group">
