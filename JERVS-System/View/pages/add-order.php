@@ -112,6 +112,7 @@ include('../../Controller/sessioncheck.php');
                             <th>Total Price</th>
                             <th>Balance</th>
                             <th>Status</th>
+                            <th>Date Started</th>
                             <th>Last Updated</th>
                             <th>Actions</th>
                         </tr>
@@ -139,6 +140,7 @@ include('../../Controller/sessioncheck.php');
                                             <?= htmlspecialchars(ucfirst($row['current_phase'])) ?>
                                         </span>
                                     </td>
+                                    <td><?= htmlspecialchars($row['date_created']) ?></td>
                                     <td><?= htmlspecialchars($row['last_updated']) ?></td>
                                     <td>
                                         <div class="action-buttons">
