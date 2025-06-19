@@ -28,6 +28,11 @@
     grid-column: 1 / -1;
 }
 
+.btn-action.delete:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .order-details-grid {

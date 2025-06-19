@@ -150,7 +150,7 @@ include('../../Controller/sessioncheck.php');
                                             </a>
                                             <form action="../../Controller/Order-Management/delete.php" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline;">
                                                 <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                                                <button type="submit" class="btn-action delete">
+                                                <button type="submit" class="btn-action delete"<?= ($row['current_phase'] === 'printing' || $row['current_phase'] === 'heatpress' || $row['current_phase'] === 'sewing' || $row['current_phase'] === 'ready') ? 'disabled' : '' ?>>
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
