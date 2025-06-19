@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeBtn = document.getElementById('closeAddOrderBtn');
     const panel = document.getElementById('addOrder');
     const addOrderForm = document.getElementById('addOrderForm');
-
     //adding order form
     addOrderForm.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -37,7 +36,43 @@ document.addEventListener('DOMContentLoaded', function () {
         panel.style.display = 'flex';
     });
 
-    closeBtn.addEventListener('click', () => {
-        panel.style.display = 'none';
+    const prices = {
+        material: {
+            sublimation: 20,
+            mesh: 15,
+            none: 0
+        },
+        type: {
+            tshirt: 50,
+            jersey: 70,
+            short: 40,
+            hoodie: 100
+        }
+    };
+
+    const qtyInput = document.getElementById('qtyInput');
+    const materialSelect = document.getElementById('materialSelect');
+    const typeSelect = document.getElementById('typeSelect');
+    const ghostTotal = document.getElementById('ghostTotal');
+    const tPriceInput = document.getElementById('tPriceInput');
+
+    [materialSelect, typeSelect, qtyInput].forEach(el => {
+        el.addEventListener('input', calculateGhostPrice);
     });
+
+    function calculateGhostPrice() {
+        const material = materialSelect.value;
+        const type = typeSelect.value;
+        const qty = parseInt(qtyInput.value) || 0;
+
+        const basePrice = (prices.material[material] || 0) + (prices.type[type] || 0);
+        const total = basePrice * qty;
+
+        ghostTotal.value = '₱' + total.toFixed(2);
+
+        // Optionally auto-fill actual price field
+        if (!tPriceInput.value || parseFloat(tPriceInput.value) === 0) {
+            tPriceInput.value = total;
+        }
+    }
 });

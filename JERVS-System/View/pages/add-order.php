@@ -54,7 +54,27 @@ include('../../Controller/sessioncheck.php');
                         ?>
                     </datalist>
                 </div>
-
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Material Type</label>
+                        <select id="materialSelect" class="form-control" name="material">
+                            <option value="none">None</option>
+                            <option value="sublimation">Sublimation</option>
+                            <option value="mesh">Mesh</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Garment Type</label>
+                        <select id="typeSelect" class="form-control" name="garment_type">
+                            <option value="jersey">Jersey</option>
+                            <option value="tshirt">T-Shirt</option>
+                            <option value="short">Short</option>
+                            <option value="hoodie">Hoodie</option>
+                        </select>
+                    </div>
+                </div>
+                
                 <div class="form-row">
                     <div class="form-group">
                         <label>Initial Deposit</label>
@@ -62,13 +82,18 @@ include('../../Controller/sessioncheck.php');
                     </div>
                     <div class="form-group">
                         <label>Quantity</label>
-                        <input type="number" name="qty" class="form-control" required />
+                        <input type="number" name="qty" id="qtyInput" class="form-control" required />
                     </div>
                 </div>
 
                 <div class="form-group">
+                    <label>Estimated Total Price (Auto-Calculated)</label>
+                    <input type="text" id="ghostTotal" class="form-control" placeholder="Auto-calculated..." readonly />
+                </div>
+
+                <div class="form-group">
                     <label>Total Price</label>
-                    <input type="number" name="tPrice" class="form-control" required />
+                    <input type="number" name="tPrice" id="tPriceInput" class="form-control" required />
                 </div>
 
                 <div class="form-group">
@@ -84,7 +109,7 @@ include('../../Controller/sessioncheck.php');
                         <option value="ready">Ready</option>
                     </select>
                 </div>
-
+                
                 <div class="form-buttons">
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-plus"></i> Add Order
