@@ -61,7 +61,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['cu
                             <th>Order name</th>
                             <th>Deposit</th>
                             <th>Status</th>
+                            <th>Date Started</th>
                             <th>Last Updated</th>
+                            <th>Pick-up Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -90,7 +92,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['cu
                                                 <?php endforeach ?>
                                             </select>
                                         </td>
+                                        <td><?= htmlspecialchars($row['date_created']) ?></td>
                                         <td><?= htmlspecialchars($row['last_updated']) ?></td>
+                                        <td><?= htmlspecialchars($row['pickup_date']) ?></td>
                                         <td>
                                             <input type="hidden" name="order_id" value="<?= intval($row['id']) ?>"/>
                                             <button type="submit" class="btn btn-primary">

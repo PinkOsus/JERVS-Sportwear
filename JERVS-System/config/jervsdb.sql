@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2025 at 05:03 PM
+-- Generation Time: Jun 20, 2025 at 04:45 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,11 +60,11 @@ CREATE TABLE `inventory_tbl` (
 --
 
 INSERT INTO `inventory_tbl` (`id`, `item_name`, `categ`, `price`, `qty`, `descrip`) VALUES
-(74, 'Jervs Hoodie', 'product', 120, 20, 'Comfortable Hoodie'),
+(74, 'Jervs Hoodie', 'product', 110, 20, 'Comfortable Hoodie'),
 (76, 'Jervs Short', 'product', 500, 10, 'Comfortable short'),
 (78, 'Jervs Hoodie - Red', 'product', 500, 25, ''),
 (79, 'Jervs Short - NBT', 'product', 250, 25, 'Very Comfortable short good for kids'),
-(80, 'Dry Fit', 'materials', 100, 99, '1 yard'),
+(80, 'Dry Fit', 'materials', 100, 78, '1 yard'),
 (83, 'Polyster', 'materials', 100, 99, ''),
 (84, 'Cotton', 'materials', 80, 99, ''),
 (85, 'Interlock', 'materials', 50, 99, '');
@@ -92,7 +92,9 @@ INSERT INTO `login_logs` (`id`, `member_id`, `login_time`, `ip_address`, `user_a
 (17, 14, '2025-06-18 18:33:55', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
 (18, 14, '2025-06-18 18:35:02', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
 (19, 14, '2025-06-18 18:36:48', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
-(20, 14, '2025-06-18 18:37:19', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0');
+(20, 14, '2025-06-18 18:37:19', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
+(21, 14, '2025-06-20 09:40:14', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0'),
+(22, 14, '2025-06-20 10:24:46', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36 Edg/137.0.0.0');
 
 -- --------------------------------------------------------
 
@@ -131,6 +133,7 @@ CREATE TABLE `orders_tbl` (
   `total_price` int(11) NOT NULL,
   `garment_type` varchar(155) NOT NULL,
   `printing_method` varchar(155) NOT NULL,
+  `add_materials` varchar(155) NOT NULL,
   `order_details` text NOT NULL,
   `current_phase` enum('start','printing','heatpress','sewing','ready') DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
@@ -142,12 +145,13 @@ CREATE TABLE `orders_tbl` (
 -- Dumping data for table `orders_tbl`
 --
 
-INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `garment_type`, `printing_method`, `order_details`, `current_phase`, `date_created`, `last_updated`, `pickup_date`) VALUES
-(22, 'Order - Team Bardagulan', 25, 10000, 10000, 'jersey', 'sublimation', 'Jersey\r\nCaraig - Medium\r\nArellano - Medium\r\nAgco - XL\r\nBuatis - Large', 'heatpress', '2025-06-19 19:44:32', '2025-06-19 14:17:38', '2025-07-01'),
-(23, 'Order - Team tinambakan', 12, 1500, 10000, 'jersey', 'sublimation', 'asdasdasdasdadsada', 'sewing', '2025-06-19 19:44:32', '2025-06-19 14:17:56', '2025-07-02'),
-(24, 'Order - Team Dinakdakan', 12, 5000, 15000, 'jersey', 'mesh', 'asjdgashjgdasgdjhasgda', 'printing', '2025-06-19 19:44:32', '2025-06-19 14:18:08', '2025-07-03'),
-(32, 'Jervs Hoodie', 50, 100, 10000, 'hoodie', 'none', '', 'start', '2025-06-19 19:44:32', '2025-06-19 14:18:31', '2025-07-04'),
-(34, 'Order - Caraig', 15, 5000, 5500, 'tshirt', 'sublimation', '', 'start', '2025-06-19 22:34:35', '2025-06-19 14:34:35', '2025-06-30');
+INSERT INTO `orders_tbl` (`id`, `item_name`, `qty`, `deposit`, `total_price`, `garment_type`, `printing_method`, `add_materials`, `order_details`, `current_phase`, `date_created`, `last_updated`, `pickup_date`) VALUES
+(22, 'Order - Team Bardagulan', 25, 10000, 10000, 'jersey', 'sublimation', '', 'Jersey\r\nCaraig - Medium\r\nArellano - Medium\r\nAgco - XL\r\nBuatis - Large', 'heatpress', '2025-06-19 19:44:32', '2025-06-19 14:17:38', '2025-07-01'),
+(23, 'Order - Team tinambakan', 12, 1500, 10000, 'jersey', 'sublimation', '', 'asdasdasdasdadsada', 'sewing', '2025-06-19 19:44:32', '2025-06-19 14:17:56', '2025-07-02'),
+(24, 'Order - Team Dinakdakan', 12, 5000, 15000, 'jersey', 'mesh', '', 'asjdgashjgdasgdjhasgda', 'printing', '2025-06-19 19:44:32', '2025-06-19 14:18:08', '2025-07-03'),
+(32, 'Jervs Hoodie', 50, 100, 10000, 'hoodie', 'none', '', '', 'start', '2025-06-19 19:44:32', '2025-06-19 14:18:31', '2025-07-04'),
+(34, 'Order - Caraig', 15, 5000, 5500, 'tshirt', 'sublimation', '', '', 'start', '2025-06-19 22:34:35', '2025-06-19 14:34:35', '2025-06-30'),
+(37, 'Order - Buatis', 58, 15000, 30000, 'tshirt', 'sublimation', 'Dry Fit', '', 'start', '2025-06-20 10:29:12', '2025-06-20 02:29:12', '2025-07-09');
 
 -- --------------------------------------------------------
 
@@ -240,7 +244,7 @@ ALTER TABLE `inventory_tbl`
 -- AUTO_INCREMENT for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `member_tbl`
@@ -252,7 +256,7 @@ ALTER TABLE `member_tbl`
 -- AUTO_INCREMENT for table `orders_tbl`
 --
 ALTER TABLE `orders_tbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `sales_tbl`

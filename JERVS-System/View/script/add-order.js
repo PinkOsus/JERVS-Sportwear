@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
 
         const formData = new FormData(this);
+        formData.set('force', 'false');
 
         fetch("../../Controller/add_order.php", {
             method: "POST",
@@ -25,6 +26,32 @@ document.addEventListener('DOMContentLoaded', function () {
                     feedback.style.color = "green";
 
                     window.location.reload();
+                } else if (data.confirm) {
+                    if (confirm(data.message)) {
+                        // User clicked OK, resubmit with force=true
+                        formData.set('force', 'true');
+                        fetch("../../Controller/add_order.php", {
+                            method: "POST",
+                            body: formData
+                        })
+                            .then(res => res.json())
+                            .then(forcedData => {
+                                if (forcedData.success) {
+                                    feedback.innerText = "Order added Successfully";
+                                    feedback.style.color = "green";
+                                    window.location.reload();
+                                } else {
+                                    feedback.innerText = "Order adding failed: " + (forcedData.message || 'Unknown error');
+                                    feedback.style.color = "red";
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Force submit error: ", error);
+                            });
+                    } else {
+                        feedback.innerText = "Order was not submitted due to insufficient stock.";
+                        feedback.style.color = "orange";
+                    }
                 } else {
                     feedback.innerText = "Order adding failed: " + data.message;
                     feedback.style.color = "red";
@@ -63,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
         el.addEventListener('input', calculateGhostPrice);
     });
     document.querySelectorAll('.material-checkbox').forEach(cb => {
-    cb.addEventListener('change', calculateGhostPrice);
+        cb.addEventListener('change', calculateGhostPrice);
     });
 
     function calculateGhostPrice() {

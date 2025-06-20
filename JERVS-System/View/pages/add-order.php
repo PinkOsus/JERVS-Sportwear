@@ -88,8 +88,8 @@ include('../../Controller/sessioncheck.php');
                             $price = (float)$row['price'];
                     ?>
                         <label>
-                            <input type="checkbox" class="material-checkbox" data-price="<?= $price ?>" value="<?= $id ?>"> <?= $name ?> (₱<?= number_format($price, 2) ?>)
-                        </label><br>
+                            <input type="radio" name="addMaterials" class="material-radio" data-price="<?= $price ?>" value="<?= $name ?>"> <?= $name ?> (₱<?= number_format($price, 2) ?>)
+                        </label>
                     <?php
                         endwhile;
                     else:
