@@ -60,6 +60,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['cu
                         <tr>
                             <th>Order name</th>
                             <th>Deposit</th>
+                            <th>Printing Method</th>
                             <th>Status</th>
                             <th>Date Started</th>
                             <th>Last Updated</th>
@@ -78,6 +79,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'], $_POST['cu
                                     <form method="POST">
                                         <td><?= htmlspecialchars($row['item_name']) ?></td>
                                         <td>₱<?= number_format(htmlspecialchars($row['deposit']), 2) ?></td>
+                                        <td><?= ucfirst(htmlspecialchars($row['printing_method'])) ?></td>
                                         <td>
                                             <select name="current_phase" class="form-control">
                                                 <?php

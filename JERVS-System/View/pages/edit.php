@@ -101,7 +101,7 @@ if(isset($_GET['id'])){
                     </div>
                     <div class="form-group">
                         <label>Garment Type</label>
-                        <input type="text" name="qty" class="form-control" value="<?= ucfirst(htmlspecialchars($order['garment_type'])) ?>" readonly>
+                        <input type="text" name="garment_type" class="form-control" value="<?= ucfirst(htmlspecialchars($order['garment_type'])) ?>" readonly>
                     </div>
                 </div>
 
